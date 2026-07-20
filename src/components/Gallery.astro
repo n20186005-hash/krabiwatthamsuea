@@ -4,7 +4,7 @@ import { getI18n } from '../i18n/ui';
 const { messages } = getI18n(Astro.url);
 const g = messages.gallery;
 
-const count = 12;
+const count = 28;
 const spans = ['gallery-span-2','gallery-span-3','gallery-span-1','gallery-span-1','gallery-span-1','gallery-span-4','gallery-span-4','gallery-span-1','gallery-span-1','gallery-span-1','gallery-span-2','gallery-span-3'];
 ---
 
@@ -18,10 +18,11 @@ const spans = ['gallery-span-2','gallery-span-3','gallery-span-1','gallery-span-
       {Array.from({ length: count }).map((_, i) => {
         const n = i + 1;
         const src = `/gallery/wat-tham-suea-${n}.jpg`;
+        const spanClass = spans[i % spans.length];
         return (
-          <figure class={`gallery-item ${spans[i]}`} data-src={src}>
-            <img src={src} alt={g.photos[i] ?? g.alt} loading="lazy" />
-            <figcaption class="cap">{g.captions[i] ?? ''}</figcaption>
+          <figure class={`gallery-item ${spanClass}`} data-src={src}>
+            <img src={src} alt={g.photos?.[i] ?? g.alt} loading="lazy" />
+            <figcaption class="cap">{g.captions?.[i] ?? ''}</figcaption>
           </figure>
         );
       })}
