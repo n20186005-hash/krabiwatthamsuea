@@ -1,0 +1,43 @@
+---
+import { getI18n } from '../i18n/ui';
+
+const { messages } = getI18n(Astro.url);
+const f = messages.faq;
+---
+
+<section class="section-padding" id="faq">
+  <div class="container">
+    <span class="eyebrow">{f.eyebrow}</span>
+    <h2 class="section-title">{f.title}</h2>
+    <p class="section-lead">{f.subtitle}</p>
+
+    <div class="faq-list" style="margin-top:26px;max-width:860px">
+      {f.items.map((it: any) => (
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            <span>{it.q}</span>
+            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><div class="inner">{it.a}</div></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.parentElement;
+        var open = item.getAttribute('data-open') === 'true';
+        document.querySelectorAll('.faq-item').forEach(function (el) { el.setAttribute('data-open', 'false'); el.querySelector('.faq-a').style.maxHeight = null; });
+        if (!open) {
+          item.setAttribute('data-open', 'true');
+          var a = item.querySelector('.faq-a');
+          a.style.maxHeight = a.scrollHeight + 'px';
+        }
+      });
+    });
+  })();
+</script>

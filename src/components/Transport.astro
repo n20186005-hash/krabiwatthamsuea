@@ -1,0 +1,40 @@
+---
+import { getI18n } from '../i18n/ui';
+
+const { messages } = getI18n(Astro.url);
+const t = messages.transport;
+---
+
+<section class="section-padding" id="transport">
+  <div class="container">
+    <span class="eyebrow">{t.eyebrow}</span>
+    <h2 class="section-title">{t.title}</h2>
+    <p class="section-lead">{t.subtitle}</p>
+
+    <p class="transport-overview">{t.overview}</p>
+
+    <div class="transport-grid">
+      {t.modes.map((m: any) => (
+        <div class="card card-pad mode fade-up">
+          <div class="mode-ico">{m.icon}</div>
+          <h3 class="mode-title">{m.title}</h3>
+          <p class="mode-desc">{m.description}</p>
+          <ul class="mode-details">
+            {m.details.map((d: string) => <li>{d}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .transport-overview { max-width: 760px; color: var(--text); margin: 18px 0 30px; }
+  .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .mode-ico { width: 52px; height: 52px; border-radius: 14px; background: var(--accent-soft); display: grid; place-items: center; font-size: 1.6rem; margin-bottom: 14px; }
+  .mode-title { font-size: 1.25rem; margin: 0 0 8px; }
+  .mode-desc { color: var(--text-muted); margin: 0 0 14px; font-size: 0.96rem; }
+  .mode-details { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .mode-details li { position: relative; padding-left: 18px; color: var(--text); font-size: 0.94rem; }
+  .mode-details li::before { content: '•'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+</style>

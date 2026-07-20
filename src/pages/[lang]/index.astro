@@ -1,0 +1,44 @@
+---
+import { languagesList } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return languagesList.map((lang) => ({ params: { lang } }));
+}
+
+import { getLangFromUrl, getI18n } from '../../i18n/ui';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Intro from '../../components/Intro.astro';
+import Visit from '../../components/Visit.astro';
+import Transport from '../../components/Transport.astro';
+import Tips from '../../components/Tips.astro';
+import BestTime from '../../components/BestTime.astro';
+import History from '../../components/History.astro';
+import Events from '../../components/Events.astro';
+import Gallery from '../../components/Gallery.astro';
+import Support from '../../components/Support.astro';
+import Credits from '../../components/Credits.astro';
+import Nearby from '../../components/Nearby.astro';
+import Reviews from '../../components/Reviews.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const { messages } = getI18n(Astro.url);
+---
+
+<BaseLayout title={messages.meta.title} description={messages.meta.description} path={`/${lang}`}>
+  <Hero />
+  <Intro />
+  <Visit />
+  <Transport />
+  <Tips />
+  <BestTime />
+  <History />
+  <Events />
+  <Gallery />
+  <Support />
+  <Credits />
+  <Nearby />
+  <Reviews />
+  <FAQ />
+</BaseLayout>

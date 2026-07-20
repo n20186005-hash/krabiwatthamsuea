@@ -1,0 +1,63 @@
+---
+import { getI18n } from '../i18n/ui';
+
+const { messages } = getI18n(Astro.url);
+const r = messages.reviews;
+
+function stars(n: number) {
+  const full = Math.max(0, Math.min(5, Math.round(n)));
+  return '★★★★★'.slice(0, full) + '☆☆☆☆☆'.slice(0, 5 - full);
+}
+---
+
+<section class="section-padding" id="reviews">
+  <div class="container">
+    <span class="eyebrow">{r.eyebrow}</span>
+    <h2 class="section-title">{r.title}</h2>
+    <p class="section-lead">{r.declaration}</p>
+
+    <div class="reviews-grid">
+      {r.items.map((it: any) => (
+        <article class="card card-pad review fade-up">
+          <div class="review-head">
+            <div class="review-avatar">{it.name.slice(0, 1)}</div>
+            <div>
+              <p class="review-name">{it.name}</p>
+              <p class="review-date">{it.date}</p>
+            </div>
+            <span class="review-stars" aria-label={`${it.rating} / 5`}>{stars(it.rating)}</span>
+          </div>
+          <p class="review-text">{it.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="reviews-foot">
+      <a class="hero-maps-link" href={r.mapsUrl} target="_blank" rel="noopener" style="color:var(--heading);background:var(--surface-2);border-color:var(--border-strong)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        {r.moreReviews}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .review { display: flex; flex-direction: column; gap: 14px; }
+  .review-head { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    flex: none; width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent-strong);
+    display: grid; place-items: center; font-weight: 700; font-size: 1.1rem;
+  }
+  .review-name { margin: 0; font-weight: 700; color: var(--heading); }
+  .review-date { margin: 0; font-size: 0.82rem; color: var(--text-muted); }
+  .review-stars { margin-left: auto; color: #f5a623; letter-spacing: 1px; font-size: 0.95rem; }
+  .review-text { margin: 0; color: var(--text-muted); line-height: 1.7; }
+  .reviews-foot { display: flex; justify-content: center; margin-top: 28px; }
+</style>

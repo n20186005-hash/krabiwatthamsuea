@@ -1,0 +1,54 @@
+---
+import { getI18n } from '../i18n/ui';
+
+const { messages } = getI18n(Astro.url);
+const s = messages.support;
+---
+
+<section class="section-padding" id="support" style="background:var(--surface)">
+  <div class="container">
+    <span class="eyebrow">{s.eyebrow}</span>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="support-grid">
+      {s.items.map((item: any) => (
+        <div class="card card-pad support-card fade-up">
+          <h3 class="support-title">{item.title}</h3>
+          <p class="support-text">{item.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mission-block donation-callout">
+      <p class="mission-title">{s.donationTitle}</p>
+      <p class="mission-text">{s.donationText}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+    margin-bottom: 24px;
+  }
+  .support-card {
+    border-top: 4px solid var(--accent);
+  }
+  .support-title {
+    font-size: 1.2rem;
+    margin: 0 0 12px;
+  }
+  .support-text {
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+  .donation-callout {
+    background: var(--surface-accent);
+    border-color: var(--accent);
+  }
+</style>

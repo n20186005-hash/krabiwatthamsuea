@@ -1,0 +1,76 @@
+---
+import { getI18n } from '../i18n/ui';
+
+const { messages } = getI18n(Astro.url);
+const g = messages.gallery;
+
+const count = 12;
+const spans = ['gallery-span-2','gallery-span-3','gallery-span-1','gallery-span-1','gallery-span-1','gallery-span-4','gallery-span-4','gallery-span-1','gallery-span-1','gallery-span-1','gallery-span-2','gallery-span-3'];
+---
+
+<section class="section-padding" id="gallery">
+  <div class="container">
+    <span class="eyebrow">{g.eyebrow}</span>
+    <h2 class="section-title">{g.title}</h2>
+    <p class="section-lead">{g.subtitle}</p>
+
+    <div class="gallery-grid" style="margin-top:30px">
+      {Array.from({ length: count }).map((_, i) => {
+        const n = i + 1;
+        const src = `/gallery/wat-tham-suea-${n}.jpg`;
+        return (
+          <figure class={`gallery-item ${spans[i]}`} data-src={src}>
+            <img src={src} alt={g.photos[i] ?? g.alt} loading="lazy" />
+            <figcaption class="cap">{g.captions[i] ?? ''}</figcaption>
+          </figure>
+        );
+      })}
+    </div>
+
+    <div class="gallery-foot">
+      <a class="hero-maps-link" href={g.mapsUrl} target="_blank" rel="noopener" style="color:var(--heading);background:var(--surface-2);border-color:var(--border-strong)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        {g.viewMaps}
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="lightbox" class="lightbox" hidden>
+  <button class="lb-close" aria-label="close">×</button>
+  <button class="lb-nav lb-prev" aria-label="prev">‹</button>
+  <img id="lbImg" src="" alt="" />
+  <button class="lb-nav lb-next" aria-label="next">›</button>
+</div>
+
+<style>
+  .gallery-foot { display: flex; justify-content: center; margin-top: 28px; }
+</style>
+
+<script is:inline>
+  (function () {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+    var box = document.getElementById('lightbox');
+    var img = document.getElementById('lbImg');
+    var idx = 0;
+    if (!box || !img || !items.length) return;
+    function show(i) {
+      idx = (i + items.length) % items.length;
+      img.src = items[idx].getAttribute('data-src');
+      img.alt = items[idx].querySelector('img')?.alt || '';
+    }
+    items.forEach(function (el, i) {
+      el.addEventListener('click', function () { box.hidden = false; show(i); document.body.style.overflow = 'hidden'; });
+    });
+    box.querySelector('.lb-close').addEventListener('click', function () { box.hidden = true; document.body.style.overflow = ''; });
+    box.querySelector('.lb-prev').addEventListener('click', function (e) { e.stopPropagation(); show(idx - 1); });
+    box.querySelector('.lb-next').addEventListener('click', function (e) { e.stopPropagation(); show(idx + 1); });
+    box.addEventListener('click', function (e) { if (e.target === box) { box.hidden = true; document.body.style.overflow = ''; } });
+    document.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'Escape') { box.hidden = true; document.body.style.overflow = ''; }
+      if (e.key === 'ArrowLeft') show(idx - 1);
+      if (e.key === 'ArrowRight') show(idx + 1);
+    });
+  })();
+</script>

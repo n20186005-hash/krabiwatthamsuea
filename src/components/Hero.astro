@@ -1,0 +1,80 @@
+---
+import { getI18n } from '../i18n/ui';
+
+const { messages } = getI18n(Astro.url);
+const h = messages.hero;
+const heroImg = '/gallery/wat-tham-suea-1.jpg';
+
+const facts = [
+  { k: h.facts.rating, v: h.facts.ratingValue },
+  { k: h.facts.hours, v: h.facts.hoursValue },
+  { k: h.facts.admission, v: h.facts.admissionValue },
+];
+---
+
+<section class="hero" id="top">
+  <div class="hero-bg" style={`background-image: linear-gradient(180deg, rgba(20,17,13,0.55) 0%, rgba(20,17,13,0.78) 100%), url(${heroImg});`}></div>
+  <div class="container hero-inner">
+    <span class="hero-thai">{h.thai}</span>
+    <h1 class="hero-title">{h.title}</h1>
+    <p class="hero-subtitle">{h.subtitle}</p>
+
+    <div class="hero-rating">
+      <span class="stars" aria-hidden="true">
+        {'★★★★★'.split('').map(() => <span class="star-filled">★</span>)}
+      </span>
+      <span class="rating-num">{h.rating}</span>
+      <span class="rating-count">({h.reviewCount})</span>
+      <span class="rating-type">{h.type}</span>
+    </div>
+
+    <div class="hero-tags">
+      {h.tags.map((tag: string) => <span class="hero-tag">{tag}</span>)}
+    </div>
+
+    <div class="hero-facts">
+      {facts.map((f) => (
+        <div class="hero-fact"><span class="k">{f.k}</span><span class="v">{f.v}</span></div>
+      ))}
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn-cta btn-cta-primary" href="#visit">{h.ctaPrimary}</a>
+      <a class="hero-maps-link" href={h.mapsUrl} target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        {h.openMaps}
+      </a>
+    </div>
+
+    <p class="hero-legend">{h.legend}<cite>{h.legendAuthor}</cite></p>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    background-color: #2c3a2f;
+    z-index: 0;
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,13,0.1), rgba(20,17,13,0.65));
+    z-index: 1;
+  }
+  .hero-inner { position: relative; z-index: 2; color: #fff; padding-block: 90px; text-align: center; }
+  .hero-thai { display: inline-block; font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.3em; color: #f3d9a0; margin-bottom: 10px; }
+  .hero-title { font-size: clamp(2.6rem, 7vw, 5rem); margin: 0; color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,0.4); }
+  .hero-subtitle { font-size: clamp(1.05rem, 2.4vw, 1.4rem); max-width: 720px; margin: 16px auto 0; color: #f1eadc; opacity: 0.94; }
+  .hero-rating { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; font-size: 1.05rem; }
+  .hero-rating .stars { font-size: 1.1rem; }
+  .rating-num { font-weight: 800; font-size: 1.2rem; }
+  .rating-count { opacity: 0.85; }
+  .rating-type { opacity: 0.8; border-left: 1px solid rgba(255,255,255,0.4); padding-left: 10px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 16px; }
+  .hero-tag { padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); font-size: 0.88rem; }
+  .hero-facts { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 26px; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 30px; }
+  .hero-legend { font-size: 0.95rem; }
+</style>

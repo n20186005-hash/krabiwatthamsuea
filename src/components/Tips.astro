@@ -1,0 +1,31 @@
+---
+import { getI18n } from '../i18n/ui';
+
+const { messages } = getI18n(Astro.url);
+const t = messages.tips;
+---
+
+<section class="section-padding" id="tips" style="background:var(--surface-accent)">
+  <div class="container">
+    <span class="eyebrow">{t.eyebrow}</span>
+    <h2 class="section-title">{t.title}</h2>
+    <p class="section-lead">{t.subtitle}</p>
+
+    <div class="tips-grid">
+      {t.cards.map((c: any) => (
+        <div class="card card-pad tip fade-up">
+          <div class="tip-ico">{c.icon}</div>
+          <h3 class="tip-title">{c.title}</h3>
+          <p class="tip-text">{c.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; margin-top: 30px; }
+  .tip-ico { width: 52px; height: 52px; border-radius: 14px; background: var(--accent-soft); display: grid; place-items: center; font-size: 1.6rem; margin-bottom: 14px; }
+  .tip-title { font-size: 1.18rem; margin: 0 0 8px; }
+  .tip-text { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
+</style>

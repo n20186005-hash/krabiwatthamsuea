@@ -1,0 +1,55 @@
+---
+import { getI18n } from '../i18n/ui';
+
+const { messages } = getI18n(Astro.url);
+const v = messages.visit;
+const embed = 'https://maps.google.com/maps?q=8.0833,98.9167&z=15&output=embed';
+---
+
+<section class="section-padding" id="visit" style="background:var(--surface-accent)">
+  <div class="container">
+    <span class="eyebrow">{v.eyebrow}</span>
+    <h2 class="section-title">{v.title}</h2>
+    <p class="section-lead">{v.subtitle}</p>
+
+    <div class="visit-grid">
+      <div class="visit-info">
+        <div class="card card-pad info-row">
+          <div class="info-ico">🕕</div>
+          <div><h4>{v.hoursLabel}</h4><p>{v.hoursValue}</p></div>
+        </div>
+        <div class="card card-pad info-row">
+          <div class="info-ico">📍</div>
+          <div><h4>{v.addressLabel}</h4><p>{v.addressValue}</p></div>
+        </div>
+        <div class="card card-pad info-row">
+          <div class="info-ico">📞</div>
+          <div><h4>{v.phoneLabel}</h4><p><a class="link-accent" href={`tel:${v.phoneHref}`}>{v.phoneValue}</a></p></div>
+        </div>
+        
+        <div class="mission-block">
+          <p class="mission-title">{v.accessibilityTitle}</p>
+          <p class="mission-text">{v.accessibilityText}</p>
+        </div>
+        <div class="mission-block" style="margin-top: -8px;">
+          <p class="mission-title">{v.mapLayoutTitle}</p>
+          <p class="mission-text">{v.mapLayoutText}</p>
+        </div>
+      </div>
+
+      <div class="map-container">
+        <iframe title={v.mapTitle} src={embed} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .visit-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 22px; margin-top: 30px; align-items: stretch; }
+  .visit-info { display: flex; flex-direction: column; gap: 16px; }
+  .info-row { display: flex; gap: 16px; align-items: center; }
+  .info-ico { width: 50px; height: 50px; border-radius: 13px; background: var(--accent-soft); display: grid; place-items: center; font-size: 1.5rem; flex: none; }
+  .info-row h4 { margin: 0 0 2px; font-family: var(--font-body); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+  .info-row p { margin: 0; color: var(--heading); font-weight: 600; }
+  @media (max-width: 860px) { .visit-grid { grid-template-columns: 1fr; } }
+</style>

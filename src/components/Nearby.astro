@@ -1,0 +1,34 @@
+---
+import { getI18n } from '../i18n/ui';
+
+const { messages } = getI18n(Astro.url);
+const n = messages.nearby;
+---
+
+<section class="section-padding" id="nearby" style="background:var(--surface-accent)">
+  <div class="container">
+    <span class="eyebrow">{n.eyebrow}</span>
+    <h2 class="section-title">{n.title}</h2>
+    <p class="section-lead">{n.subtitle}</p>
+
+    <div class="nearby-grid">
+      {n.places.map((p: any) => (
+        <div class="card card-pad place fade-up">
+          <div class="place-head">
+            <h3 class="place-name">{p.name}</h3>
+            <span class="place-dist">{p.distance}</span>
+          </div>
+          <p class="place-text">{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .nearby-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin-top: 30px; }
+  .place-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .place-name { font-size: 1.18rem; margin: 0; }
+  .place-dist { font-family: var(--font-body); font-size: 0.82rem; font-weight: 700; color: var(--accent-strong); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .place-text { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
+</style>

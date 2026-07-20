@@ -1,0 +1,385 @@
+{
+  "meta": {
+    "title": "Wat Tham Suea (Tiger Cave Temple) · Krabi, Thailand — Climb, Golden Buddha & Viewpoint Guide",
+    "description": "A complete guide to Wat Tham Suea (Tiger Cave Temple) in Krabi, Thailand: the 1,237-step climb to the golden Buddha, the tiger legend, opening hours, entrance, transport and real visitor reviews, with a Google Maps location."
+  },
+  "header": {
+    "siteName": "Wat Tham Suea",
+    "overview": "Overview",
+    "visit": "Hours & Location",
+    "transport": "Getting There",
+    "history": "History & Legend",
+    "gallery": "Photo Gallery",
+    "reviews": "Reviews",
+    "faq": "FAQ",
+    "map": "Map"
+  },
+  "common": {
+    "changeLanguage": "Change language",
+    "toggleTheme": "Toggle dark mode"
+  },
+  "hero": {
+    "thai": "วัดถ้ำเสือ",
+    "title": "Wat Tham Suea · Tiger Cave Temple",
+    "subtitle": "A forest temple north of Krabi town where 1,237 steps lead to a golden Buddha and an open viewpoint over the Andaman Sea.",
+    "rating": "4.6",
+    "reviewCount": "13,763",
+    "type": "Buddhist Temple",
+    "tags": ["Buddhist Temple", "Hike & Viewpoint", "Meditation Retreat"],
+    "facts": {
+      "rating": "Rating",
+      "ratingValue": "4.6 / 5",
+      "hours": "Opening Hours",
+      "hoursValue": "06:00–18:00",
+      "admission": "Admission",
+      "admissionValue": "Free (donation)"
+    },
+    "ctaPrimary": "Hours & How to Get There",
+    "openMaps": "View location on Google Maps",
+    "mapsUrl": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8",
+    "legend": "From the summit, the whole Krabi plain unfolds below — and only then do those thousand-odd steps feel worth it.",
+    "legendAuthor": "— a traveller who reached the top"
+  },
+  "intro": {
+    "eyebrow": "Overview",
+    "title": "Krabi's Most Famous Forest Temple",
+    "description": "Wat Tham Suea sits among the limestone hills about 7 km north of Krabi town. It is both a busy southern-Thai Buddhist temple and a popular hiking destination, blending dramatic natural caves, a golden Buddha and a serene meditation atmosphere.",
+    "facts": {
+      "type": "Type",
+      "typeValue": "Buddhist Temple",
+      "region": "Region",
+      "regionValue": "Krabi, Thailand",
+      "rating": "Rating",
+      "ratingValue": "4.6 (13,763)",
+      "hours": "Opening Hours",
+      "hoursValue": "Daily 06:00–18:00"
+    },
+    "highlights": {
+      "title": "Why Visit",
+      "items": [
+        "Climb 1,237 steps to the summit with views over the Krabi plain and the Andaman Sea",
+        "A 9-metre golden Buddha and the legendary tiger footprints at the top",
+        "Still an active forest monastery with natural caves and shrines",
+        "Limestone caverns, stalactites and a peaceful, retreat-like atmosphere"
+      ]
+    },
+    "guide": {
+      "eyebrow": "Good to Know",
+      "title": "Before You Go",
+      "description": "The temple is visitor-friendly, but as a religious site there are a few things worth knowing in advance.",
+      "items": [
+        "Cover shoulders and knees; remove shoes inside the main hall",
+        "The climb takes 30–60 minutes on steep, unshaded steps — go early or late",
+        "Wild macaques live along the route; do not feed or provoke them",
+        "Carry enough water; the steps can be slippery in places"
+      ]
+    }
+  },
+  "visit": {
+    "eyebrow": "Practical Info",
+    "title": "Hours, Accessibility & Site Map",
+    "subtitle": "The temple is open all year with no booking needed. To ensure all visitors have a comfortable experience, we provide detailed layout and accessibility information.",
+    "hoursLabel": "Opening Hours",
+    "hoursValue": "Daily 06:00 – 18:00",
+    "addressLabel": "Address",
+    "addressValue": "35 Krabi Noi, Mueang Krabi District, Krabi 81000 Thailand",
+    "phoneLabel": "Phone",
+    "phoneValue": "+66 88 792 6519",
+    "phoneHref": "+66887926519",
+    "accessibilityTitle": "Accessibility",
+    "accessibilityText": "While the summit requires a strenuous climb of 1,237 steps, the main hall at the base, parts of the natural caves, and the centuries-old bodhi tree paths in the valley monastery are flat and highly suitable for elderly visitors, wheelchair users, or those with limited stamina.",
+    "mapLayoutTitle": "Site Layout",
+    "mapLayoutText": "The grounds are clearly laid out: spacious parking and restrooms are near the entrance; heading left leads to the natural caves and flat forest meditation paths; heading right takes you to the starting point of the 1,237-step climb.",
+    "mapTitle": "Map of Wat Tham Suea"
+  },
+  "transport": {
+    "eyebrow": "Getting There",
+    "title": "How to Reach Wat Tham Suea",
+    "subtitle": "The temple is about 7 km from Krabi town and easy to reach by car, taxi or local songthaew.",
+    "overview": "Whether you stay in Krabi town, Ao Nang or Railay, getting to Tiger Cave Temple is straightforward. Here are the three most common and hassle-free options.",
+    "modes": [
+      {
+        "icon": "🚐",
+        "title": "Songthaew / Taxi",
+        "description": "The most common local ride — flexible and cheap.",
+        "details": [
+          "Blue songthaews in town run shared trips, about 40–60 THB one way",
+          "A private taxi round trip is around 300–500 THB and waits for you",
+          "Most hotels can call a taxi or arrange a private car"
+        ]
+      },
+      {
+        "icon": "🛵",
+        "title": "Motorbike Rental",
+        "description": "The most free way, with scenic roads along the way.",
+        "details": [
+          "Motorbikes rent for about 200–300 THB per day in town",
+          "Head north on Route 4034 for about 7 km; signage is clear",
+          "Free parking on site; watch the winding hill road"
+        ]
+      },
+      {
+        "icon": "🗺️",
+        "title": "Tour / Day Trip",
+        "description": "Ideal if you want it arranged and combined with other stops.",
+        "details": [
+          "Island-hopping, rock-climbing and elephant camps often add a stop here",
+          "A half-day private tour can pair the temple with hot springs nearby",
+          "Confirm with the operator that Tiger Cave Temple is included"
+        ]
+      }
+    ]
+  },
+  "tips": {
+    "eyebrow": "Visitor Tips",
+    "title": "Practical advice for a smoother visit",
+    "subtitle": "Wat Tham Suea is open to visitors yet remains an active place of worship. Following this code of conduct helps you climb safely while respecting local ecology and beliefs.",
+    "cards": [
+      { "icon": "👕", "title": "Dress & Etiquette", "text": "Cover shoulders and knees on temple grounds and remove shoes inside the main hall; keep strict silence and show respect near meditation areas and monks." },
+      { "icon": "🥾", "title": "Summit Prep", "text": "The 1,237 steps are steep and mostly unshaded — wear trainers and bring water. The climb takes 30–60 min; rest in the shade when needed." },
+      { "icon": "🐒", "title": "Strictly No Feeding Macaques", "text": "To protect the natural foraging habits and health of wild macaques, feeding is strictly prohibited. Keep glasses, phones, and small items secure to prevent snatching." },
+      { "icon": "♻️", "title": "Leave No Trace", "text": "Practice 'Leave No Trace' principles. Do not leave any trash on the hill; bring all waste back down to the base to protect the pristine forest ecology." }
+    ]
+  },
+  "support": {
+    "eyebrow": "Conservation & Support",
+    "title": "Supporting Daily Operations",
+    "subtitle": "The maintenance, ecological conservation, and support for monks at Wat Tham Suea rely entirely on public donations. Your kindness directly helps sustain this place of faith and nature.",
+    "items": [
+      {
+        "title": "Steps & Facilities Maintenance",
+        "description": "The 1,237 steps to the summit and the viewpoint face constant weather erosion and require ongoing maintenance to ensure safety for all climbers."
+      },
+      {
+        "title": "Ecological & Forest Protection",
+        "description": "As part of a nature reserve, the temple helps clear forest litter, protects wildlife habitats, and maintains a pure 'Leave No Trace' ecology."
+      },
+      {
+        "title": "Monastic Life & Temple Operations",
+        "description": "Supports the daily meals, medical care, and meditation needs of resident monks, as well as basic operations like nighttime lighting and utilities."
+      }
+    ],
+    "donationTitle": "How to Donate",
+    "donationText": "Wat Tham Suea does not charge an entrance fee. If you wish to support, donation boxes are located at the main hall entrance, near the natural caves, and beside the summit Buddha. All funds go directly to temple maintenance and public welfare."
+  },
+  "events": {
+    "eyebrow": "Festivals & Events",
+    "title": "A Living Forest Monastery",
+    "subtitle": "Wat Tham Suea is not just a scenic spot but a vital religious center. Grand ceremonies are held here during major Buddhist festivals.",
+    "festivals": [
+      {
+        "name": "Makha Bucha",
+        "time": "Usually in February or March",
+        "desc": "Commemorates the Buddha's teaching to 1,250 enlightened monks. Devotees hold candlelit processions around the stupas and caves at the base."
+      },
+      {
+        "name": "Visakha Bucha",
+        "time": "Usually in May",
+        "desc": "The most sacred festival celebrating the birth, enlightenment, and nirvana of the Buddha. Many devotees hike to the summit Buddha on this day."
+      },
+      {
+        "name": "Vipassana Meditation",
+        "time": "Regularly throughout the year",
+        "desc": "Continuing the Forest Tradition, the temple offers meditation guidance. The valley monastery sometimes hosts devotees for short-term retreats."
+      }
+    ]
+  },
+  "bestTime": {
+    "eyebrow": "Best Time to Visit",
+    "title": "When is it most comfortable?",
+    "subtitle": "Timing your visit avoids the heat and catches the best light and sunsets. Here's how to plan by time of day and by season.",
+    "dayTitle": "Time of day",
+    "day": [
+      { "label": "Early morning 06:00–09:00", "tone": "best", "score": "Best", "text": "Arrive at opening for cool, uncrowded steps and soft light — the most pleasant window to climb and photograph." },
+      { "label": "Midday 11:00–15:00", "tone": "warm", "score": "Hot", "text": "The stairs are almost fully exposed and the heat is intense; the summit climb is tough, so try to avoid it." },
+      { "label": "Late afternoon 16:00–18:00", "tone": "best", "score": "Best", "text": "Climb for sunset as golden light spills across the Krabi plain — the most memorable moment of the day." }
+    ],
+    "seasonTitle": "By season",
+    "season": [
+      { "label": "Cool season (Nov–Feb)", "tone": "best", "score": "Recommended", "text": "Dry and comfortable — ideal for the climb, but also peak tourist season, so arrive early." },
+      { "label": "Hot season (Mar–May)", "tone": "warm", "score": "Very hot", "text": "High temperatures and strong UV — go at dawn or dusk and carry plenty of water." },
+      { "label": "Rainy season (May–Oct)", "tone": "cool", "score": "Lush", "text": "Green and quiet with fewer crowds, but steps get slippery — wear grippy shoes and take care." }
+    ]
+  },
+  "history": {
+    "eyebrow": "History & Legend",
+    "title": "The Story of Tiger Cave Temple",
+    "subtitle": "From a meditating monk's retreat to a bustling hillside monastery, the story of Wat Tham Suea is as intriguing as its name — part documented history, part legend passed down for decades.",
+    "sections": [
+      {
+        "no": "1",
+        "title": "Birth of a Forest Monastery (1975)",
+        "content": "In 1975, the renowned southern-Thai meditation monk Jumnean Seelasettho (revered as Luang Pho Khruba Chaiwong) settled in a natural cave amid the limestone hills north of Krabi Town. Following the Thai Forest Tradition of simplicity, meditation and living close to nature, he gradually drew devotees from far and wide, and the once-remote grotto grew into the forest monastery seen today."
+      },
+      {
+        "no": "2",
+        "title": "How It Got Its Name",
+        "content": "Legend says that when the monk first arrived, tigers still roamed the caves; clawed markings scarred the rock walls, and one stalactite is shaped uncannily like a crouching tiger. The temple was thus named Wat Tham Suea — literally 'Tiger Cave Temple' in Thai — a name that both records Krabi's wild forested past and lends the site an air of mystery."
+      },
+      {
+        "no": "3",
+        "title": "1,237 Steps & the Summit Buddha",
+        "content": "The temple's most famous feature is the steep 1,237-step staircase up Khao Kaeo hill. At the top, a roughly 9-metre seated golden Buddha (Phra Puttakhaya Sirirat) presides over the clouds, surrounded by gilded images, a Buddha footprint and a giant carved footprint. From about 278 m, the summit offers a 360° panorama of the Krabi plain, winding rivers and the distant karst peaks of the Andaman Sea."
+      },
+      {
+        "no": "4",
+        "title": "Caves, Bodhi Trees & Ancient Giants",
+        "content": "Beyond the summit Buddha, the base of the hill is ringed by a network of natural caverns (tham means 'cave'), enshrining Buddha images, relics and monks' belongings. A forested loop trail leads to a serene 'valley monastery', shaded by bodhi and towering yang trees said to be centuries old — a cool retreat for monks and lay visitors alike."
+      },
+      {
+        "no": "5",
+        "title": "A Living Monastery Today",
+        "content": "Nearly half a century on, Wat Tham Suea remains an active, living monastery — not merely a tourist site. At dawn monks walk for alms and devotees make offerings; on Buddhist holy days it fills with pilgrims. It carries layered meaning as a place of religious practice, nature conservation and local cultural identity."
+      }
+    ],
+    "legendTitle": "Local Legend: The Guardian Tiger",
+    "legendText": "Folklore tells that as the monk meditated through the dark cave nights, a tiger — far from harming him — lay at the entrance to guard him and ward off evil. When the monk passed away, the tiger's shadow vanished too, leaving only the claw marks on the wall and that tiger-shaped stalactite. To this day, pilgrims who believe the cave's tiger-spirit protects their practice light incense before the tiger stone and the Buddha footprint."
+  },
+  "gallery": {
+    "eyebrow": "Visual Tour",
+    "title": "Photo Gallery",
+    "subtitle": "From the golden Buddha to the limestone cliffs — a look at the beauty and stillness of Wat Tham Suea.",
+    "alt": "Wat Tham Suea photo",
+    "photos": [
+      "Golden Buddha at the summit",
+      "The 1,237-step climb to the top",
+      "The tiger-footprint stone slab in the cave",
+      "The natural stalactite cave",
+      "View over the Krabi plain from the top",
+      "Monks meditating at the temple",
+      "Golden stupa at sunset",
+      "Thai-style temple gate",
+      "A macaque resting on the steps",
+      "White stupa and hall at the foot",
+      "Limestone cliffs around the temple",
+      "Devotee praying before the Buddha"
+    ],
+    "captions": [
+      "Golden Buddha summit",
+      "1,237 climbing steps",
+      "Tiger footprint slab",
+      "Natural stalactite cave",
+      "Krabi plain panorama",
+      "Temple meditation",
+      "Golden at sunset",
+      "Thai temple gate",
+      "Hill macaque",
+      "Foot-hill stupa",
+      "Limestone cliffs",
+      "Devotee praying"
+    ],
+    "viewMaps": "View location on Google Maps",
+    "mapsUrl": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8"
+  },
+  "reviews": {
+    "eyebrow": "Real Voices",
+    "title": "Visitor Reviews",
+    "declaration": "The reviews below are compiled visitor feedback to help you understand the real experience. See more on Google Maps.",
+    "items": [
+      {
+        "name": "Lin Xiaotong",
+        "date": "March 2026",
+        "rating": 5,
+        "text": "Reaching the top was so worth it! The golden Buddha glitters in the sun and the Krabi plain stretches endlessly. Bring water and wear trainers."
+      },
+      {
+        "name": "David Parker",
+        "date": "February 2026",
+        "rating": 5,
+        "text": "1,237 steps are tiring but the monkeys are cute and the summit view is superb. Go early — fewer people and less heat."
+      },
+      {
+        "name": "Suchart Wongthai",
+        "date": "January 2026",
+        "rating": 4,
+        "text": "As a devotee I found it solemn and the caves and Buddha impressive. Only note: the steps are slippery, so elders and kids should go slowly."
+      },
+      {
+        "name": "Aiko Tanaka",
+        "date": "December 2025",
+        "rating": 5,
+        "text": "Free entry was a pleasant surprise and the monks are friendly. Watching sunset from the top was the most unforgettable moment of my Krabi trip."
+      }
+    ],
+    "moreReviews": "See more reviews on Google Maps",
+    "mapsUrl": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Before You Visit",
+    "subtitle": "Common questions about the climb, tickets, dress code and the best time to go — answered in one place.",
+    "items": [
+      {
+        "q": "How many steps are there to the top?",
+        "a": "There are 1,237 steps to the golden Buddha at the summit. They are steep and partly unshaded; the climb usually takes 30–60 minutes — pace yourself."
+      },
+      {
+        "q": "Is there an entrance fee?",
+        "a": "Entry to the temple, the summit and the caves is free, with optional donations. Parking or guide services may charge a small fee."
+      },
+      {
+        "q": "When is the best time to visit?",
+        "a": "Early morning (after opening) or late afternoon avoids the midday heat and gives the best light and sunsets. In the rainy season watch for slippery steps."
+      },
+      {
+        "q": "What is the dress code?",
+        "a": "As a Buddhist site, cover shoulders and knees and remove shoes in the main hall. A sarong or long pants are handy to bring."
+      },
+      {
+        "q": "Are the monkeys dangerous?",
+        "a": "Macaques are used to people but can be aggressive — do not feed, tease or flash food, and secure glasses and phones."
+      },
+      {
+        "q": "What's the easiest way from Krabi town?",
+        "a": "The easiest is a shared blue songthaew from town, or hire a taxi / motorbike and head north on Route 4034 for about 7 km."
+      }
+    ]
+  },
+  "footer": {
+    "siteName": "Wat Tham Suea",
+    "tagline": "An English travel guide to Krabi's Tiger Cave Temple: climb the golden Buddha, explore the tiger cave, and understand this hillside monastery.",
+    "rights": "All rights reserved. This guide is independently compiled and is not an official site.",
+    "missionTitle": "About This Site",
+    "missionText": "We gather Wat Tham Suea's opening hours, transport and visiting tips to help English-speaking travellers plan easily, respecting local religion and nature.",
+    "exploreTitle": "Explore",
+    "resourcesTitle": "Official & Reference",
+    "resources": [
+      { "name": "Tourism Authority of Thailand", "url": "https://www.tourismthailand.org" },
+      { "name": "Krabi Destination", "url": "https://www.tourismthailand.org/destinations/krabi" },
+      { "name": "Wikipedia: Wat Tham Suea", "url": "https://en.wikipedia.org/wiki/Wat_Tham_Suea" },
+      { "name": "Google Maps Location", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8" }
+    ],
+    "visitTitle": "Visit Info",
+    "addressValue": "35 Krabi Noi, Mueang Krabi District, Krabi 81000 Thailand",
+    "hoursValue": "Daily 06:00 – 18:00",
+    "mapsLabel": "Google Maps →",
+    "mapsUrl": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8",
+    "disclaimer": "Information here is compiled from public sources; hours, transport and fees may change by season. Please confirm with on-site or official notices before travel."
+  },
+  "credits": {
+    "eyebrow": "Photo Credits",
+    "title": "Image Sources & Licensing",
+    "subtitle": "The gallery and hero photos on this page are Creative Commons images from Flickr, retrieved via LoremFlickr using tags related to Wat Tham Suea. Click the link under each photo to view the original author and licence details.",
+    "sourceLabel": "View original / source (Flickr)",
+    "tagsLabel": "Tags"
+  },
+  "nearby": {
+    "eyebrow": "Nearby Attractions",
+    "title": "Worth adding to your trip",
+    "subtitle": "Wat Tham Suea sits about 7 km from Krabi Town, with beaches, hot springs and natural wonders close by — easy to combine into a day out.",
+    "places": [
+      { "name": "Krabi Town", "distance": "≈ 7 km", "text": "The provincial hub: night market, riverside promenade and the white Wat Kaew temple, with food and supplies." },
+      { "name": "Ao Nang", "distance": "≈ 13 km", "text": "Krabi's liveliest beach town and the launch point for longtail boats to the islands." },
+      { "name": "Railay Beach", "distance": "≈ 15 km", "text": "A cliff-ringed peninsula and rock-climbing mecca, reachable only by boat and blissfully cut off." },
+      { "name": "Emerald Pool (Sa Morakot)", "distance": "≈ 30 km", "text": "A naturally emerald spring pool set in forest — great for a cooling dip and jungle walk." },
+      { "name": "Krabi Hot Springs (Namtok Ron)", "distance": "≈ 35 km", "text": "Natural thermal springs perfect for a soothing foot soak after the summit climb." },
+      { "name": "Khao Khanab Nam", "distance": "≈ 8 km", "text": "Krabi's iconic twin limestone peaks, best seen on a boat trip along the Krabi River." }
+    ]
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "region": "Krabi, Thailand",
+    "city": "Tiger Cave Transport",
+    "current": "Wat Tham Suea"
+  }
+}

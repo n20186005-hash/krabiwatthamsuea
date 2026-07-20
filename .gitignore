@@ -1,0 +1,64 @@
+# ---- Build output ----
+dist/
+.output/
+.vercel/
+.netlify/
+
+# ---- Dependencies ----
+node_modules/
+.pnp
+.pnp.js
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Astro ----
+.astro/
+
+# ---- Helper / one-off maintenance scripts (not for production) ----
+*.ps1
+*.cjs
+verify.*
+cleanup.*
+fetch_*.js
+fetch_*.ps1
+net_test*.ps1
+rename_*.ps1
+rename_*.js
+rename_*.txt
+update_*.ps1
+update_*.js
+update_*.txt
+*update*.js
+*update*.txt
+*rename_*.js
+*rename_*.txt
+scripts/tmp/
+
+# ---- Temp / working files ----
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+
+# ---- Editor / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+desktop.ini
