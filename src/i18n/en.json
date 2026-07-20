@@ -347,7 +347,12 @@
       { "name": "Tourism Authority of Thailand", "url": "https://www.tourismthailand.org" },
       { "name": "Krabi Destination", "url": "https://www.tourismthailand.org/destinations/krabi" },
       { "name": "Wikipedia: Wat Tham Suea", "url": "https://en.wikipedia.org/wiki/Wat_Tham_Suea" },
-      { "name": "Google Maps Location", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8" }
+      { "name": "Google Maps Location", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8" },
+      { "name": "Krabi Provincial Office", "url": "http://www.krabi.go.th/" },
+      { "name": "Department of National Parks (DNP)", "url": "https://portal.dnp.go.th/" },
+      { "name": "Thai e-Visa Official Website", "url": "https://www.thaievisa.go.th/" },
+      { "name": "Thai Immigration Bureau", "url": "https://www.immigration.go.th/" },
+      { "name": "Tourist Police Bureau", "url": "https://touristpolice.go.th/" }
     ],
     "visitTitle": "Visit Info",
     "addressValue": "35 Krabi Noi, Mueang Krabi District, Krabi 81000 Thailand",

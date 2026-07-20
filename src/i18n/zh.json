@@ -347,7 +347,12 @@
       { "name": "泰国国家旅游局", "url": "https://www.tourismthailand.org" },
       { "name": "甲米旅游目的地", "url": "https://www.tourismthailand.org/destinations/krabi" },
       { "name": "维基百科：Wat Tham Suea", "url": "https://en.wikipedia.org/wiki/Wat_Tham_Suea" },
-      { "name": "Google 地图位置", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8" }
+      { "name": "Google 地图位置", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8" },
+      { "name": "甲米府官方网站", "url": "http://www.krabi.go.th/" },
+      { "name": "泰国国家公园局 (DNP)", "url": "https://portal.dnp.go.th/" },
+      { "name": "泰国电子签证官方平台", "url": "https://www.thaievisa.go.th/" },
+      { "name": "泰国国家移民局", "url": "https://www.immigration.go.th/" },
+      { "name": "泰国旅游警察", "url": "https://touristpolice.go.th/" }
     ],
     "visitTitle": "到访信息",
     "addressValue": "35 Krabi Noi, Mueang Krabi District, Krabi 81000 泰国",
