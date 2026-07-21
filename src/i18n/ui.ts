@@ -1,6 +1,7 @@
 import zh from './zh.json';
 import en from './en.json';
 import th from './th.json';
+import { siteConfig } from '../config';
 
 export const defaultLang = 'zh';
 export const languagesList = ['zh', 'en', 'th'] as const;
@@ -32,7 +33,7 @@ export function getI18n(url: URL) {
 }
 
 export function buildAlternates(path = ''): Record<string, string> {
-  const base = 'https://krabiwatthamsuea.com';
+  const base = siteConfig.baseUrl;
   const clean = path.replace(/^\/+/, '').replace(/\/+$/, '');
   const mk = (l: string) => `${base}/${l}${clean ? '/' + clean : ''}`;
   return {

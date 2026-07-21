@@ -1,9 +1,10 @@
 ---
 import { getI18n } from '../i18n/ui';
+import { siteConfig } from '../config';
 
 const { messages } = getI18n(Astro.url);
 const h = messages.hero;
-const heroImg = 'https://krabiwatthamsuea.com/gallery/wat-tham-suea-13.jpg';
+const heroImg = `${siteConfig.baseUrl}/gallery/wat-tham-suea-13.jpg`;
 
 const facts = [
   { k: h.facts.rating, v: h.facts.ratingValue },
