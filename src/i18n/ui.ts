@@ -3,7 +3,7 @@ import en from './en.json';
 import th from './th.json';
 import { siteConfig } from '../config';
 
-export const defaultLang = 'zh';
+export const defaultLang = 'th';
 export const languagesList = ['zh', 'en', 'th'] as const;
 
 export const languages: Record<string, string> = {
@@ -40,7 +40,7 @@ export function buildAlternates(path = ''): Record<string, string> {
     zh: mk('zh'),
     en: mk('en'),
     th: mk('th'),
-    xDefault: mk('zh'),
+    xDefault: mk('th'),
   };
 }
 
