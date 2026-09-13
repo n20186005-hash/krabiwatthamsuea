@@ -3,12 +3,16 @@ import { getI18n } from '../i18n/ui';
 
 const { messages } = getI18n(Astro.url);
 const n = messages.nearby;
+
+/* 周边语义集群：把周边地标写入实体语义网络 */
+const clusterText = n.cluster ?? '';
 ---
 
 <section class="section-padding" id="nearby" style="background:var(--surface-accent)">
   <div class="container">
     <span class="eyebrow">{n.eyebrow}</span>
     <h2 class="section-title">{n.title}</h2>
+    <p class="cluster-note">{clusterText}</p>
     <p class="section-lead">{n.subtitle}</p>
 
     <div class="nearby-grid">
@@ -27,6 +31,17 @@ const n = messages.nearby;
 
 <style>
   .nearby-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin-top: 30px; }
+  .cluster-note {
+    margin: 0 0 12px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    color: var(--heading);
+    font-size: 1rem;
+    max-width: 860px;
+  }
   .place-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
   .place-name { font-size: 1.18rem; margin: 0; }
   .place-dist { font-family: var(--font-body); font-size: 0.82rem; font-weight: 700; color: var(--accent-strong); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }

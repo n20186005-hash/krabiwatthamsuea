@@ -16,6 +16,7 @@ const facts = [
   <div class="container">
     <span class="eyebrow">{s.eyebrow}</span>
     <h2 class="section-title">{s.title}</h2>
+    <p class="welcome-statement">{s.welcome}</p>
     <p class="section-lead">{s.description}</p>
 
     <div class="fact-grid" style="margin-top:30px">
@@ -60,6 +61,15 @@ const facts = [
 
 <style>
   .intro-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 30px; }
+  .welcome-statement {
+    margin: 0 0 16px;
+    padding: 14px 0 14px 20px;
+    border-left: 3px solid var(--accent);
+    font-size: 1.12rem;
+    color: var(--heading);
+    font-weight: 500;
+    max-width: 860px;
+  }
   .block-title { font-size: 1.4rem; margin: 0 0 14px; }
   .guide { background: var(--green-soft); }
   .guide-text { color: var(--text-muted); margin: 0 0 14px; }

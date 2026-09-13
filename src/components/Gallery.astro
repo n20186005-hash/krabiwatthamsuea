@@ -1,5 +1,6 @@
 ---
 import { getI18n } from '../i18n/ui';
+import { attraction } from '../config';
 
 const { messages } = getI18n(Astro.url);
 const g = messages.gallery;
@@ -21,7 +22,13 @@ const spans = ['gallery-span-2','gallery-span-3','gallery-span-1','gallery-span-
         const spanClass = spans[i % spans.length];
         return (
           <figure class={`gallery-item ${spanClass}`} data-src={src}>
-            <img src={src} alt={g.photos?.[i] ?? g.alt} loading="lazy" />
+            <img
+              src={src}
+              alt={`${attraction.fullName} (${attraction.city}, ${attraction.country}) — ${g.photos?.[i] ?? g.alt}`}
+              loading="lazy"
+              width="800"
+              height="600"
+            />
             <figcaption class="cap">{g.captions?.[i] ?? ''}</figcaption>
           </figure>
         );
@@ -29,7 +36,7 @@ const spans = ['gallery-span-2','gallery-span-3','gallery-span-1','gallery-span-
     </div>
 
     <div class="gallery-foot">
-      <a class="hero-maps-link" href={g.mapsUrl} target="_blank" rel="noopener" style="color:var(--heading);background:var(--surface-2);border-color:var(--border-strong)">
+      <a class="hero-maps-link" href={attraction.mapsShareUrl} target="_blank" rel="noopener" style="color:var(--heading);background:var(--surface-2);border-color:var(--border-strong)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         {g.viewMaps}
       </a>

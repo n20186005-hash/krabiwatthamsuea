@@ -1,18 +1,33 @@
 ---
-import { languagesList } from '../../i18n/ui';
+import { languagesList, getI18n } from '../../i18n/ui';
 
-export function getStaticPaths() {
-  return languagesList.map((lang) => ({ params: { lang } }));
+/* 该页在 Workers 上按请求渲染：
+   1. 天气为实时数据，不能固化进静态产物；
+   2. canonical / hreflang / 301 规范化需要经过服务端。
+   其余静态资源（图片、CSS、JS）继续由 CDN 直接命中，不经过 Worker。 */
+export const prerender = false;
+
+const langParam = Astro.params.lang ?? '';
+if (!(languagesList as readonly string[]).includes(langParam)) {
+  return new Response('Not Found', {
+    status: 404,
+    headers: { 'content-type': 'text/plain; charset=utf-8', 'x-robots-tag': 'noindex' },
+  });
 }
 
-import { getLangFromUrl, getI18n } from '../../i18n/ui';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Intro from '../../components/Intro.astro';
 import Visit from '../../components/Visit.astro';
 import Transport from '../../components/Transport.astro';
 import Tips from '../../components/Tips.astro';
 import BestTime from '../../components/BestTime.astro';
+import Weather from '../../components/Weather.astro';
+import Seasons from '../../components/Seasons.astro';
+import Facilities from '../../components/Facilities.astro';
+import Itinerary from '../../components/Itinerary.astro';
+import Plans from '../../components/Plans.astro';
 import History from '../../components/History.astro';
 import Events from '../../components/Events.astro';
 import Gallery from '../../components/Gallery.astro';
@@ -21,24 +36,39 @@ import Credits from '../../components/Credits.astro';
 import Nearby from '../../components/Nearby.astro';
 import Reviews from '../../components/Reviews.astro';
 import FAQ from '../../components/FAQ.astro';
+import Responsible from '../../components/Responsible.astro';
+import Sources from '../../components/Sources.astro';
 
-const lang = getLangFromUrl(Astro.url);
 const { messages } = getI18n(Astro.url);
+
+/* 边缘缓存 10 分钟，并在过期后继续用旧内容兜底，避免爬虫抓取时等待上游 */
+Astro.response.headers.set(
+  'Cache-Control',
+  'public, max-age=0, s-maxage=600, stale-while-revalidate=1800'
+);
 ---
 
-<BaseLayout title={messages.meta.title} description={messages.meta.description} path={`/${lang}`}>
+<BaseLayout title={messages.meta.title} description={messages.meta.description}>
   <Hero />
+  <Breadcrumbs />
   <Intro />
   <Visit />
   <Transport />
-  <Tips />
   <BestTime />
+  <Weather />
+  <Seasons />
+  <Facilities />
+  <Itinerary />
+  <Plans />
+  <Tips />
+  <Nearby />
   <History />
   <Events />
   <Gallery />
-  <Support />
-  <Credits />
-  <Nearby />
   <Reviews />
   <FAQ />
+  <Responsible />
+  <Support />
+  <Credits />
+  <Sources />
 </BaseLayout>

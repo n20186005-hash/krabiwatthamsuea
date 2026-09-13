@@ -19,7 +19,7 @@ const navLinks = [
 <footer class="site-footer">
   <div class="container footer-top">
     <div class="footer-brand">
-      <a class="brand" href={`/${lang}`}>
+      <a class="brand" href={`/${lang}/`}>
         <span class="brand-mark">วัด</span>
         <span class="brand-text">{f.siteName}</span>
       </a>
@@ -33,7 +33,7 @@ const navLinks = [
     <div class="footer-col">
       <h4>{f.exploreTitle}</h4>
       <ul>
-        {navLinks.map((l) => <li><a href={`/${lang}${l.href}`}>{l.label}</a></li>)}
+        {navLinks.map((l) => <li><a href={`/${lang}/${l.href}`}>{l.label}</a></li>)}
       </ul>
     </div>
 
@@ -59,6 +59,7 @@ const navLinks = [
 
   <div class="container footer-bottom">
     <p>© {new Date().getFullYear()} {f.siteName}. {f.rights}</p>
+    <p class="footer-image-notice">{f.imageNotice}</p>
     <p class="footer-disclaimer">{f.disclaimer}</p>
   </div>
 </footer>
@@ -81,6 +82,7 @@ const navLinks = [
   .footer-bottom { border-top: 1px solid var(--border); padding-block: 20px; color: var(--text-muted); font-size: 0.85rem; }
   .footer-bottom p { margin: 0; }
   .footer-disclaimer { margin-top: 6px; }
+  .footer-image-notice { margin-top: 6px; color: var(--accent-strong); font-weight: 600; }
   @media (max-width: 880px) { .footer-top { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .footer-top { grid-template-columns: 1fr; } }
 </style>

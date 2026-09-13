@@ -1,6 +1,7 @@
 ---
 import { getI18n } from '../i18n/ui';
 import attrib from '../data/photo-attributions.json';
+import { attraction } from '../config';
 
 const { messages } = getI18n(Astro.url);
 const c = messages.credits;
@@ -15,7 +16,13 @@ const c = messages.credits;
     <ul class="credits-grid">
       {attrib.map((a, i) => (
         <li class="credit-card">
-          <img src={`/gallery/${a.file}`} alt={a.file} loading="lazy" width="120" height="80" />
+          <img
+            src={`/gallery/${a.file}`}
+            alt={`${attraction.fullName} (${attraction.city}, ${attraction.country}) — photo ${i + 1}`}
+            loading="lazy"
+            width="120"
+            height="80"
+          />
           <div class="credit-body">
             <span class="credit-no">{String(i + 1).padStart(2, '0')}</span>
             <a class="credit-link" href={a.flickr} target="_blank" rel="noopener">{c.sourceLabel}</a>
@@ -24,6 +31,8 @@ const c = messages.credits;
         </li>
       ))}
     </ul>
+
+    <p class="image-notice">{c.imageNotice ?? messages.sources.imageNotice}</p>
   </div>
 </section>
 
@@ -68,4 +77,14 @@ const c = messages.credits;
   }
   .credit-link:hover { color: var(--accent); text-decoration: underline; }
   .credit-tags { font-size: .74rem; color: var(--muted); }
+  .image-notice {
+    margin: 28px 0 0;
+    padding: 16px 22px;
+    border-radius: var(--radius);
+    background: var(--surface-accent);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
 </style>

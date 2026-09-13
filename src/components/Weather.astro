@@ -1,0 +1,499 @@
+---
+import { getI18n, getLangFromUrl } from '../i18n/ui';
+import { attraction } from '../config';
+import { getMarine, getWeather, skyInfo, windCompass, type SkyInfo } from '../lib/weather';
+import { buildAdvice, type AdviceItem, type Tone } from '../lib/advice';
+import { icon as uiIcon } from '../lib/icons';
+
+const lang = getLangFromUrl(Astro.url);
+const { messages } = getI18n(Astro.url);
+const w = messages.weather as Record<string, any>;
+
+/* 服务端获取并缓存；任何一步失败都会降级，不影响页面其余部分 */
+const [data, marine] = await Promise.all([getWeather(), getMarine()]);
+
+const locale = lang === 'zh' ? 'zh-CN' : lang === 'th' ? 'th-TH' : 'en-GB';
+const TZ = 'Asia/Bangkok';
+
+function fmtTime(iso: string): string {
+  const t = Date.parse(iso);
+  if (!Number.isFinite(t)) return '--:--';
+  try {
+    return new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: TZ }).format(t);
+  } catch {
+    return '--:--';
+  }
+}
+function fmtHour(iso: string): string {
+  const t = Date.parse(iso);
+  if (!Number.isFinite(t)) return '';
+  try {
+    return new Intl.DateTimeFormat(locale, { hour: 'numeric', hour12: false, timeZone: TZ }).format(t);
+  } catch {
+    return '';
+  }
+}
+function fmtDay(iso: string, index: number): string {
+  if (index === 0) return w.today;
+  const t = Date.parse(`${iso}T12:00:00+07:00`);
+  if (!Number.isFinite(t)) return iso;
+  try {
+    return new Intl.DateTimeFormat(locale, { weekday: 'short', timeZone: TZ }).format(t);
+  } catch {
+    return iso;
+  }
+}
+function fmtDate(iso: string): string {
+  const t = Date.parse(`${iso}T12:00:00+07:00`);
+  if (!Number.isFinite(t)) return iso;
+  try {
+    return new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', timeZone: TZ }).format(t);
+  } catch {
+    return iso;
+  }
+}
+function fmtStamp(iso: string): string {
+  const t = Date.parse(iso);
+  if (!Number.isFinite(t)) return '--';
+  try {
+    return new Intl.DateTimeFormat(locale, {
+      day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: TZ,
+    }).format(t);
+  } catch {
+    return '--';
+  }
+}
+
+const PATHS: Record<SkyInfo['icon'], string> = {
+  sun: '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.3M12 19.1v2.3M4.3 4.3l1.7 1.7M18 18l1.7 1.7M2.6 12h2.3M19.1 12h2.3M4.3 19.7l1.7-1.7M18 6l1.7-1.7"/>',
+  'sun-cloud':
+    '<circle cx="8.4" cy="8.2" r="3.1"/><path d="M8.4 2.8v1.6M3 8.2h1.6M4.2 4l1.2 1.2M12.6 4l-1.2 1.2"/><path d="M7.6 18.8h8.8a3.1 3.1 0 0 0 .3-6.2 4.6 4.6 0 0 0-8.6-.8 3.6 3.6 0 0 0-.5 7z"/>',
+  cloud: '<path d="M6.9 18.6h10a3.4 3.4 0 0 0 .3-6.8 4.9 4.9 0 0 0-9.2-1 3.8 3.8 0 0 0-1.1 7.8z"/>',
+  fog: '<path d="M6.9 13.2h10a3.4 3.4 0 0 0 .3-6.8 4.9 4.9 0 0 0-9.2-1 3.8 3.8 0 0 0-1.1 7.8z"/><path d="M4.6 16.6h14.8M6.6 19.7h11"/>',
+  drizzle:
+    '<path d="M6.9 13.8h10a3.4 3.4 0 0 0 .3-6.8 4.9 4.9 0 0 0-9.2-1 3.8 3.8 0 0 0-1.1 7.8z"/><path d="M8.7 17.1v2.6M12 17.1v2.6M15.3 17.1v2.6"/>',
+  rain: '<path d="M6.9 13.8h10a3.4 3.4 0 0 0 .3-6.8 4.9 4.9 0 0 0-9.2-1 3.8 3.8 0 0 0-1.1 7.8z"/><path d="M8.4 16.8l-1 3.2M12 16.8l-1 3.2M15.6 16.8l-1 3.2"/>',
+  'heavy-rain':
+    '<path d="M6.9 13.4h10a3.4 3.4 0 0 0 .3-6.8 4.9 4.9 0 0 0-9.2-1 3.8 3.8 0 0 0-1.1 7.8z"/><path d="M8.6 16.4l-1.7 4.1M12 16.4l-1.7 4.1M15.4 16.4l-1.7 4.1"/>',
+  storm:
+    '<path d="M6.9 13h10a3.4 3.4 0 0 0 .3-6.8 4.9 4.9 0 0 0-9.2-1 3.8 3.8 0 0 0-1.1 7.8z"/><path d="M13.1 15.2l-2.7 3.7h2.4l-1.1 3 3.6-4.2h-2.5z"/>',
+  snow: '<path d="M6.9 13.4h10a3.4 3.4 0 0 0 .3-6.8 4.9 4.9 0 0 0-9.2-1 3.8 3.8 0 0 0-1.1 7.8z"/><path d="M8.7 17.6h.02M12 19.4h.02M15.3 17.6h.02"/>',
+};
+const MOON = '<path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8z"/>';
+
+function skyIcon(iconKey: SkyInfo['icon'], night: boolean): string {
+  const body = night && (iconKey === 'sun' || iconKey === 'sun-cloud') ? MOON : PATHS[iconKey];
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+}
+
+const now = data ? skyInfo(data.current.weatherCode, data.current.isDay) : null;
+const today = data?.daily[0];
+const advice = data
+  ? buildAdvice({
+      data,
+      marine,
+      w,
+      environments: attraction.environments,
+      locale,
+    })
+  : null;
+
+const TONE_ICON: Record<Tone, string> = { ok: 'check', info: 'info', warn: 'warning', danger: 'warning' };
+const siteScenes: AdviceItem[] = advice ? advice.scenes.filter((s) => s.group !== 'coast') : [];
+const coastScenes: AdviceItem[] = advice ? advice.scenes.filter((s) => s.group === 'coast') : [];
+const coastName = attraction.nearbyCoast?.name ?? '';
+---
+
+<section class="section-padding" id="weather">
+  <div class="container">
+    <span class="eyebrow">{w.eyebrow}</span>
+    <h2 class="section-title">{w.title}</h2>
+    <p class="section-lead">{w.subtitle}</p>
+
+    {data && advice && now ? (
+      <>
+        {/* ------------------ 风险提醒：有预警才出现，置顶 ------------------ */}
+        {advice.alerts.length > 0 ? (
+          <div class="wx-alerts" role="alert">
+            <div class="wx-alerts-head">
+              <span class="wx-ai" set:html={uiIcon('warning')} />
+              <strong>{w.alertTitle}</strong>
+            </div>
+            <ul>
+              {advice.alerts.map((a) => (
+                <li data-tone={a.tone}>
+                  <span class="wx-ai" set:html={uiIcon(a.icon)} />
+                  <span class="wx-atext">
+                    {a.label && <strong>{a.label}</strong>}
+                    {a.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div class="wx-calm" data-tone="ok">
+            <span class="wx-ai" set:html={uiIcon('check')} />
+            <span class="wx-atext"><strong>{w.alertNone}</strong>{w.alertNoneNote}</span>
+          </div>
+        )}
+
+        <div class="wx-top">
+          {/* ------------------ 基础天气卡片 ------------------ */}
+          <div class="card card-pad wx-now">
+            <div class="wx-now-main">
+              <div class="wx-icon" set:html={skyIcon(now.icon, now.night)} />
+              <div>
+                <div class="wx-temp">
+                  {data.current.temperature}<span class="wx-deg">{w.unitC}</span>
+                </div>
+                <div class="wx-cond">{(w.conditions as any)[now.key]}</div>
+                <div class="wx-feels">{w.feelsLike} {data.current.apparentTemperature}{w.unitC}</div>
+              </div>
+            </div>
+
+            <div class="wx-chips">
+              <span class="wx-chip">
+                <span class="wx-ci" set:html={uiIcon('umbrella')} />
+                {w.precipChance} {advice.metrics.pop}%
+              </span>
+              <span class="wx-chip">
+                <span class="wx-ci" set:html={uiIcon('wind')} />
+                {(w.windLevel as any)[advice.metrics.windLevel]} · {data.current.windSpeed} {w.unitKmh}
+              </span>
+              <span class="wx-chip">
+                <span class="wx-ci" set:html={uiIcon('uv')} />
+                {(w.uvLevel as any)[advice.metrics.uvLevel]}
+              </span>
+              {advice.window && (
+                <span class="wx-chip wx-chip-good">
+                  <span class="wx-ci" set:html={uiIcon('clock')} />
+                  {w.windowLabel} {advice.window.start}–{advice.window.end}
+                </span>
+              )}
+            </div>
+
+            <dl class="wx-metrics">
+              <div><dt>{w.humidity}</dt><dd>{data.current.humidity}%</dd></div>
+              <div><dt>{w.cloud}</dt><dd>{data.current.cloudCover}%</dd></div>
+              <div><dt>{w.uv}</dt><dd>{data.current.uvIndex}</dd></div>
+              <div><dt>{w.windDir}</dt><dd>{windCompass(data.current.windDirection)}</dd></div>
+              <div><dt>{w.gusts}</dt><dd>{data.current.windGusts} {w.unitKmh}</dd></div>
+              <div><dt>{w.precip}</dt><dd>{data.current.precipitation} {w.unitMm}</dd></div>
+              <div><dt>{w.sunrise}</dt><dd>{fmtTime(today?.sunrise ?? '')}</dd></div>
+              <div><dt>{w.sunset}</dt><dd>{fmtTime(today?.sunset ?? '')}</dd></div>
+            </dl>
+
+            <p class="wx-stamp">{w.updatedLabel} {fmtStamp(data.fetchedAt)}</p>
+          </div>
+
+          {/* ------------------ 出行建议：三块标签 ------------------ */}
+          <div class="card card-pad wx-advice">
+            <h3>{w.adviceTitle}</h3>
+            <div class="wx-verdict" data-tone={advice.tone}>
+              <span class="wx-ai" set:html={uiIcon(TONE_ICON[advice.tone])} />
+              <strong>{advice.verdict}</strong>
+            </div>
+
+            <div class="wx-tabs">
+              <input class="wx-radio" type="radio" name="wx-tab" id="wx-tab-outfit" checked />
+              <input class="wx-radio" type="radio" name="wx-tab" id="wx-tab-plan" />
+              <input class="wx-radio" type="radio" name="wx-tab" id="wx-tab-gear" />
+
+              <div class="wx-tabbar" role="tablist">
+                <label for="wx-tab-outfit">{w.tabs.outfit}</label>
+                <label for="wx-tab-plan">{w.tabs.plan}</label>
+                <label for="wx-tab-gear">{w.tabs.gear}</label>
+              </div>
+
+              <div class="wx-panels">
+                <ul class="wx-panel">
+                  {advice.outfit.map((item) => (
+                    <li data-tone={item.tone}>
+                      <span class="wx-ai" set:html={uiIcon(item.icon)} />
+                      <span class="wx-atext">{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+                <ul class="wx-panel">
+                  {advice.plan.map((item) => (
+                    <li data-tone={item.tone}>
+                      <span class="wx-ai" set:html={uiIcon(item.icon)} />
+                      <span class="wx-atext">{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+                <ul class="wx-panel wx-panel-gear">
+                  {advice.gear.map((item) => (
+                    <li>
+                      <span class="wx-gi" set:html={uiIcon(item.icon)} />
+                      <span>{item.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <p class="wx-side-note">{w.sourceNote}</p>
+          </div>
+        </div>
+
+        {/* ------------------ 环境专项提示 ------------------ */}
+        {siteScenes.length > 0 && (
+          <>
+            <h3 class="wx-sub">{w.sceneTitle}</h3>
+            <div class="wx-scenes">
+              {siteScenes.map((s) => (
+                <article class="wx-scene" data-tone={s.tone}>
+                  <span class="wx-ai" set:html={uiIcon(s.icon)} />
+                  <p>{s.text}</p>
+                </article>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* ------------------ 顺游海滨（有海滨参考点时才出现） ------------------ */}
+        {coastScenes.length > 0 && (
+          <div class="card card-pad wx-coast">
+            <h3>
+              <span class="wx-ai" set:html={uiIcon('beach')} />
+              {w.coastTitle}{coastName ? ` · ${coastName}` : ''}
+            </h3>
+            <ul>
+              {coastScenes.map((s) => (
+                <li>
+                  <span class="wx-ai" set:html={uiIcon(s.icon)} />
+                  <span class="wx-atext">{s.text}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="wx-side-note">{w.coastNote}</p>
+          </div>
+        )}
+
+        {/* ------------------ 逐小时 ------------------ */}
+        <h3 class="wx-sub">{w.hourlyTitle}</h3>
+        <div class="wx-hourly">
+          {data.hourly.map((h) => (
+            <div class="wx-hour">
+              <span class="wx-hour-t">{fmtHour(h.time)}</span>
+              <span class="wx-hour-ico" set:html={skyIcon(skyInfo(h.weatherCode, h.isDay).icon, !h.isDay)} />
+              <span class="wx-hour-temp">{h.temperature}{w.unitC}</span>
+              <span class="wx-hour-pop" title={w.precipChance}>{h.precipitationProbability}%</span>
+            </div>
+          ))}
+        </div>
+
+        {/* ------------------ 未来 7 天 ------------------ */}
+        <h3 class="wx-sub">{w.dailyTitle}</h3>
+        <div class="wx-daily">
+          {data.daily.map((d, i) => (
+            <article class="wx-day">
+              <div class="wx-day-head">
+                <span class="wx-day-name">{fmtDay(d.date, i)}</span>
+                <span class="wx-day-date">{fmtDate(d.date)}</span>
+              </div>
+              <span class="wx-day-ico" set:html={skyIcon(skyInfo(d.weatherCode, true).icon, false)} />
+              <span class="wx-day-cond">{(w.conditions as any)[skyInfo(d.weatherCode, true).key]}</span>
+              <div class="wx-day-temps">
+                <strong>{d.tempMax}{w.unitC}</strong>
+                <span>{d.tempMin}{w.unitC}</span>
+              </div>
+              <div class="wx-day-bar" role="img" aria-label={`${w.precipChance} ${d.precipitationProbability}%`}>
+                <span style={`width:${Math.min(100, Math.max(0, d.precipitationProbability))}%`} />
+              </div>
+              <div class="wx-day-foot">
+                <span>{w.precipChance} {d.precipitationProbability}%</span>
+                <span>UV {d.uvIndexMax}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p class="wx-note">{w.disclaimer}</p>
+      </>
+    ) : (
+      <div class="card card-pad wx-fallback">
+        <h3>{w.unavailableTitle}</h3>
+        <p>{w.unavailable}</p>
+        <a class="link-accent" href="#seasons">{w.unavailableLink}</a>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  /* 语气色：danger / warn / info / ok，两套主题均可读 */
+  [data-tone='danger'] { --tone: #b3311f; --tone-bg: rgba(179, 49, 31, 0.09); }
+  [data-tone='warn'] { --tone: #98650a; --tone-bg: rgba(152, 101, 10, 0.11); }
+  [data-tone='info'] { --tone: #1f6595; --tone-bg: rgba(31, 101, 149, 0.09); }
+  [data-tone='ok'] { --tone: var(--green); --tone-bg: var(--green-soft); }
+  :global([data-theme='dark']) [data-tone='danger'] { --tone: #ff9b86; --tone-bg: rgba(255, 155, 134, 0.13); }
+  :global([data-theme='dark']) [data-tone='warn'] { --tone: #f0c063; --tone-bg: rgba(240, 192, 99, 0.14); }
+  :global([data-theme='dark']) [data-tone='info'] { --tone: #8ec4ec; --tone-bg: rgba(142, 196, 236, 0.12); }
+
+  .wx-ai { flex: none; width: 20px; height: 20px; color: var(--tone); margin-top: 2px; }
+  .wx-ai :global(svg), .wx-ci :global(svg), .wx-gi :global(svg) { width: 100%; height: 100%; }
+  .wx-atext { display: block; }
+  .wx-atext strong { color: var(--heading); margin-right: 6px; }
+
+  /* ---------- 风险提醒 ---------- */
+  .wx-alerts {
+    margin-top: 28px;
+    border: 1.5px solid var(--tone, #b3311f);
+    background: var(--tone-bg, rgba(179, 49, 31, 0.09));
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    --tone: #b3311f;
+    --tone-bg: rgba(179, 49, 31, 0.09);
+  }
+  :global([data-theme='dark']) .wx-alerts { --tone: #ff9b86; --tone-bg: rgba(255, 155, 134, 0.13); }
+  .wx-alerts-head { display: flex; align-items: center; gap: 10px; color: var(--tone); font-size: 1.02rem; letter-spacing: 0.02em; }
+  .wx-alerts ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+  .wx-alerts li { display: flex; gap: 10px; align-items: flex-start; color: var(--text); font-size: 0.95rem; }
+
+  .wx-calm {
+    margin-top: 28px;
+    display: flex; gap: 10px; align-items: flex-start;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green);
+    background: var(--green-soft);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.94rem;
+    color: var(--text);
+  }
+  .wx-calm .wx-atext strong { display: block; color: var(--green); }
+
+  /* ---------- 基础天气卡片 ---------- */
+  .wx-top { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; margin-top: 24px; }
+  @media (max-width: 900px) { .wx-top { grid-template-columns: 1fr; } }
+
+  .wx-now-main { display: flex; align-items: center; gap: 20px; }
+  .wx-icon { width: 84px; height: 84px; flex: none; color: var(--accent); }
+  .wx-icon :global(svg) { width: 100%; height: 100%; }
+  .wx-temp { font-family: var(--font-display); font-size: clamp(2.6rem, 6vw, 3.4rem); line-height: 1; color: var(--heading); font-weight: 700; }
+  .wx-deg { font-size: 0.42em; margin-left: 2px; color: var(--text-muted); }
+  .wx-cond { font-size: 1.12rem; font-weight: 600; color: var(--heading); margin-top: 6px; }
+  .wx-feels { font-size: 0.9rem; color: var(--text-muted); }
+
+  .wx-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 19px; }
+  .wx-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 13px; border-radius: 999px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    font-size: 0.85rem; font-weight: 600; color: var(--heading);
+  }
+  .wx-chip .wx-ci { width: 16px; height: 16px; color: var(--accent-strong); }
+  .wx-chip-good { background: var(--accent-soft); border-color: var(--accent); }
+
+  .wx-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+    gap: 12px;
+    margin: 20px 0 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .wx-metrics div { display: flex; flex-direction: column; gap: 2px; }
+  .wx-metrics dt { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+  .wx-metrics dd { margin: 0; font-weight: 700; color: var(--heading); font-size: 1rem; }
+  .wx-stamp { margin: 16px 0 0; font-size: 0.82rem; color: var(--text-muted); }
+
+  /* ---------- 出行建议 ---------- */
+  .wx-advice h3 { margin: 0 0 14px; font-size: 1.05rem; }
+  .wx-verdict {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--tone-bg); color: var(--tone);
+    border-radius: 12px; padding: 12px 14px;
+    font-size: 0.98rem;
+  }
+  .wx-verdict .wx-ai { margin-top: 0; }
+
+  .wx-tabs { position: relative; margin-top: 16px; }
+  .wx-radio { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+  .wx-tabbar {
+    display: flex; gap: 4px; padding: 4px;
+    background: var(--surface-2); border-radius: 999px;
+  }
+  .wx-tabbar label {
+    flex: 1; text-align: center; cursor: pointer;
+    padding: 8px 6px; border-radius: 999px;
+    font-size: 0.85rem; font-weight: 700; color: var(--text-muted);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wx-panels > .wx-panel { display: none; margin: 14px 0 0; padding: 0; list-style: none; }
+  .wx-panel li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.94rem; color: var(--text); }
+  .wx-panel li + li { margin-top: 10px; }
+
+  #wx-tab-outfit:checked ~ .wx-tabbar label:nth-child(1),
+  #wx-tab-plan:checked ~ .wx-tabbar label:nth-child(2),
+  #wx-tab-gear:checked ~ .wx-tabbar label:nth-child(3) { background: var(--surface); color: var(--heading); box-shadow: var(--shadow-sm); }
+  #wx-tab-outfit:checked ~ .wx-panels > .wx-panel:nth-child(1),
+  #wx-tab-plan:checked ~ .wx-panels > .wx-panel:nth-child(2),
+  #wx-tab-gear:checked ~ .wx-panels > .wx-panel:nth-child(3) { display: grid; }
+  .wx-radio:focus-visible ~ .wx-tabbar label { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .wx-panel-gear { display: none; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 10px; }
+  .wx-panel-gear li {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    padding: 14px 8px; border-radius: 12px; text-align: center;
+    background: var(--surface-accent); border: 1px solid var(--border);
+    font-size: 0.86rem; font-weight: 600; color: var(--heading);
+  }
+  .wx-gi { width: 26px; height: 26px; color: var(--accent-strong); }
+
+  .wx-side-note { margin: 18px 0 0; font-size: 0.8rem; color: var(--text-muted); border-top: 1px dashed var(--border); padding-top: 14px; }
+
+  /* ---------- 环境专项 ---------- */
+  .wx-sub { font-size: 1.15rem; margin: 34px 0 14px; }
+  .wx-scenes { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 14px; }
+  .wx-scene {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--tone);
+    border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow-sm);
+  }
+  .wx-scene p { margin: 0; font-size: 0.92rem; color: var(--text); }
+
+  .wx-coast { margin-top: 18px; background: var(--surface-accent); }
+  .wx-coast h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; font-size: 1.05rem; }
+  .wx-coast h3 .wx-ai { margin-top: 0; color: var(--accent-strong); }
+  .wx-coast ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .wx-coast li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; }
+
+  /* ---------- 逐小时 / 7 天 ---------- */
+  .wx-hourly { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(72px, 1fr); gap: 10px; overflow-x: auto; padding-bottom: 8px; }
+  .wx-hour {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 8px; box-shadow: var(--shadow-sm);
+  }
+  .wx-hour-t, .wx-hour-temp { font-size: 0.85rem; font-weight: 700; color: var(--heading); }
+  .wx-hour-ico { width: 26px; height: 26px; color: var(--accent); }
+  .wx-hour-ico :global(svg) { width: 100%; height: 100%; }
+  .wx-hour-pop { font-size: 0.78rem; color: var(--accent-strong); font-weight: 700; }
+
+  .wx-daily { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+  .wx-day {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px; box-shadow: var(--shadow-sm);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .wx-day-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .wx-day-name { font-weight: 700; color: var(--heading); }
+  .wx-day-date { font-size: 0.78rem; color: var(--text-muted); }
+  .wx-day-ico { width: 34px; height: 34px; color: var(--accent); }
+  .wx-day-ico :global(svg) { width: 100%; height: 100%; }
+  .wx-day-cond { font-size: 0.88rem; color: var(--text-muted); }
+  .wx-day-temps { display: flex; align-items: baseline; gap: 8px; }
+  .wx-day-temps strong { font-size: 1.15rem; color: var(--heading); }
+  .wx-day-temps span { color: var(--text-muted); font-size: 0.92rem; }
+  .wx-day-bar { height: 6px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+  .wx-day-bar span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+  .wx-day-foot { display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--text-muted); }
+
+  .wx-note { margin: 26px 0 0; font-size: 0.86rem; color: var(--text-muted); max-width: 860px; }
+  .wx-fallback h3 { margin: 0 0 8px; font-size: 1.1rem; }
+  .wx-fallback p { margin: 0 0 12px; color: var(--text-muted); }
+</style>

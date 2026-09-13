@@ -1,0 +1,106 @@
+---
+import { getI18n } from '../i18n/ui';
+import { icon } from '../lib/icons';
+
+const { messages } = getI18n(Astro.url);
+const f = messages.facilities;
+---
+
+<section class="section-padding" id="facilities">
+  <div class="container">
+    <span class="eyebrow">{f.eyebrow}</span>
+    <h2 class="section-title">{f.title}</h2>
+    <p class="section-lead">{f.subtitle}</p>
+
+    <p class="neutral-note">
+      <span class="nn-ico" set:html={icon('info')} />
+      <span>{f.neutralNotice}</span>
+    </p>
+
+    <div class="fac-grid">
+      {f.categories.map((c: any) => (
+        <article class="fac-card card fade-up">
+          <div class="fac-head">
+            <span class="fac-ico" set:html={icon(c.icon)} />
+            <h3>{c.title}</h3>
+          </div>
+          <p class="fac-summary">{c.summary}</p>
+          <ul class="fac-points">
+            {c.points.map((p: string) => (
+              <li>
+                <span class="fp-ico" set:html={icon('check')} />
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <div class="fac-foot">
+      <h3>{f.tipsTitle}</h3>
+      <ul>
+        {f.tips.map((t: string) => (
+          <li>
+            <span class="fp-ico" set:html={icon('check')} />
+            <span>{t}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .neutral-note {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin: 22px 0 0;
+    padding: 14px 20px;
+    border-radius: var(--radius);
+    background: var(--surface-accent);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    max-width: 900px;
+  }
+  .nn-ico { flex: none; width: 20px; height: 20px; color: var(--accent-strong); margin-top: 3px; }
+  .nn-ico :global(svg) { width: 100%; height: 100%; }
+
+  .fac-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .fac-card { display: flex; flex-direction: column; gap: 10px; padding: 22px; }
+  .fac-head { display: flex; align-items: center; gap: 12px; }
+  .fac-ico {
+    width: 42px; height: 42px; flex: none;
+    display: grid; place-items: center;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .fac-ico :global(svg) { width: 22px; height: 22px; }
+  .fac-head h3 { margin: 0; font-size: 1.06rem; }
+  .fac-summary { margin: 0; color: var(--text-muted); font-size: 0.93rem; }
+  .fac-points { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; }
+  .fac-points li { display: flex; gap: 9px; align-items: flex-start; font-size: 0.9rem; color: var(--text); }
+  .fp-ico { flex: none; width: 16px; height: 16px; color: var(--green); margin-top: 4px; }
+  .fp-ico :global(svg) { width: 100%; height: 100%; }
+
+  .fac-foot {
+    margin-top: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .fac-foot h3 { margin: 0 0 14px; font-size: 1.1rem; }
+  .fac-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .fac-foot li { display: flex; gap: 10px; align-items: flex-start; color: var(--text-muted); font-size: 0.93rem; }
+</style>

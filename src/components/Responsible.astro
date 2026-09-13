@@ -1,0 +1,92 @@
+---
+import { getI18n } from '../i18n/ui';
+import { icon } from '../lib/icons';
+
+const { messages } = getI18n(Astro.url);
+const r = messages.responsible;
+---
+
+<section class="section-padding" id="responsible">
+  <div class="container">
+    <span class="eyebrow">{r.eyebrow}</span>
+    <h2 class="section-title">{r.title}</h2>
+    <p class="section-lead">{r.subtitle}</p>
+
+    <h3 class="resp-group">{r.scienceTitle}</h3>
+    <div class="resp-grid">
+      {r.science.map((s: any) => (
+        <article class="resp-card card fade-up">
+          <span class="resp-ico" set:html={icon(s.icon)} />
+          <h4>{s.title}</h4>
+          <p>{s.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <h3 class="resp-group">{r.dutyTitle}</h3>
+    <div class="resp-grid">
+      {r.duties.map((d: any) => (
+        <article class="resp-card card fade-up">
+          <span class="resp-ico" set:html={icon(d.icon)} />
+          <h4>{d.title}</h4>
+          <p>{d.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="resp-bottom">
+      <div class="resp-pledge card">
+        <span class="resp-ico" set:html={icon('hands')} />
+        <h3>{r.pledgeTitle}</h3>
+        <p>{r.pledge}</p>
+      </div>
+
+      <div class="resp-emergency card">
+        <span class="resp-ico" set:html={icon('shield')} />
+        <h3>{r.emergencyTitle}</h3>
+        <ul>
+          {r.emergency.map((e: any) => (
+            <li>
+              <span class="re-label">{e.label}</span>
+              <span class="re-value">{e.value}</span>
+              <span class="re-note">{e.note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .resp-group { font-size: 1.18rem; margin: 34px 0 16px; }
+  .resp-group:first-of-type { margin-top: 28px; }
+
+  .resp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 18px; }
+  .resp-card { padding: 22px; }
+  .resp-ico {
+    width: 40px; height: 40px;
+    display: grid; place-items: center;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    margin-bottom: 12px;
+  }
+  .resp-ico :global(svg) { width: 21px; height: 21px; }
+  .resp-card h4 { margin: 0 0 6px; font-size: 1.02rem; }
+  .resp-card p { margin: 0; color: var(--text-muted); font-size: 0.92rem; }
+
+  .resp-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 30px; }
+  @media (max-width: 820px) { .resp-bottom { grid-template-columns: 1fr; } }
+  .resp-pledge, .resp-emergency { padding: 24px; }
+  .resp-pledge h3, .resp-emergency h3 { margin: 0 0 10px; font-size: 1.08rem; }
+  .resp-pledge p { margin: 0; color: var(--text-muted); font-size: 0.94rem; }
+  .resp-pledge { background: var(--surface-accent); border-left: 4px solid var(--green); }
+
+  .resp-emergency ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .resp-emergency li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--border); }
+  .resp-emergency li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .re-label { font-weight: 700; color: var(--heading); font-size: 0.94rem; }
+  .re-value { font-family: var(--font-display); font-weight: 700; color: var(--accent-strong); font-size: 1.05rem; text-align: right; }
+  .re-note { grid-column: 1 / -1; color: var(--text-muted); font-size: 0.84rem; }
+</style>

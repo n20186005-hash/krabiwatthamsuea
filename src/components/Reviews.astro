@@ -1,5 +1,6 @@
 ---
 import { getI18n } from '../i18n/ui';
+import { attraction } from '../config';
 
 const { messages } = getI18n(Astro.url);
 const r = messages.reviews;
@@ -15,6 +16,12 @@ function stars(n: number) {
     <span class="eyebrow">{r.eyebrow}</span>
     <h2 class="section-title">{r.title}</h2>
     <p class="section-lead">{r.declaration}</p>
+
+    <p class="rating-source-line">
+      <strong>{messages.hero.rating}</strong> / {messages.hero.reviewCount}
+      <span class="rs-sep">·</span>
+      <a href={attraction.mapsShareUrl} target="_blank" rel="noopener noreferrer">{messages.hero.ratingSource}</a>
+    </p>
 
     <div class="reviews-grid">
       {r.items.map((it: any) => (
@@ -33,7 +40,7 @@ function stars(n: number) {
     </div>
 
     <div class="reviews-foot">
-      <a class="hero-maps-link" href={r.mapsUrl} target="_blank" rel="noopener" style="color:var(--heading);background:var(--surface-2);border-color:var(--border-strong)">
+      <a class="hero-maps-link" href={attraction.mapsShareUrl} target="_blank" rel="noopener" style="color:var(--heading);background:var(--surface-2);border-color:var(--border-strong)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         {r.moreReviews}
       </a>
@@ -60,4 +67,12 @@ function stars(n: number) {
   .review-stars { margin-left: auto; color: #f5a623; letter-spacing: 1px; font-size: 0.95rem; }
   .review-text { margin: 0; color: var(--text-muted); line-height: 1.7; }
   .reviews-foot { display: flex; justify-content: center; margin-top: 28px; }
+  .rating-source-line {
+    margin: 14px 0 0;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+  .rating-source-line strong { color: var(--heading); font-size: 1.05rem; }
+  .rating-source-line a { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
+  .rs-sep { margin: 0 6px; color: var(--border-strong); }
 </style>

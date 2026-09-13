@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Wat Tham Suea (Tiger Cave Temple) · Krabi, Thailand — Climb, Golden Buddha & Viewpoint Guide",
-    "description": "A complete guide to Wat Tham Suea (Tiger Cave Temple) in Krabi, Thailand: the 1,237-step climb to the golden Buddha, the tiger legend, opening hours, entrance, transport and real visitor reviews, with a Google Maps location."
+    "title": "Tiger Cave Temple Krabi (Wat Tham Suea) — Steps, Hours & Tips",
+    "description": "Tiger Cave Temple (Wat Tham Suea) Krabi guide: the 1,237-step climb (some sources count 1,260), opening hours, dress code, how to get there from Ao Nang, and monkey safety."
   },
   "header": {
     "siteName": "Wat Tham Suea",
@@ -20,10 +20,11 @@
   },
   "hero": {
     "thai": "วัดถ้ำเสือ",
-    "title": "Wat Tham Suea · Tiger Cave Temple",
+    "title": "Wat Tham Suea (Krabi) · Tiger Cave Temple",
     "subtitle": "A forest temple north of Krabi town where 1,237 steps lead to a golden Buddha and an open viewpoint over the Andaman Sea.",
     "rating": "4.6",
-    "reviewCount": "13,763",
+    "reviewCount": "17,751",
+    "ratingSource": "Ratings and review count sourced from Google Maps (as of September 2026)",
     "type": "Buddhist Temple",
     "tags": ["Buddhist Temple", "Hike & Viewpoint", "Meditation Retreat"],
     "facts": {
@@ -42,7 +43,8 @@
   },
   "intro": {
     "eyebrow": "Overview",
-    "title": "Krabi's Most Famous Forest Temple",
+    "title": "About Wat Tham Suea — Krabi's Most Famous Forest Temple",
+    "welcome": "Welcome to Wat Tham Suea, widely recognized as the central Krabi Wat Tham Suea. Located in the heart of Krabi, Krabi Province, Thailand, this destination serves as a primary hub for travelers visiting the region.",
     "description": "Wat Tham Suea sits among the limestone hills about 7 km north of Krabi town. It is both a busy southern-Thai Buddhist temple and a popular hiking destination, blending dramatic natural caves, a golden Buddha and a serene meditation atmosphere.",
     "facts": {
       "type": "Type",
@@ -50,7 +52,7 @@
       "region": "Region",
       "regionValue": "Krabi, Thailand",
       "rating": "Rating",
-      "ratingValue": "4.6 (13,763)",
+      "ratingValue": "4.6 (17,751)",
       "hours": "Opening Hours",
       "hoursValue": "Daily 06:00–18:00"
     },
@@ -77,7 +79,7 @@
   },
   "visit": {
     "eyebrow": "Practical Info",
-    "title": "Hours, Accessibility & Site Map",
+    "title": "Hours, Accessibility & How to Visit Wat Tham Suea in Krabi",
     "subtitle": "The temple is open all year with no booking needed. To ensure all visitors have a comfortable experience, we provide detailed layout and accessibility information.",
     "hoursLabel": "Opening Hours",
     "hoursValue": "Daily 06:00 – 18:00",
@@ -90,7 +92,9 @@
     "accessibilityText": "While the summit requires a strenuous climb of 1,237 steps, the main hall at the base, parts of the natural caves, and the centuries-old bodhi tree paths in the valley monastery are flat and highly suitable for elderly visitors, wheelchair users, or those with limited stamina.",
     "mapLayoutTitle": "Site Layout",
     "mapLayoutText": "The grounds are clearly laid out: spacious parking and restrooms are near the entrance; heading left leads to the natural caves and flat forest meditation paths; heading right takes you to the starting point of the 1,237-step climb.",
-    "mapTitle": "Map of Wat Tham Suea"
+    "mapTitle": "Map of Wat Tham Suea",
+    "govtLinkText": "For official updates and regional tourism information, visit",
+    "govtLinkLabel": "Thailand / Krabi Official Tourism Portal"
   },
   "transport": {
     "eyebrow": "Getting There",
@@ -203,7 +207,7 @@
   },
   "history": {
     "eyebrow": "History & Legend",
-    "title": "The Story of Tiger Cave Temple",
+    "title": "History & Significance of Wat Tham Suea",
     "subtitle": "From a meditating monk's retreat to a bustling hillside monastery, the story of Wat Tham Suea is as intriguing as its name — part documented history, part legend passed down for decades.",
     "sections": [
       {
@@ -311,7 +315,11 @@
     "items": [
       {
         "q": "How many steps are there to the top?",
-        "a": "There are 1,237 steps to the golden Buddha at the summit. They are steep and partly unshaded; the climb usually takes 30–60 minutes — pace yourself."
+        "a": "The staircase is signed as 1,237 steps to the golden Buddha at the summit; after later renovation some sources now count 1,260. Either way it is steep and partly unshaded — the climb usually takes 30–60 minutes, so pace yourself."
+      },
+      {
+        "q": "What are the opening hours?",
+        "a": "The temple grounds are generally open daily from about 06:00 to 18:00, and the staircase closes at dusk. Come early — you avoid the midday heat and the summit is at its clearest."
       },
       {
         "q": "Is there an entrance fee?",
@@ -330,8 +338,8 @@
         "a": "Macaques are used to people but can be aggressive — do not feed, tease or flash food, and secure glasses and phones."
       },
       {
-        "q": "What's the easiest way from Krabi town?",
-        "a": "The easiest is a shared blue songthaew from town, or hire a taxi / motorbike and head north on Route 4034 for about 7 km."
+        "q": "How do I get there from Krabi town or Ao Nang?",
+        "a": "From Krabi town the easiest option is a shared blue songthaew, or a taxi / rented motorbike heading north on Route 4034 for about 7 km. From Ao Nang it is noticeably further, so a taxi, Grab or rented scooter is the practical choice — allow extra time and agree the fare before you set off."
       }
     ]
   },
@@ -346,7 +354,7 @@
     "resources": [
       { "name": "Tourism Authority of Thailand", "url": "https://www.tourismthailand.org" },
       { "name": "Krabi Destination", "url": "https://www.tourismthailand.org/destinations/krabi" },
-      { "name": "Wikipedia: Wat Tham Suea", "url": "https://en.wikipedia.org/wiki/Wat_Tham_Suea" },
+      { "name": "Wikipedia: Wat Tham Suea", "url": "https://en.wikipedia.org/wiki/Tiger_Cave_Temple" },
       { "name": "Google Maps Location", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8" },
       { "name": "Krabi Provincial Office", "url": "http://www.krabi.go.th/" },
       { "name": "Department of National Parks (DNP)", "url": "https://portal.dnp.go.th/" },
@@ -359,6 +367,7 @@
     "hoursValue": "Daily 06:00 – 18:00",
     "mapsLabel": "Google Maps →",
     "mapsUrl": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8",
+    "imageNotice": "Image credits: the ownership and copyright of all images displayed on this website belong to their original photographers.",
     "disclaimer": "Information here is compiled from public sources; hours, transport and fees may change by season. Please confirm with on-site or official notices before travel."
   },
   "credits": {
@@ -370,7 +379,8 @@
   },
   "nearby": {
     "eyebrow": "Nearby Attractions",
-    "title": "Worth adding to your trip",
+    "title": "Landmarks & Attractions Around Wat Tham Suea",
+    "cluster": "When visiting Wat Tham Suea, visitors can easily explore surrounding historical landmarks and points of interest, including Ao Nang Beach and Railay Beach.",
     "subtitle": "Wat Tham Suea sits about 7 km from Krabi Town, with beaches, hot springs and natural wonders close by — easy to combine into a day out.",
     "places": [
       { "name": "Krabi Town", "distance": "≈ 7 km", "text": "The provincial hub: night market, riverside promenade and the white Wat Kaew temple, with food and supplies." },
@@ -379,6 +389,602 @@
       { "name": "Emerald Pool (Sa Morakot)", "distance": "≈ 30 km", "text": "A naturally emerald spring pool set in forest — great for a cooling dip and jungle walk." },
       { "name": "Krabi Hot Springs (Namtok Ron)", "distance": "≈ 35 km", "text": "Natural thermal springs perfect for a soothing foot soak after the summit climb." },
       { "name": "Khao Khanab Nam", "distance": "≈ 8 km", "text": "Krabi's iconic twin limestone peaks, best seen on a boat trip along the Krabi River." }
+    ]
+  },
+  "sources": {
+    "eyebrow": "Authoritative Sources",
+    "title": "Sources & Information Freshness",
+    "subtitle": "Every fact on this page is meant to be verifiable. Ratings, review counts and opening details follow the Google Maps business profile, while geographic and cultural context is cross-referenced with official Thai tourism bodies and public records to strengthen E-E-A-T.",
+    "updatedLabel": "Information updated",
+    "updatedValue": "September 2026",
+    "ratingNote": "The 4.6 rating and 17,751 reviews come from Google Maps user reviews; figures change over time, so always check the live Google Maps page.",
+    "imageNoticeTitle": "Image copyright notice",
+    "imageNotice": "The ownership and copyright of all images displayed on this website belong to their original photographers.",
+    "items": [
+      { "name": "Google Maps business profile (rating & reviews)", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8", "desc": "Direct source of the 4.6 rating and 17,751 reviews" },
+      { "name": "Tourism Authority of Thailand (TAT)", "url": "https://www.tourismthailand.org", "desc": "Official national tourism body" },
+      { "name": "TAT — Krabi destination", "url": "https://www.tourismthailand.org/destinations/krabi", "desc": "Official Krabi tourism information" },
+      { "name": "Krabi Provincial Office", "url": "http://www.krabi.go.th/", "desc": "Local government public records" },
+      { "name": "Wikipedia: Wat Tham Suea", "url": "https://en.wikipedia.org/wiki/Tiger_Cave_Temple", "desc": "Historical and geographic background" },
+      { "name": "Department of National Parks (DNP)", "url": "https://portal.dnp.go.th/", "desc": "Protected-area and ecology references" },
+      { "name": "Tourist Police Bureau", "url": "https://touristpolice.go.th/", "desc": "Emergency hotline 1155" },
+      { "name": "Thai e-Visa official website", "url": "https://www.thaievisa.go.th/", "desc": "Official entry and visa information" }
+    ]
+  },
+  "weather": {
+    "eyebrow": "Live Conditions",
+    "title": "Live Weather and 7-Day Forecast",
+    "subtitle": "Check the sky before you climb. The 1,237-step staircase is fully exposed, so felt temperature, rain probability and UV intensity decide how comfortable the ascent will be. Below we translate the numbers into what to wear, how to plan and what to pack.",
+    "feelsLike": "Feels like",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "gusts": "Gusts",
+    "windDir": "Direction",
+    "uv": "UV index",
+    "precip": "Rainfall",
+    "precipChance": "Rain chance",
+    "cloud": "Cloud cover",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "hourlyTitle": "Next 12 hours",
+    "dailyTitle": "7-day outlook",
+    "today": "Today",
+    "updatedLabel": "Data updated",
+    "adviceTitle": "Travel advice",
+    "verdict": {
+      "ok": "Great conditions — go ahead with your plan",
+      "info": "Fine to head out — check the short notes below",
+      "warn": "Go if you like, but leave slack in the plan; the sky may turn",
+      "danger": "Not advisable on your original plan — please reshuffle your day"
+    },
+    "alertTitle": "Risk alerts",
+    "alertNone": "No weather warnings in effect",
+    "alertNoneNote": "Mountain weather shifts quickly, so no warning does not mean no risk. Have one more look at the live figures before you set off.",
+    "tabs": {
+      "outfit": "What to wear",
+      "plan": "How to plan",
+      "gear": "What to pack"
+    },
+    "windowLabel": "Best window",
+    "sceneTitle": "Site-specific notes",
+    "coastTitle": "Side trip to the coast",
+    "coastNote": "Nearshore figures are regional reference values. Before entering the water, follow the flags and lifeguard advice on the day.",
+    "windLevel": {
+      "calm": "Light air",
+      "light": "Gentle breeze",
+      "breezy": "Fairly windy",
+      "strong": "Strong wind"
+    },
+    "uvLevel": {
+      "low": "UV low",
+      "moderate": "UV moderate",
+      "high": "UV high",
+      "veryHigh": "UV very high"
+    },
+    "outfit": {
+      "hot": "Hot and sunny — light, breathable short sleeves and trousers. Quick-dry fabric beats cotton by a wide margin.",
+      "warm": "Mild and warm — short sleeves plus a thin layer is plenty, and easy to shed once you heat up.",
+      "cool": "Chilly at either end of the day. Bring a light jacket you can pull on going up and coming down.",
+      "tempSwing": "The day-night gap is noticeable, so pair a light jacket with short sleeves for easy layering.",
+      "wet": "You will get rained on. Wear a waterproof shell or quick-dry clothing, and skip absorbent cotton trousers.",
+      "humid": "Humid and sticky — choose quick-dry, breathable fabric rather than heavy fitted cotton.",
+      "windy": "Fairly windy. Skip flowing long skirts and wide-brim hats; they get blown about badly.",
+      "default": "Just wear something light and easy to walk in — comfort and freedom of movement come first."
+    },
+    "plan": {
+      "sunny": "Clear and bright — ideal for outdoor sightseeing, and good for sunrise or sunset.",
+      "overcast": "Soft light, great for photos and no harsh sun — a good day to wander slowly.",
+      "drizzle": "Light drizzle about. Outdoor experiences lose some shine and the steps turn slick, so slow down.",
+      "rainLikely": "Rain is likely. Prioritise sheltered stops such as the cave and indoor areas, and push the climb and the coast later.",
+      "heavyRain": "Heavy rain expected — avoid outdoor plans entirely and steer clear of valleys and low-lying ground.",
+      "thunder": "Thunderstorms around. Do not climb, do not linger near water or under trees; the summit and exposed steps are the worst places.",
+      "hot": "Temperatures are high. Squeeze outdoor time into early morning and late afternoon, and stay in shade at midday.",
+      "uvHigh": "UV is strong. Avoid midday and get your sunscreen on before you leave.",
+      "foggy": "Poor visibility. Mountain and sea views lose much of their value, and navigation on the climb gets harder.",
+      "good": "Ordinary conditions — your original plan is fine, just keep an eye on the sky.",
+      "window": "Aim for {start}–{end}: that is when rain chance is lowest and the temperature is most comfortable.",
+      "windowNone": "No clear good-weather window in the next 12 hours — check the forecast once more before you head out."
+    },
+    "gear": {
+      "umbrella": "Umbrella",
+      "raincoat": "Rain jacket",
+      "water": "Drinking water",
+      "electrolyte": "Electrolyte drink",
+      "sunscreen": "Sunscreen",
+      "sunglasses": "Sunglasses",
+      "hat": "Sun hat",
+      "towel": "Quick-dry towel",
+      "repellent": "Insect repellent",
+      "shoes": "Grippy shoes",
+      "jacket": "Light jacket",
+      "wipes": "Wet wipes"
+    },
+    "scene": {
+      "mountainCalm": "The exposed summit is windier and cooler than the base — have a jacket ready before you head up.",
+      "mountainWind": "Summit winds are noticeably stronger. Hold the rail, stow hats and loose items, then take your photos.",
+      "mountainStorm": "If thunder arrives, descend immediately — never shelter on the steps or the summit platform.",
+      "mountainWet": "Steps are slippery. On the way down, step sideways and slowly, hold the rail, and spare your knees.",
+      "caveCool": "The cave stays cool year-round and is well below outdoor temperature — a good place to rest and cool off.",
+      "caveWet": "The cave floor is damp and water drips from the walls. Watch your footing and keep hands off the rock.",
+      "forestRepel": "Mosquitoes are active in the forest — apply repellent to exposed skin beforehand.",
+      "forestSlick": "Forest paths turn soft and slick; deep-tread soles keep you steadier.",
+      "waterFlow": "Water levels rise quickly after rain — mind the wet stones if you go near the water.",
+      "coastWave": "Waves are around {h} m, still within a swimmer-friendly range, but check the flags on site.",
+      "coastAlert": "Waves are around {h} m and the sea is rough — not a day to swim, and keep clear of rocks and the water's edge.",
+      "coastTemp": "Sea temperature is about {t}°C, milder than the air; after a long soak, watch for chills on leaving the water.",
+      "coastTide": "The next high tide is around {high} and low tide around {low} — plan shell-hunting and photos around the tide."
+    },
+    "alert": {
+      "thunder": {
+        "t": "Thunderstorms",
+        "x": "Lightning is active. Reshuffle your plan and stay away from the summit, the water and large trees, and do not stop on exposed steps."
+      },
+      "heavyRain": {
+        "t": "Heavy rain",
+        "x": "Significant rainfall is expected. Avoid valleys, low ground and steep slopes, and watch for flash floods, rockfall and flooding on the steps."
+      },
+      "wind": {
+        "t": "Strong wind",
+        "x": "Winds are strong, felt even more so at height. Keep your footing, secure loose items, and expect hats to blow away."
+      },
+      "fog": {
+        "t": "Low visibility",
+        "x": "Visibility is poor and the mountain path is hard to read. Postpone the climb."
+      },
+      "heat": {
+        "t": "Extreme heat",
+        "x": "Felt temperature is very high. Avoid long outdoor exposure in the afternoon and drink steadily to prevent heat exhaustion."
+      },
+      "heatWatch": {
+        "t": "Heat caution",
+        "x": "Felt temperature is high. Try to avoid climbing at midday and carry plenty of water."
+      },
+      "cold": {
+        "t": "Low temperature",
+        "x": "Temperatures are low — dress for the cold, especially on the windy summit."
+      }
+    },
+    "unavailableTitle": "Live weather is temporarily unavailable",
+    "unavailable": "Live data could not be retrieved right now, which is usually a brief network or data-service interruption. Please refresh the page shortly. In the meantime you can still plan by season using the table below.",
+    "unavailableLink": "View the seasonal strategy table",
+    "sourceNote": "Numerical forecasts describe regional averages; localised showers and thunderstorms in hill terrain develop quickly, so it is worth checking again before you leave.",
+    "disclaimer": "Weather and sea-state data in this module is supplied by a third-party professional meteorological data service. It is provided for travel planning only and is not a safety guarantee. During thunderstorms, strong winds or official warnings, follow the information issued by the Thai meteorological authorities and any on-site instructions.",
+    "unitC": "°C",
+    "unitKmh": "km/h",
+    "unitMm": "mm",
+    "conditions": {
+      "clear": "Clear",
+      "mostlyClear": "Mostly clear",
+      "partlyCloudy": "Partly cloudy",
+      "overcast": "Overcast",
+      "fog": "Fog",
+      "drizzle": "Drizzle",
+      "rain": "Rain",
+      "heavyRain": "Heavy rain",
+      "showers": "Showers",
+      "thunder": "Thunderstorms",
+      "snow": "Snow"
+    }
+  },
+  "facilities": {
+    "eyebrow": "Visitor Services",
+    "title": "Visitor Services & Nearby Facilities (Type-Level Overview)",
+    "subtitle": "What follows describes facility types objectively so you can plan ahead. No specific business is recommended or rated.",
+    "neutralNotice": "This is a non-profit educational site with no commercial partnership with any business. All facility information is given only as a type-level overview; for actual conditions, please rely on on-site signage.",
+    "tipsTitle": "Practical extra notes",
+    "tips": [
+      "Facilities cluster near the temple gate and thin out the higher you go — sort out water, toilets and supplies before you start climbing.",
+      "The temple is a religious site and its facilities primarily serve worshippers. During peak season or ceremonies, please give way to elders and local devotees.",
+      "Prices, opening hours and availability can change at any time, so this page deliberately avoids quoting specific figures.",
+      "During the monsoon, water pressure and power can fluctuate briefly; charge devices and fill water bottles while you are still in town."
+    ],
+    "categories": [
+      {
+        "icon": "restroom",
+        "title": "Restrooms (WC)",
+        "summary": "Public restrooms are concentrated at the temple gate and the main courtyard — the most convenient spot and effectively the last one before the climb.",
+        "points": [
+          "Use them before you start; there are no restrooms along the main staircase or at the summit.",
+          "The busiest window is after 09:00 and queues are likely in high season.",
+          "Some points do not stock soap or tissue, so carry wet wipes."
+        ]
+      },
+      {
+        "icon": "parking",
+        "title": "Parking",
+        "summary": "Vehicle parking areas sit close to the temple gate, mostly sized for cars and motorbikes.",
+        "points": [
+          "Spaces tighten in high season and during the morning; arriving before 08:00 helps.",
+          "Most parking surfaces are unpaved and can hold water in the rainy season.",
+          "Do not use bays reserved for monks or service vehicles, and never park in the access lane."
+        ]
+      },
+      {
+        "icon": "food",
+        "title": "Food & Dining",
+        "summary": "Several types of eateries gather around the temple gate, focused on southern Thai home cooking, noodles, coffee and cold drinks.",
+        "points": [
+          "Types range from sit-down shophouses to roadside carts and drink stalls, with wide variation in price and hygiene.",
+          "Eat lightly before climbing — neither on an empty stomach nor overly full.",
+          "Alcohol is not permitted within the temple grounds, and eating inside the halls is not appropriate."
+        ]
+      },
+      {
+        "icon": "lodging",
+        "title": "Accommodation",
+        "summary": "Accommodation is concentrated in Krabi town and the coastal tourist areas; the temple itself has no guest rooms.",
+        "points": [
+          "Types include town hotels, hostels, resorts and homestays, differing in price band and how easily you reach the trailhead.",
+          "If you plan a dawn summit, prioritise a stay within a 10–15 minute drive of the gate.",
+          "The temple and its meditation forest do not host overnight visitors — camping is not permitted."
+        ]
+      },
+      {
+        "icon": "store",
+        "title": "Shops & Supplies",
+        "summary": "Convenience stores, pharmacies and supermarkets are mostly in Krabi town and along the main highway.",
+        "points": [
+          "Stock up in town on drinking water, electrolyte drinks, sunscreen and insect repellent.",
+          "Water sold near the gate usually costs more than in town, so compare as you need.",
+          "Finish fruit and snacks before you climb — carried food invites macaque snatching."
+        ]
+      },
+      {
+        "icon": "fuel",
+        "title": "Fuel",
+        "summary": "Petrol stations sit mainly in Krabi town and along the main road towards the temple.",
+        "points": [
+          "Types include branded stations and smaller independent pumps; opening hours are not uniform.",
+          "On a rented motorbike, fill the tank and check tyre pressure and brakes before setting off.",
+          "There is no fuel on the hill road, so allow a comfortable margin."
+        ]
+      },
+      {
+        "icon": "ev",
+        "title": "EV Charging",
+        "summary": "Charging points are concentrated in town and at large commercial sites; the temple and gate area effectively have none.",
+        "points": [
+          "Types split between destination slow chargers and rapid chargers, and availability varies sharply by location.",
+          "If you drive an EV, charge in town and keep a comfortable round-trip reserve.",
+          "Do not run cables from the temple or neighbouring businesses to charge."
+        ]
+      },
+      {
+        "icon": "hospital",
+        "title": "Medical & Pharmacy",
+        "summary": "General hospitals and clinics are in Krabi town, while pharmacies are more widely distributed, including along the highway.",
+        "points": [
+          "The common issues are twisted ankles, grazes, heat exhaustion and dehydration — carry a basic first-aid kit.",
+          "If you have knee trouble, bring a support and slow down considerably on the descent.",
+          "Stop climbing and seek help immediately if you feel chest tightness, dizziness or persistent palpitations."
+        ]
+      },
+      {
+        "icon": "atm",
+        "title": "Money & Payment",
+        "summary": "ATMs and exchange counters cluster in town and the tourist areas; around the temple, cash is the norm.",
+        "points": [
+          "Donation boxes accept cash only, so keep some small banknotes with you.",
+          "Small eateries and stalls may not accept electronic payment — ask first.",
+          "Withdraw from a proper, sheltered machine rather than using an isolated street-side ATM."
+        ]
+      },
+      {
+        "icon": "water",
+        "title": "Water & Refills",
+        "summary": "Water is sold and supplied around the gate and main courtyard; there is none along the main staircase or at the top.",
+        "points": [
+          "Carry 1–2 litres for the round trip, and more again in the hot season.",
+          "Drinking large volumes of plain water does not replace the electrolytes lost in sweat — pair it with a sodium-containing drink.",
+          "Water is scarce on the hill, so avoid long, open-ended rinsing."
+        ]
+      },
+      {
+        "icon": "wifi",
+        "title": "Connectivity",
+        "summary": "Mobile coverage is reliable in town and along the main road, but can fade intermittently mid-slope and at the summit.",
+        "points": [
+          "Save maps and your itinerary offline before you leave.",
+          "Some areas of the temple ask for quiet or restrict photography — follow on-site notices.",
+          "If you climb alone, tell someone your plan and agree a return time."
+        ]
+      },
+      {
+        "icon": "accessible",
+        "title": "Accessibility & Special Needs",
+        "summary": "The lower temple areas are comparatively level; the main staircase is traditional stone and has no step-free alternative.",
+        "points": [
+          "The main courtyard and cave temple can be explored on the flat without climbing.",
+          "Traditional paving limits wheelchair access, so check conditions on the day in advance.",
+          "Older visitors can wait in a rest area or at the viewpoint while companions make the climb."
+        ]
+      },
+      {
+        "icon": "baby",
+        "title": "Infants & Children",
+        "summary": "There are rest areas around the gate, but no dedicated parent-and-baby facilities.",
+        "points": [
+          "For infants, a carrier works far better than a pushchair — the main staircase is not pushchair-friendly.",
+          "Prepare formula and hot water in town or at your accommodation; the hill is impractical for it.",
+          "Children must be held or guided the whole way — never let them run on the steps."
+        ]
+      },
+      {
+        "icon": "offering",
+        "title": "Offerings & Incense",
+        "summary": "The temple provides incense, flowers and offering items through its own channels, as is standard at a religious site.",
+        "points": [
+          "Make offerings through the temple's designated points, not through hawkers of unknown origin.",
+          "Do not express goodwill by releasing non-native species — it damages the local ecology.",
+          "Donation boxes take cash only; the amount is up to you and the intention matters more than the sum."
+        ]
+      }
+    ]
+  },
+  "seasons": {
+    "eyebrow": "Seasonal Strategy",
+    "title": "Quarterly Visiting Strategy Table",
+    "subtitle": "A combined reading of weather, water and wildlife — drawn from long-term climate normals and public material from official meteorological, marine and ecological authorities.",
+    "columns": {
+      "period": "Period",
+      "weather": "Weather pattern",
+      "water": "Water & ground conditions",
+      "wildlife": "Wildlife activity",
+      "advice": "Visiting strategy",
+      "risk": "Risk level"
+    },
+    "rows": [
+      {
+        "period": "Nov–Feb",
+        "season": "Cool season · Northeast monsoon",
+        "weather": "The most comfortable stretch of the year. The northeast monsoon dominates, rain days are at their fewest, daytime runs 28–32°C with 22–24°C at dawn, humidity is low and visibility is good.",
+        "water": "Streams and limestone seepage drop, so the staircase is dry and stable overall; nearshore water is clear and the sea relatively calm.",
+        "wildlife": "Long-tailed macaques forage around the gate and forest edge, birds and butterflies are active through the day, and hornbills or raptors occasionally circle overhead.",
+        "advice": "The best climbing window of the year. Start between 06:00 and 08:00 to avoid the mid-morning tour groups, and still carry around one litre of water.",
+        "risk": "Low",
+        "riskTone": "low"
+      },
+      {
+        "period": "Mar–May",
+        "season": "Hot season · Dry heat",
+        "weather": "Temperatures peak, commonly 33–36°C by day with April the hottest. Afternoon UV index often reaches 10–12, while rainfall stays relatively scarce.",
+        "water": "Surfaces dry out and the gate water points come under pressure; sea temperatures rise, making afternoon sea conditions more likely to deteriorate.",
+        "wildlife": "Macaques enter breeding and infant-rearing, with pronounced protective behaviour and more aggression around food; mosquitoes and insects increase.",
+        "advice": "Start around 06:00 and finish both the ascent and descent before 10:30. Carry 1.5–2 litres plus electrolytes, and avoid midday exposure.",
+        "risk": "High",
+        "riskTone": "high"
+      },
+      {
+        "period": "Jun–Aug",
+        "season": "Early monsoon · Southwest monsoon",
+        "weather": "The southwest monsoon brings frequent convective rain, usually short and intense in the afternoon. Rain days rise markedly and humidity stays above 80%.",
+        "water": "The staircase stays wet, and algae and silt on the stone sharply reduce grip; thunderstorms can create temporary runoff in the valleys.",
+        "wildlife": "Amphibians and reptiles become more active, frogs and insects appear in numbers after rain, and ferns and fungi flourish in the understorey.",
+        "advice": "Climb in the morning rain window and wear deep-tread shoes. Descend immediately at the first thunder and do not linger on the exposed summit.",
+        "risk": "Medium–high",
+        "riskTone": "high"
+      },
+      {
+        "period": "Sep–Oct",
+        "season": "Late monsoon · Rainfall peak",
+        "weather": "The wettest stretch of the year, with sustained rain and thunderstorms together and occasional tropical depression influence. Winds shift from southwest to northeast.",
+        "water": "Surface runoff is at its strongest and rock stays slippery for longer; nearshore water turns turbid and underwater visibility drops.",
+        "wildlife": "Insects and frogs peak for the year, snakes are occasionally recorded, and plants enter their fullest growing phase with the densest canopy.",
+        "advice": "Work to weather windows and never force a climb on a rain day. Follow official warnings and carry spare clothing and dry bags.",
+        "risk": "High",
+        "riskTone": "high"
+      }
+    ],
+    "sourceNote": "Basis: long-term climate normals from Thailand's official meteorological authority, public material from the national parks and wildlife conservation authority and the marine and coastal resources authority, cross-checked against historical daily weather records.",
+    "legend": [
+      {
+        "icon": "thermometer",
+        "title": "Weather indicators",
+        "text": "Built on long-term local climate normals, overlaid with monthly rain-day counts and the frequency of extreme heat."
+      },
+      {
+        "icon": "water",
+        "title": "Water & ground",
+        "text": "Assesses step wetness, runoff intensity and nearshore sea state for their effect on walking safety and the view."
+      },
+      {
+        "icon": "paw",
+        "title": "Wildlife",
+        "text": "Summarises macaque activity cycles and amphibian, reptile and bird phenology to support distance-keeping and a no-feeding rule."
+      }
+    ]
+  },
+  "plans": {
+    "eyebrow": "Choose by Need",
+    "title": "Visiting Plans Tailored to Different Travellers",
+    "subtitle": "Three targeted routes: families with children / photography and nature / low-mobility and accessibility. Pick by group make-up and preferred pace.",
+    "durationLabel": "Suggested duration",
+    "difficultyLabel": "Effort",
+    "routeLabel": "Route",
+    "highlightsLabel": "Highlights",
+    "cautionsLabel": "Cautions",
+    "items": [
+      {
+        "icon": "family",
+        "name": "Families with children",
+        "audience": "Households travelling with toddlers or school-age children, moving slowly with plenty of breaks.",
+        "duration": "About 2.5–3.5 hours",
+        "difficulty": "Moderate (viewpoint only, no summit)",
+        "route": "Temple gate → parking → restrooms → cave temple and main hall → viewpoint (no summit) → return the same way. If a child has energy left, one adult can continue to the top while the other waits at the viewpoint.",
+        "highlights": [
+          "The cave temple and main hall deliver the most reward for the least effort",
+          "The viewpoint looks out over Krabi town and the karst ranges",
+          "Macaques, butterflies and limestone vegetation along the way"
+        ],
+        "cautions": [
+          "Carrying a toddler the whole way to the summit is not advisable — the main steps are narrow and steep",
+          "Never feed or tease the macaques, and keep food and plastic bags out of sight",
+          "Schedule water and rest every 20–30 minutes",
+          "Avoid midday; aim for the early morning instead"
+        ]
+      },
+      {
+        "icon": "camera",
+        "name": "Photography & nature",
+        "audience": "Visitors whose main purpose is landscape, cultural and ecological photography.",
+        "duration": "About 4–5 hours",
+        "difficulty": "Demanding (full summit plus multi-angle waiting)",
+        "route": "Reach the gate before sunrise → low-angle shots of the temple buildings and morning chanting → ascend slowly for mist and golden light → multiple summit angles on the golden Buddha → descend shooting rock faces and vegetation detail.",
+        "highlights": [
+          "The golden chedi and layered cloud sea in front-lit morning light",
+          "Rock texture and clinging vegetation on the karst cliffs",
+          "Low cloud wrapping the mid-slope after rain"
+        ],
+        "cautions": [
+          "Summit space is limited — keep tripods clear of the walking line",
+          "Drone use must follow local regulations and temple rules; do not launch without permission",
+          "Ask before photographing monks or worshippers",
+          "Strong UV and wind-blown dust: protect lenses and sensors"
+        ]
+      },
+      {
+        "icon": "accessible",
+        "name": "Low mobility & accessible visits",
+        "audience": "Older visitors, people with knee problems, those recovering from surgery, or anyone needing more accessible circulation.",
+        "duration": "About 1.5–2.5 hours",
+        "difficulty": "Low (skips the main staircase)",
+        "route": "Parking → the comparatively level main courtyard → cave temple → rest area or viewpoint → return. The whole route avoids the 1,237-step main staircase.",
+        "highlights": [
+          "The main courtyard has a comparatively even surface for slow walking",
+          "The cave temple and main hall sit roughly on one level — no climbing",
+          "Sit and rest in the courtyard or viewpoint and listen to wind in the trees"
+        ],
+        "cautions": [
+          "Traditional paving restricts wheelchair use, so confirm conditions on the day",
+          "Surfaces are slippery in the monsoon — go with a companion",
+          "Hydrate and seek shade during hot hours",
+          "Stop climbing and seek help immediately if you feel chest tightness or dizziness"
+        ]
+      }
+    ]
+  },
+  "itinerary": {
+    "eyebrow": "Suggested Routing",
+    "title": "Recommended General Visiting Routes",
+    "subtitle": "A half-day essentials version and a full-day in-depth version — take whichever suits your energy and schedule. The one rule is to climb during the coolest hours of the day.",
+    "half": {
+      "icon": "sun",
+      "title": "Half-day route (essentials)",
+      "duration": "About 3–4 hours",
+      "note": "For visitors with limited time and moderate fitness. The point is to dodge crowds and heat, and to spend your energy on the climb itself.",
+      "steps": [
+        { "time": "06:00", "title": "Arrive at the gate", "text": "Come around sunrise when it is coolest, light is softest and parking is easiest. Use the restroom and check your water supply." },
+        { "time": "06:20", "title": "Tour the cave temple", "text": "Start with the lower cave temple and main hall, taking in the morning chanting and offering atmosphere. No climbing required here." },
+        { "time": "06:50", "title": "Begin the ascent", "text": "Start up the main staircase. The early section is gentler, the middle is steepest — use short steps and an even breathing rhythm, resting every 15–20 minutes." },
+        { "time": "07:40", "title": "Reach the summit", "text": "Spend around 30 minutes at the golden Buddha and viewpoint, looking over Krabi town, the mangroves and the distant karst ranges." },
+        { "time": "08:20", "title": "Descend", "text": "The descent loads your knees more, so step sideways, hold the rail and slow down further when the stone is wet." },
+        { "time": "09:00", "title": "Wrap up", "text": "Back at the gate, eat breakfast and replace water and electrolytes, closing out the half-day route." }
+      ]
+    },
+    "full": {
+      "icon": "compass",
+      "title": "Full-day route (in-depth)",
+      "duration": "About 6–8 hours",
+      "note": "Beyond the summit, this adds the temple fringes, nearby nature and a midday retreat from the heat — for visitors with time who want a complete understanding of the site.",
+      "steps": [
+        { "time": "06:00", "title": "Gate and morning offerings", "text": "Watch devotees make morning offerings and monks on alms round — the most direct window into the daily life of a southern Thai temple." },
+        { "time": "06:40", "title": "Detailed cave temple visit", "text": "Study the stalactites, the reclining Buddha and the displays about the tiger-paw-like rock marks, and note the natural patterning on the walls." },
+        { "time": "07:30", "title": "Ascend", "text": "Climb at the half-day pace, reserving the coolest hours for the most strenuous section." },
+        { "time": "08:30", "title": "Time on the summit", "text": "Allow 40–60 minutes to photograph, sit quietly, and observe macaque social behaviour and the stunted summit vegetation." },
+        { "time": "09:30", "title": "Descend and breakfast", "text": "After coming down, eat around the temple with a focus on electrolytes and carbohydrates." },
+        { "time": "10:30", "title": "Temple fringes and forest paths", "text": "Walk slowly along the forest paths, observing the vertical layering of limestone forest and the movement of butterflies and birds." },
+        { "time": "12:00", "title": "Midday shelter", "text": "Stay in the shade or return to town during peak heat — avoid prolonged exposure on the unshaded steps." },
+        { "time": "15:30", "title": "Return at dusk or explore onward", "text": "In the cool and monsoon seasons you can return uphill for sunset, or head to the nearby coast to link the water system and karst landforms into one continuous geographic story." }
+      ]
+    },
+    "tip": {
+      "title": "Pacing note",
+      "text": "Half day or full day, the principle is the same: climb during the coolest, best-lit hours. The staircase itself is not hard — climbing it under a 33°C sun is."
+    }
+  },
+  "responsible": {
+    "eyebrow": "Science & Responsibility",
+    "title": "Reading the Landscape, and Visiting Responsibly",
+    "subtitle": "Treat this hill as a textbook of geology and ecology — and visit without adding to its burden.",
+    "scienceTitle": "Natural and cultural background",
+    "science": [
+      {
+        "icon": "mountain",
+        "title": "How the karst formed",
+        "text": "The limestone massif the temple sits on formed in the ancient Tethys Sea around 250 million years ago. Coral and shell deposits built thick limestone beds, which plate uplift and long tropical rainfall dissolution then carved into the steep isolated peaks, caves and stalactites seen today. Tham is the Thai word for cave."
+      },
+      {
+        "icon": "leaf",
+        "title": "Vertical layering in limestone forest",
+        "text": "Tropical limestone forest has extremely thin, fast-draining soil, so plants evolved strategies such as rooting onto bare rock and storing water in their leaves. Ferns and climbers tolerant of shade occupy the base, drought-tolerant scrub the mid-slope, and stunted trees with epiphytes the summit — a clear vertical sequence."
+      },
+      {
+        "icon": "paw",
+        "title": "Living alongside macaques",
+        "text": "The long-tailed macaques near the gate are highly adapted to people, but feeding them changes their foraging behaviour and raises the risk of snatching and bites. Keep at least three metres away, avoid challenging eye contact, never carry exposed food, and do not let children approach alone."
+      },
+      {
+        "icon": "book",
+        "title": "The tiger-cave legend and how the temple grew",
+        "text": "The name comes from natural markings on the rock wall resembling a tiger's paw, which hunters and villagers took as evidence that tigers once lived here. In the late 20th century forest monks settled and built huts, gradually shaping today's site — a combination of cave, meditation forest and hilltop chedi."
+      },
+      {
+        "icon": "hands",
+        "title": "Temple etiquette in Theravada practice",
+        "text": "Remove shoes before entering halls and dress so shoulders and knees are covered; do not climb on or touch Buddha images. Avoid physical contact with monks — women especially — and offer items with the right hand. Keep quiet in meditation and chanting areas and silence your phone."
+      }
+    ],
+    "dutyTitle": "Visitor responsibility code",
+    "duties": [
+      {
+        "icon": "eye",
+        "title": "Look, don't touch",
+        "text": "Stalactites and stalagmites grow over tens of thousands of years, and oils and sweat from a single touch can end that growth. Do not touch, climb on or carve into them."
+      },
+      {
+        "icon": "leaf",
+        "title": "Carry your waste back down",
+        "text": "Bins in the temple and forest are limited, so bring a bag. Fruit peel and food scraps also alter wildlife diets, which makes them waste you need to carry out too."
+      },
+      {
+        "icon": "offering",
+        "title": "Offer rather than feed",
+        "text": "If you wish to show respect, use the incense, flowers or vegetarian offerings the temple provides, instead of feeding wildlife or releasing non-native species."
+      },
+      {
+        "icon": "restroom",
+        "title": "Conserve water and power",
+        "text": "Water and electricity are constrained in the hills. Shorten your water use, switch off what you are not using, and reduce single-use packaging."
+      },
+      {
+        "icon": "walk",
+        "title": "Respect closures and boundaries",
+        "text": "Do not enter monks' meditation forest, private areas or closed paths. When you see a no-entry sign, turn back — reconnaissance is not a reason to continue."
+      },
+      {
+        "icon": "camera",
+        "title": "Respect people and ceremonies",
+        "text": "Ask before photographing monks, worshippers or an ongoing ceremony. Do not use direct flash, and do not disturb ceremonies with a drone."
+      },
+      {
+        "icon": "warning",
+        "title": "Never trade safety for a photo",
+        "text": "Do not shoot from the edge of steep steps, beyond railings or on wet rock. No photograph is worth trading your safety for."
+      },
+      {
+        "icon": "check",
+        "title": "Report accurately",
+        "text": "If you find incorrect information, damaged facilities or environmental damage, tell us or report it directly to the temple and the relevant authorities."
+      }
+    ],
+    "pledgeTitle": "Where we stand",
+    "pledge": "This is a non-profit educational site. We do not sell tickets, do not book services on anyone's behalf, and take no commission from any business. All content is compiled from public sources and on-the-ground knowledge, with the aim of helping visitors understand this temple and its surrounding karst ecology safely, respectfully and meaningfully. If you spot a factual error, we welcome the correction.",
+    "emergencyTitle": "Emergency contacts",
+    "emergency": [
+      { "label": "Tourist Police", "value": "1155", "note": "English-language service for tourist disputes, lost property and assistance" },
+      { "label": "Medical emergency", "value": "1669", "note": "National medical emergency and ambulance line" },
+      { "label": "Police emergency", "value": "191", "note": "Nationwide emergency police number" },
+      { "label": "TAT tourist contact centre", "value": "1672", "note": "Multilingual tourism information and assistance hotline" }
     ]
   },
   "breadcrumb": {

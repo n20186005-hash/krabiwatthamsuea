@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Wat Tham Suea (Krabi) visitor guide">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9a441" />
+      <stop offset="1" stop-color="#a3620f" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#gold)" />
+  <g fill="#fffdf7">
+    <rect x="244" y="100" width="24" height="72" rx="12" />
+    <circle cx="256" cy="224" r="78" />
+    <rect x="170" y="292" width="172" height="34" rx="10" />
+    <rect x="146" y="322" width="220" height="34" rx="10" />
+    <rect x="122" y="352" width="268" height="38" rx="12" />
+  </g>
+</svg>

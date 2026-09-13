@@ -1,0 +1,138 @@
+---
+import { getI18n } from '../i18n/ui';
+import { icon } from '../lib/icons';
+
+const { messages } = getI18n(Astro.url);
+const s = messages.seasons;
+---
+
+<section class="section-padding" id="seasons" style="background:var(--surface)">
+  <div class="container">
+    <span class="eyebrow">{s.eyebrow}</span>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="seasons-table-wrap fade-up">
+      <table class="seasons-table">
+        <caption class="sr-only">{s.title}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{s.columns.period}</th>
+            <th scope="col">{s.columns.weather}</th>
+            <th scope="col">{s.columns.water}</th>
+            <th scope="col">{s.columns.wildlife}</th>
+            <th scope="col">{s.columns.advice}</th>
+            <th scope="col">{s.columns.risk}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {s.rows.map((r: any) => (
+            <tr>
+              <th scope="row">
+                <span class="st-period">{r.period}</span>
+                <span class="st-season">{r.season}</span>
+              </th>
+              <td data-label={s.columns.weather}>{r.weather}</td>
+              <td data-label={s.columns.water}>{r.water}</td>
+              <td data-label={s.columns.wildlife}>{r.wildlife}</td>
+              <td data-label={s.columns.advice}>{r.advice}</td>
+              <td data-label={s.columns.risk}>
+                <span class={`st-risk ${r.riskTone}`}>
+                  <span class="st-risk-ico" set:html={icon(r.riskTone === 'low' ? 'check' : r.riskTone === 'mid' ? 'info' : 'warning')} />
+                  {r.risk}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="seasons-source">{s.sourceNote}</p>
+
+    <div class="seasons-legend">
+      {s.legend.map((l: any) => (
+        <div class="sl-item">
+          <span class="sl-ico" set:html={icon(l.icon)} />
+          <div>
+            <strong>{l.title}</strong>
+            <p>{l.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+
+  .seasons-table-wrap { margin-top: 30px; overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); }
+  .seasons-table { width: 100%; border-collapse: collapse; min-width: 940px; }
+  .seasons-table thead th {
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--surface-2);
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .seasons-table tbody th, .seasons-table tbody td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .seasons-table tbody tr:last-child th, .seasons-table tbody tr:last-child td { border-bottom: 0; }
+  .seasons-table tbody tr:nth-child(even) { background: var(--surface-accent); }
+  .st-period { display: block; font-weight: 700; color: var(--heading); font-size: 0.98rem; white-space: nowrap; }
+  .st-season { display: block; font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+  .st-risk { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 0.84rem; padding: 5px 12px; border-radius: 999px; white-space: nowrap; }
+  .st-risk-ico { width: 14px; height: 14px; }
+  .st-risk-ico :global(svg) { width: 100%; height: 100%; }
+  .st-risk.low { background: var(--green-soft); color: var(--green); }
+  .st-risk.mid { background: var(--accent-soft); color: var(--accent-strong); }
+  .st-risk.high { background: #f7e3e3; color: #a13c3c; }
+
+  .seasons-source { margin: 18px 0 0; font-size: 0.84rem; color: var(--text-muted); max-width: 900px; }
+
+  .seasons-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 30px;
+  }
+  .sl-item { display: flex; gap: 12px; align-items: flex-start; background: var(--surface-accent); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+  .sl-ico { flex: none; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: var(--accent-soft); color: var(--accent-strong); }
+  .sl-ico :global(svg) { width: 19px; height: 19px; }
+  .sl-item strong { display: block; color: var(--heading); font-size: 0.98rem; }
+  .sl-item p { margin: 4px 0 0; color: var(--text-muted); font-size: 0.89rem; }
+
+  @media (max-width: 760px) {
+    .seasons-table { min-width: 0; }
+    .seasons-table thead { display: none; }
+    .seasons-table tbody tr { display: block; border-bottom: 1px solid var(--border); padding: 8px 0; }
+    .seasons-table tbody th, .seasons-table tbody td { display: block; border: 0; padding: 6px 16px; }
+    .seasons-table tbody td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+  }
+</style>

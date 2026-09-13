@@ -1,6 +1,12 @@
 ---
-import { getLangFromUrl, getI18n, languages, languagesList } from '../i18n/ui';
-import { siteConfig } from '../config';
+import {
+  getLangFromUrl,
+  getI18n,
+  languages,
+  languagesList,
+  stripLangSegments,
+  htmlLangAttr,
+} from '../i18n/ui';
 
 const lang = getLangFromUrl(Astro.url);
 const { messages } = getI18n(Astro.url);
@@ -10,25 +16,30 @@ const t = messages.common;
 const navLinks = [
   { href: `#overview`, label: nav.overview },
   { href: `#visit`, label: nav.visit },
+  { href: `#weather`, label: nav.weather },
   { href: `#transport`, label: nav.transport },
+  { href: `#facilities`, label: nav.facilities },
   { href: `#history`, label: nav.history },
   { href: `#gallery`, label: nav.gallery },
   { href: `#reviews`, label: nav.reviews },
   { href: `#faq`, label: nav.faq },
 ];
 
-const currentPath = Astro.url.pathname.replace(/\/$/, '');
+/* 语言切换时保留当前位置；stripLangSegments 会剥掉全部重复语言前缀，
+   保证在 /th/th 这类历史 URL 上点击切换也不会继续自我复制。 */
+const rest = stripLangSegments(Astro.url.pathname);
+const langHref = (l: string) => `/${l}/${rest ? rest + '/' : ''}`;
 ---
 
 <header class="site-header" id="siteHeader">
   <div class="container header-inner">
-    <a class="brand" href={`/${lang}`}>
+    <a class="brand" href={`/${lang}/`}>
       <span class="brand-mark">วัด</span>
       <span class="brand-text">{nav.siteName}</span>
     </a>
 
     <nav class="nav-desktop" aria-label="primary">
-      {navLinks.map((l) => <a href={`/${lang}${l.href}`}>{l.label}</a>)}
+      {navLinks.map((l) => <a href={`/${lang}/${l.href}`}>{l.label}</a>)}
     </nav>
 
     <div class="header-actions">
@@ -40,7 +51,9 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
       <div class="lang-switch" role="group" aria-label={t.changeLanguage}>
         {languagesList.map((l) => (
           <a
-            href={`/${l}${currentPath.replace(/^\/(zh|en|th)/, '')}`}
+            href={langHref(l)}
+            rel="alternate"
+            hreflang={htmlLangAttr(l)}
             class={`lang-opt${l === lang ? ' active' : ''}`}
           >{languages[l]}</a>
         ))}
@@ -53,7 +66,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
   </div>
 
   <nav class="nav-mobile" id="navMobile" aria-label="mobile">
-    {navLinks.map((l) => <a href={`/${lang}${l.href}`}>{l.label}</a>)}
+    {navLinks.map((l) => <a href={`/${lang}/${l.href}`}>{l.label}</a>)}
   </nav>
 </header>
 
@@ -84,14 +97,19 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
   }
   .brand-text { font-family: var(--font-display); font-size: 1.18rem; color: var(--heading); }
 
-  .nav-desktop { display: flex; gap: 22px; margin-left: auto; }
+  .nav-desktop { display: flex; gap: 20px; margin-left: auto; }
   .nav-desktop a {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     font-weight: 600;
     position: relative;
     padding: 4px 0;
+    white-space: nowrap;
     transition: color 0.2s ease;
+  }
+  @media (max-width: 1180px) {
+    .nav-desktop { gap: 12px; }
+    .nav-desktop a { font-size: 0.86rem; }
   }
   .nav-desktop a:hover { color: var(--heading); }
   .nav-desktop a::after {

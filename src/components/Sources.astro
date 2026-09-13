@@ -1,0 +1,121 @@
+---
+import { getI18n } from '../i18n/ui';
+import { attraction } from '../config';
+
+const { messages } = getI18n(Astro.url);
+const s = messages.sources;
+---
+
+<section class="section-padding" id="sources">
+  <div class="container">
+    <span class="eyebrow">{s.eyebrow}</span>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="sources-meta">
+      <div class="meta-item">
+        <span class="meta-k">{s.updatedLabel}</span>
+        <span class="meta-v">{s.updatedValue}</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-k">Rating / Reviews</span>
+        <span class="meta-v">{attraction.ratingValue} · {attraction.reviewCountDisplay}</span>
+      </div>
+    </div>
+
+    <p class="rating-note">
+      <a class="link-accent" href={attraction.mapsShareUrl} target="_blank" rel="noopener noreferrer">Google Maps</a>
+      <span> — {s.ratingNote}</span>
+    </p>
+
+    <ul class="sources-list">
+      {s.items.map((it: any) => (
+        <li class="source-card">
+          <a href={it.url} target="_blank" rel="noopener noreferrer">{it.name}</a>
+          <p>{it.desc}</p>
+        </li>
+      ))}
+    </ul>
+
+    <div class="credit-notice">
+      <h3>{s.imageNoticeTitle}</h3>
+      <p>{s.imageNotice}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sources-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .meta-k {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+  .meta-v { font-weight: 700; color: var(--heading); }
+
+  .rating-note {
+    margin: 18px 0 0;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    max-width: 780px;
+  }
+
+  .sources-list {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .source-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .source-card a {
+    font-weight: 700;
+    color: var(--heading);
+    text-decoration: none;
+  }
+  .source-card a:hover { color: var(--accent-strong); text-decoration: underline; }
+  .source-card p { margin: 6px 0 0; color: var(--text-muted); font-size: 0.9rem; }
+
+  .credit-notice {
+    margin-top: 30px;
+    background: var(--surface-accent);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+  }
+  .credit-notice h3 {
+    margin: 0 0 6px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+  }
+  .credit-notice p { margin: 0; color: var(--text-muted); font-size: 0.94rem; }
+</style>

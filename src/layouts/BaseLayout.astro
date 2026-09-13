@@ -2,8 +2,8 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { getLangFromUrl, buildAlternates, htmlLangAttr, getI18n } from '../i18n/ui';
-import { ogLocale, siteConfig } from '../config';
+import { getLangFromUrl, buildAlternates, htmlLangAttr, getI18n, languagesList } from '../i18n/ui';
+import { ogLocale, siteConfig, attraction } from '../config';
 
 interface Props {
   title: string;
@@ -17,38 +17,61 @@ const htmlLang = htmlLangAttr(lang);
 const alts = buildAlternates(path);
 const canonical = alts[lang] ?? alts.zh;
 const { messages } = getI18n(Astro.url);
-const attractionName = messages.header?.siteName ?? messages.meta.title;
 
+const heroImage = `${siteConfig.baseUrl}${attraction.heroImage}`;
+const schemaImages = attraction.galleryImages.map((p) => `${siteConfig.baseUrl}${p}`);
+const imageAlt = `${attraction.fullName} — ${attraction.city}, ${attraction.country}`;
+
+const altOgLocales = languagesList.filter((l) => l !== lang).map((l) => ogLocale[l]).filter(Boolean);
+
+/* 1. 结构化数据：TouristAttraction（实体锚点 @id + image） */
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TouristAttraction',
-  name: attractionName,
+  '@id': `${siteConfig.baseUrl}/#attraction`,
+  name: attraction.fullName,
+  alternateName: Array.from(
+    new Set([
+      attraction.fullNameThai,
+      attraction.shortName,
+      `${attraction.city} ${attraction.fullName}`,
+      'Tiger Cave Temple Krabi',
+    ])
+  ),
   description: messages.meta.description,
+  /* 甲米与北碧府各有一座同名「虎穴寺」，且后者知名度极高。
+     不显式消歧时，知识图谱容易把本页并入错误实体，地理相关性评分随之下降。 */
+  disambiguatingDescription:
+    'The forest temple in Krabi, Thailand (not the similarly named temple in Kanchanaburi), known for its 1,237-step staircase to a golden Buddha.',
   url: canonical,
-  image: `${siteConfig.baseUrl}/gallery/wat-tham-suea-13.jpg`,
+  image: schemaImages,
+  primaryImageOfPage: { '@type': 'ImageObject', url: heroImage, caption: imageAlt },
+  isAccessibleForFree: true,
+  publicAccess: true,
+  touristType: ['Culture', 'Adventure', 'Pilgrimage'],
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '35 Krabi Noi, Mueang Krabi District',
-    addressLocality: 'Krabi',
-    addressRegion: 'Krabi Province',
-    postalCode: '81000',
-    addressCountry: 'TH',
+    streetAddress: attraction.streetAddress,
+    addressLocality: attraction.city,
+    addressRegion: attraction.stateProvince,
+    postalCode: attraction.postalCode,
+    addressCountry: attraction.countryCode,
   },
-  telephone: '+66887926519',
+  telephone: attraction.telephone,
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 8.0833,
-    longitude: 98.9167,
+    latitude: attraction.latitude,
+    longitude: attraction.longitude,
   },
+  hasMap: attraction.mapsShareUrl,
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      opens: '06:00',
-      closes: '18:00',
+      opens: attraction.openingHours.opens,
+      closes: attraction.openingHours.closes,
     },
   ],
-  isAccessibleForFree: true,
   offers: [
     {
       '@type': 'Offer',
@@ -60,10 +83,35 @@ const jsonLd = {
   ],
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: '4.6',
-    reviewCount: '13763',
+    ratingValue: attraction.ratingValue,
+    reviewCount: attraction.reviewCount,
+    bestRating: '5',
+    worstRating: '1',
   },
-  sameAs: ['https://maps.app.goo.gl/N62pZYGC8GDkVU1v8'],
+  sameAs: [attraction.mapsShareUrl, attraction.govtTourismUrl, attraction.wikipediaUrl],
+};
+
+/* 4. FAQ 结构化数据：抢占 Featured Snippet / AI 概览卡片 */
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${siteConfig.baseUrl}/#faq`,
+  mainEntity: (messages.faq?.items ?? []).map((item: { q: string; a: string }) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+/* WebSite：帮助知识图谱把域名与实体关联 */
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteConfig.baseUrl}/#website`,
+  url: siteConfig.baseUrl,
+  name: `${attraction.fullName} (${attraction.city})`,
+  inLanguage: languagesList.map((l) => htmlLangAttr(l)),
+  about: { '@id': `${siteConfig.baseUrl}/#attraction` },
 };
 
 const breadcrumbLd = (() => {
@@ -72,9 +120,9 @@ const breadcrumbLd = (() => {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: bc.home, item: `${siteConfig.baseUrl}/${lang}` },
-      { '@type': 'ListItem', position: 2, name: bc.region, item: `${siteConfig.baseUrl}/${lang}#overview` },
-      { '@type': 'ListItem', position: 3, name: bc.city, item: `${siteConfig.baseUrl}/${lang}#transport` },
+      { '@type': 'ListItem', position: 1, name: bc.home, item: `${siteConfig.baseUrl}/${lang}/` },
+      { '@type': 'ListItem', position: 2, name: bc.region, item: `${siteConfig.baseUrl}/${lang}/#overview` },
+      { '@type': 'ListItem', position: 3, name: bc.city, item: `${siteConfig.baseUrl}/${lang}/#transport` },
       { '@type': 'ListItem', position: 4, name: bc.current, item: canonical },
     ],
   };
@@ -88,27 +136,47 @@ const breadcrumbLd = (() => {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#b07a18" />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="zh" href={alts.zh} />
-    <link rel="alternate" hreflang="en" href={alts.en} />
-    <link rel="alternate" hreflang="th" href={alts.th} />
+    {/* hreflang 取值必须与 sitemap.xml 完全一致，否则 Google 会判定两组声明冲突 */}
+    <link rel="alternate" hreflang={htmlLangAttr('zh')} href={alts.zh} />
+    <link rel="alternate" hreflang={htmlLangAttr('en')} href={alts.en} />
+    <link rel="alternate" hreflang={htmlLangAttr('th')} href={alts.th} />
     <link rel="alternate" hreflang="x-default" href={alts.xDefault} />
 
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content={attraction.fullName} />
+    <meta name="application-name" content={attraction.fullName} />
+
+    <!-- Open Graph / 社交标签 -->
+    <meta property="og:site_name" content={`${attraction.fullName} (${attraction.city})`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocale[lang] ?? lang} />
-    <meta property="og:image" content={`${siteConfig.baseUrl}/gallery/wat-tham-suea-13.jpg`} />
+    {altOgLocales.map((loc) => <meta property="og:locale:alternate" content={loc} />)}
+    <meta property="og:image" content={heroImage} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content={`${siteConfig.baseUrl}/gallery/wat-tham-suea-13.jpg`} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={heroImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)}></script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(faqLd)}></script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteLd)}></script>
     <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbLd)}></script>
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) — GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -152,6 +220,12 @@ const breadcrumbLd = (() => {
           observer.observe(el);
         });
       });
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () {});
+        });
+      }
     </script>
   </body>
 </html>

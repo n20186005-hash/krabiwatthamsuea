@@ -1,0 +1,1 @@
+This folder contains the built output assets for the worker "krabiwatthamsuea" generated at 2026-09-13T18:04:00.972Z.

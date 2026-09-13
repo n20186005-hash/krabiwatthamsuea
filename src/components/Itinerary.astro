@@ -1,0 +1,116 @@
+---
+import { getI18n } from '../i18n/ui';
+import { icon } from '../lib/icons';
+
+const { messages } = getI18n(Astro.url);
+const it = messages.itinerary;
+
+const routes = [it.half, it.full];
+---
+
+<section class="section-padding" id="itinerary" style="background:var(--surface)">
+  <div class="container">
+    <span class="eyebrow">{it.eyebrow}</span>
+    <h2 class="section-title">{it.title}</h2>
+    <p class="section-lead">{it.subtitle}</p>
+
+    <div class="itin-grid">
+      {routes.map((r: any) => (
+        <article class="itin-col card fade-up">
+          <header class="itin-head">
+            <span class="itin-ico" set:html={icon(r.icon)} />
+            <div>
+              <h3>{r.title}</h3>
+              <span class="itin-dur">{r.duration}</span>
+            </div>
+          </header>
+          <p class="itin-note">{r.note}</p>
+
+          <ol class="itin-steps">
+            {r.steps.map((s: any) => (
+              <li>
+                <span class="itin-time">{s.time}</span>
+                <div class="itin-body">
+                  <strong>{s.title}</strong>
+                  <p>{s.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </div>
+
+    <div class="itin-tip">
+      <span class="itin-tip-ico" set:html={icon('compass')} />
+      <div>
+        <strong>{it.tip.title}</strong>
+        <p>{it.tip.text}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .itin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 20px; margin-top: 30px; }
+  .itin-col { padding: 24px; }
+  .itin-head { display: flex; align-items: center; gap: 12px; }
+  .itin-ico { width: 46px; height: 46px; flex: none; display: grid; place-items: center; border-radius: 13px; background: var(--accent-soft); color: var(--accent-strong); }
+  .itin-ico :global(svg) { width: 24px; height: 24px; }
+  .itin-head h3 { margin: 0; font-size: 1.14rem; }
+  .itin-dur { font-size: 0.84rem; color: var(--text-muted); font-weight: 600; }
+  .itin-note { margin: 14px 0 0; color: var(--text-muted); font-size: 0.92rem; }
+
+  .itin-steps { list-style: none; margin: 20px 0 0; padding: 0; position: relative; }
+  .itin-steps li { position: relative; display: grid; grid-template-columns: 64px 1fr; gap: 14px; padding-bottom: 20px; }
+  .itin-steps li::before {
+    content: '';
+    position: absolute;
+    left: 71px; top: 26px; bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .itin-steps li:last-child { padding-bottom: 0; }
+  .itin-steps li:last-child::before { display: none; }
+  .itin-time {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.86rem;
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 3px 0;
+    text-align: center;
+    height: fit-content;
+  }
+  .itin-body { position: relative; padding-left: 16px; }
+  .itin-body::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .itin-body strong { display: block; color: var(--heading); font-size: 0.98rem; }
+  .itin-body p { margin: 3px 0 0; color: var(--text-muted); font-size: 0.9rem; }
+
+  .itin-tip {
+    display: flex; gap: 14px; align-items: flex-start;
+    margin-top: 26px;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    background: var(--surface-accent);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+  }
+  .itin-tip-ico { flex: none; width: 26px; height: 26px; color: var(--accent-strong); margin-top: 2px; }
+  .itin-tip-ico :global(svg) { width: 100%; height: 100%; }
+  .itin-tip strong { display: block; color: var(--heading); }
+  .itin-tip p { margin: 4px 0 0; color: var(--text-muted); font-size: 0.93rem; }
+
+  @media (max-width: 520px) {
+    .itin-steps li { grid-template-columns: 56px 1fr; gap: 10px; }
+    .itin-steps li::before { left: 63px; }
+  }
+</style>

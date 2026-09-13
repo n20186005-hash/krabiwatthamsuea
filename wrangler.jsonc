@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "krabiwatthamsuea",
+  "main": "./dist/_worker.js/index.js",
+  "compatibility_date": "2025-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  /**
+   * 静态资源优先策略：
+   * 图片、CSS、JS 命中 assets 时由 CDN 直接返回，不消耗 Worker 调用；
+   * 只有 /、/th/、/en/、/zh/ 这些没有对应静态文件的页面路径才会进入 Worker，
+   * 由 SSR 渲染实时天气，并由 middleware 完成 301 规范化。
+   * 因此不需要 run_worker_first。
+   */
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "none"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}
