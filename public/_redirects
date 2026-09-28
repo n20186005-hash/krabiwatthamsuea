@@ -1,11 +1,10 @@
-# 兜底重定向规则（Cloudflare Pages 语法；Workers 上由 src/middleware.ts 处理）
-# 规范形态：https://krabiwatthamsuea.com/<lang>/
-# 目标语言与 <link rel="alternate" hreflang="x-default"> 保持一致
+# 根路径进入英文首页（与 x-default / hreflang 指向一致）
+/ /en/ 301
 
-/        /en/    301
-/th      /th/    301
-/en      /en/    301
-/zh      /zh/    301
-/th/th   /th/    301
-/zh/zh   /zh/    301
-/en/en   /en/    301
+# 语言页补尾斜杠，避免 /en 与 /en/ 被当作两个页面
+/en /en/ 301
+/th /th/ 301
+/zh /zh/ 301
+
+# www → 裸域（http→https 由 Cloudflare Pages 默认强制）
+https://www.krabiwatthamsuea.com/* https://krabiwatthamsuea.com/:splat 301

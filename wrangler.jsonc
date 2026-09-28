@@ -1,27 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "krabiwatthamsuea",
-  "main": "./dist/_worker.js/index.js",
-  "compatibility_date": "2025-09-01",
-  "compatibility_flags": ["nodejs_compat"],
-
-  /**
-   * 静态资源优先策略：
-   * 图片、CSS、JS 命中 assets 时由 CDN 直接返回，不消耗 Worker 调用；
-   * 只有 /、/th/、/en/、/zh/ 这些没有对应静态文件的页面路径才会进入 Worker，
-   * 由 SSR 渲染实时天气，并由 middleware 完成 301 规范化。
-   *
-   * 注意：不能使用 not_found_handling: none。
-   * 在 output: 'hybrid' 模式下，[lang]/index.astro 是 prerender = false 的 SSR 路由，
-   * dist/ 中不会生成对应的 /en/index.html 等静态文件；
-   * 如果强制 none，Cloudflare 会在静态查找失败后直接返回 404，
-   * 请求根本不会进入 Worker，导致所有语言页全部 404。
-   * 去掉该字段后，Assets 命中失败会自动回退给 Worker 处理，正是这里需要的行为。
-   */
-  "assets": {
-    "directory": "./dist/client",
-    "binding": "ASSETS"
-  },
+  "pages_build_output_dir": "./dist",
 
   "observability": {
     "enabled": true

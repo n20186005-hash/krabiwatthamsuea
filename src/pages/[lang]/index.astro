@@ -1,11 +1,10 @@
 ---
 import { languagesList, getI18n } from '../../i18n/ui';
 
-/* 该页在 Workers 上按请求渲染：
-   1. 天气为实时数据，不能固化进静态产物；
-   2. canonical / hreflang / 301 规范化需要经过服务端。
-   其余静态资源（图片、CSS、JS）继续由 CDN 直接命中，不经过 Worker。 */
-export const prerender = false;
+/* 静态预渲染：枚举全部语言，构建期生成 /en/、/th/、/zh/ 三个静态页。
+   天气在构建期抓取一次快照并固化进 HTML（Open-Meteo 在构建环境可访问）。 */
+export const getStaticPaths = () =>
+  (languagesList as readonly string[]).map((lang) => ({ params: { lang } }));
 
 const langParam = Astro.params.lang ?? '';
 if (!(languagesList as readonly string[]).includes(langParam)) {
@@ -40,12 +39,6 @@ import Responsible from '../../components/Responsible.astro';
 import Sources from '../../components/Sources.astro';
 
 const { messages } = getI18n(Astro.url);
-
-/* 边缘缓存 10 分钟，并在过期后继续用旧内容兜底，避免爬虫抓取时等待上游 */
-Astro.response.headers.set(
-  'Cache-Control',
-  'public, max-age=0, s-maxage=600, stale-while-revalidate=1800'
-);
 ---
 
 <BaseLayout title={messages.meta.title} description={messages.meta.description}>
