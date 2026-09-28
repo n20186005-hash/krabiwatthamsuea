@@ -12,8 +12,13 @@ export default defineConfig({
      统一后 /en 会被 301 到 /en/，避免同一页面两个 URL 分摊权重。 */
   trailingSlash: 'always',
 
-  /* 默认全部预渲染为静态资源；只有需要实时天气与 URL 规范化的路由按需在 Workers 上渲染 */
-  output: 'static',
+  /* 混合输出模式：默认预渲染为静态资源；
+     只有 [lang]/index.astro 等显式标记 prerender = false 的路由
+     才在 Workers 上按需渲染（实时天气 + URL 规范化需要 SSR）。
+     之前使用 output: 'static' 时 prerender = false 完全失效，
+     导致 dist/ 中不会生成 /en/、/th/、/zh/ 这些路径，配合
+     wrangler 的 not_found_handling: none 直接返回 404。 */
+  output: 'hybrid',
   adapter: cloudflare({
     platformProxy: { enabled: true },
   }),
