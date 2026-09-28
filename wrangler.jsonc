@@ -19,7 +19,7 @@
    * 去掉该字段后，Assets 命中失败会自动回退给 Worker 处理，正是这里需要的行为。
    */
   "assets": {
-    "directory": "./dist",
+    "directory": "./dist/client",
     "binding": "ASSETS"
   },
 
