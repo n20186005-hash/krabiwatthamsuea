@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "甲米虎穴寺（Wat Tham Suea）登山攻略：台阶、开放时间与交通",
-    "description": "泰国甲米虎穴寺（Wat Tham Suea）一站式攻略：1,237 级台阶登顶金色大佛、老虎足迹传说、开放时间、门票、交通与游客评价，附 Google 地图位置。"
+    "title": "甲米虎穴寺 Wat Tham Suea｜登山台阶、开放时间与交通攻略",
+    "description": "泰国甲米虎穴寺旅游攻略，了解山顶金佛、登山阶梯、开放时间、交通路线、参观注意事项及最佳游览时段，附 Google 地图定位。"
   },
   "header": {
     "siteName": "虎穴寺 Wat Tham Suea",
@@ -23,10 +23,10 @@
   "hero": {
     "thai": "วัดถ้ำเสือ",
     "title": "Wat Tham Suea 虎穴寺（甲米 Krabi）",
-    "subtitle": "甲米城北的森林寺院，1,237 级台阶通往山顶金色大佛与俯瞰安达曼海的开阔观景台。",
+    "subtitle": "甲米城北的森林寺院，1,237–1,260 级台阶（不同来源计数不同）通往山顶金色大佛与俯瞰安达曼海的开阔观景台。",
     "rating": "4.6",
-    "reviewCount": "17,751",
-    "ratingSource": "评分与评价数据来源：Google Maps（截至 2026 年 9 月）",
+    "reviewCount": "14,009",
+    "ratingSource": "评分与评价数据来源：Google Maps（截至 2026 年 10 月）",
     "type": "佛教寺庙",
     "tags": ["佛教寺庙", "登山观景", "静修禅意"],
     "facts": {
@@ -54,7 +54,7 @@
       "region": "所在地区",
       "regionValue": "泰国 · 甲米府",
       "rating": "综合评分",
-      "ratingValue": "4.6（17,751 条）",
+      "ratingValue": "4.6（14,009 条）",
       "hours": "开放时间",
       "hoursValue": "每日 06:00–18:00"
     },
@@ -215,7 +215,7 @@
       {
         "no": "1",
         "title": "森林道场的起源（1975 年）",
-        "content": "1975 年，泰国南部著名的禅修僧侣 Jumnean Seelasettho（信众尊称隆波·Khruba Chaiwong）来到甲米镇北这片石灰岩丘陵的天然洞穴中结庐静修。他所秉持的「森林派」（Forest Tradition）强调简朴、禅定与回归自然，逐渐吸引各地信众追随，昔日荒僻的岩洞遂发展为今日的森林道场。"
+        "content": "1975 年，泰国南部著名的禅修僧侣詹年·西拉萨特法师（Luang Pho Jamnian Silasettho，หลวงพ่อจำเนียร ศิลาเสถโร）来到甲米镇以北这片石灰岩丘陵中的天然洞穴静修。他所秉持的「森林派」强调简朴、禅定与回归自然，逐渐吸引各地信众追随，昔日偏僻的岩洞遂发展为今日的森林道场。据泰国媒体报道，詹年法师于 2026 年 8 月 18 日在马来西亚圆寂，享年 90 岁。"
       },
       {
         "no": "2",
@@ -394,12 +394,12 @@
     "title": "资料来源与信息更新",
     "subtitle": "本页所有景点信息均力求可核查。评分、评价数与营业信息以 Google 地图营业档案为准，地理与文化背景则参考泰国官方旅游机构与公开资料，以提升内容的可信度与专业性。",
     "updatedLabel": "信息更新时间",
-    "updatedValue": "2026 年 9 月",
-    "ratingNote": "评分 4.6 分、17,751 条评价来自 Google 地图用户评价；数据随时间变动，请以 Google 地图页面显示为准。",
+    "updatedValue": "2026 年 10 月",
+    "ratingNote": "评分 4.6 分、14,009 条评价来自 Google 地图用户评价；数据随时间变动，请以 Google 地图页面显示为准。",
     "imageNoticeTitle": "图片版权声明",
     "imageNotice": "本网站所展示的所有图片产权及版权均归原摄影者所有。",
     "items": [
-      { "name": "Google 地图营业档案（评分与评价来源）", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8", "desc": "评分 4.6 / 17,751 条评价的直接来源" },
+      { "name": "Google 地图营业档案（评分与评价来源）", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8", "desc": "评分 4.6 / 14,009 条评价的直接来源" },
       { "name": "泰国国家旅游局（TAT）", "url": "https://www.tourismthailand.org", "desc": "泰国官方旅游机构" },
       { "name": "泰国国家旅游局 · 甲米目的地", "url": "https://www.tourismthailand.org/destinations/krabi", "desc": "甲米府官方旅游资讯" },
       { "name": "甲米府官方门户网站", "url": "http://www.krabi.go.th/", "desc": "地方政府公开信息" },
@@ -411,8 +411,8 @@
     ]
   },
   "weather": {
-    "eyebrow": "实时气象",
-    "title": "实时天气与 7 日预报",
+    "eyebrow": "天气",
+    "title": "天气预报与 7 日预报",
     "subtitle": "登顶前先看天气。1,237 级主台阶全程露天，体感温度、降雨概率与紫外线强度会直接决定这趟登山是否舒适。下面把数据直接翻译成「该穿什么、怎么安排、带什么」。",
     "feelsLike": "体感",
     "humidity": "相对湿度",

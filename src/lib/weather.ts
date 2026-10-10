@@ -79,6 +79,8 @@ export interface WeatherBundle {
   hourly: HourlyWeather[];
   daily: DailyWeather[];
   timezone: string;
+  /** Open-Meteo utc_offset_seconds for the requested timezone (Asia/Bangkok = 25200). */
+  utcOffsetSeconds: number;
   fetchedAt: string;
 }
 
@@ -364,6 +366,10 @@ function normalizeWeather(raw: any): WeatherBundle {
     hourly,
     daily,
     timezone: String(raw?.timezone ?? 'Asia/Bangkok'),
+    /* 关键：Open-Meteo 在指定 timezone 后返回的是该时区的"墙钟时间"（无时区后缀）。
+       utc_offset_seconds 让前端用正确的偏移来解析，避免构建机时区不同导致 sunrise/sunset
+       被错误平移（例如本应 06:12 显示成 13:12）。 */
+    utcOffsetSeconds: num(raw?.utc_offset_seconds, 25200),
     fetchedAt: new Date().toISOString(),
   };
 }

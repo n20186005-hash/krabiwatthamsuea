@@ -1,0 +1,59 @@
+---
+import { getI18n } from '../i18n/ui';
+import { topics, topicSlugs, topicUi } from '../i18n/topics';
+
+const { lang } = getI18n(Astro.url);
+const ui = topicUi[lang] ?? topicUi.en;
+const list = topicSlugs
+  .map((slug) => topics[lang]?.[slug])
+  .filter((t): t is NonNullable<typeof t> => Boolean(t));
+---
+
+<section class="topic-links">
+  <div class="container">
+    <span class="eyebrow">{ui.exploreEyebrow}</span>
+    <h2 class="tl-title">{ui.exploreTitle}</h2>
+    <div class="tl-grid">
+      {list.map((t) => (
+        <a class="tl-card" href={`/${lang}/${t.slug}/`}>
+          <span class="tl-card-label">{t.cardLabel}</span>
+          <span class="tl-card-desc">{t.cardDesc}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .topic-links {
+    padding: clamp(2.5rem, 6vw, 4rem) 0;
+    background: color-mix(in srgb, var(--accent) 6%, var(--bg));
+  }
+  .tl-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    color: var(--heading);
+    margin: 0.4rem 0 1.5rem;
+  }
+  .tl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.9rem;
+  }
+  .tl-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    height: 100%;
+    padding: 1.2rem 1.3rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .tl-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .tl-card-label { font-family: var(--font-display); font-weight: 700; color: var(--heading); font-size: 1.1rem; }
+  .tl-card-desc { color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+</style>

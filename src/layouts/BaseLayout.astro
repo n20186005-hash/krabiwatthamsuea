@@ -9,9 +9,13 @@ interface Props {
   title: string;
   description: string;
   path?: string;
+  /** 专题页可传入自己的 FAQ，覆盖首页默认 FAQ（用于 FAQPage 结构化数据） */
+  faqItems?: { q: string; a: string }[];
+  /** 面包屑末项名称（专题页填专题标题，否则用通用「当前页」标签） */
+  breadcrumbTail?: { name: string; id?: string };
 }
 
-const { title, description, path = '' } = Astro.props;
+const { title, description, path = '', faqItems, breadcrumbTail } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const htmlLang = htmlLangAttr(lang);
 const alts = buildAlternates(path);
@@ -42,7 +46,7 @@ const jsonLd = {
   /* 甲米与北碧府各有一座同名「虎穴寺」，且后者知名度极高。
      不显式消歧时，知识图谱容易把本页并入错误实体，地理相关性评分随之下降。 */
   disambiguatingDescription:
-    'The forest temple in Krabi, Thailand (not the similarly named temple in Kanchanaburi), known for its 1,237-step staircase to a golden Buddha.',
+    'The forest temple in Krabi, Thailand (not the similarly named temple in Kanchanaburi), known for its 1,237–1,260-step staircase (counts vary by source) to a golden Buddha.',
   url: canonical,
   image: schemaImages,
   primaryImageOfPage: { '@type': 'ImageObject', url: heroImage, caption: imageAlt },
@@ -96,7 +100,7 @@ const faqLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   '@id': `${siteConfig.baseUrl}/#faq`,
-  mainEntity: (messages.faq?.items ?? []).map((item: { q: string; a: string }) => ({
+  mainEntity: (faqItems ?? messages.faq?.items ?? []).map((item: { q: string; a: string }) => ({
     '@type': 'Question',
     name: item.q,
     acceptedAnswer: { '@type': 'Answer', text: item.a },
@@ -123,7 +127,7 @@ const breadcrumbLd = (() => {
       { '@type': 'ListItem', position: 1, name: bc.home, item: `${siteConfig.baseUrl}/${lang}/` },
       { '@type': 'ListItem', position: 2, name: bc.region, item: `${siteConfig.baseUrl}/${lang}/#overview` },
       { '@type': 'ListItem', position: 3, name: bc.city, item: `${siteConfig.baseUrl}/${lang}/#transport` },
-      { '@type': 'ListItem', position: 4, name: bc.current, item: canonical },
+      { '@type': 'ListItem', position: 4, name: breadcrumbTail?.name ?? bc.current, item: canonical },
     ],
   };
 })();

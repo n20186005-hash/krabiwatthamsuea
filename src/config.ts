@@ -82,10 +82,10 @@ export const attraction = {
     longitude: 98.822,
   } as { name: string; latitude: number; longitude: number } | null,
 
-  /** 评分与评价数：与 Google 地图营业档案同步，页面须标注来源 */
+  /** 评分与评价数：与 Google 地图营业档案同步（甲米虎穴寺，非北碧府同名寺），页面须标注来源 */
   ratingValue: '4.6',
-  reviewCount: '17751',
-  reviewCountDisplay: '17,751',
+  reviewCount: '14009',
+  reviewCountDisplay: '14,009',
 
   openingHours: { opens: '06:00', closes: '18:00' },
 

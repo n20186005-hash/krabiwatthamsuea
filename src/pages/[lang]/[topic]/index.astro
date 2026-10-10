@@ -1,0 +1,32 @@
+---
+import { languagesList } from '../../../i18n/ui';
+import { topics, topicSlugs } from '../../../i18n/topics';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import TopicView from '../../../components/TopicView.astro';
+
+export const getStaticPaths = () =>
+  (languagesList as readonly string[]).flatMap((lang) =>
+    topicSlugs.map((slug) => ({ params: { lang, topic: slug } }))
+  );
+
+const lang = Astro.params.lang ?? '';
+const slug = Astro.params.topic ?? '';
+const topic = topics[lang]?.[slug];
+
+if (!topic) {
+  return new Response('Not Found', {
+    status: 404,
+    headers: { 'content-type': 'text/plain; charset=utf-8', 'x-robots-tag': 'noindex' },
+  });
+}
+---
+
+<BaseLayout
+  title={topic.title}
+  description={topic.description}
+  path={slug}
+  faqItems={topic.faq}
+  breadcrumbTail={{ name: topic.h1 }}
+>
+  <TopicView topic={topic} lang={lang} />
+</BaseLayout>

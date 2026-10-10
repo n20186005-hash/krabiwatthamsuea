@@ -1,0 +1,226 @@
+---
+import type { TopicContent } from '../i18n/topics';
+import { topicUi } from '../i18n/topics';
+import { attraction } from '../config';
+
+interface Props {
+  topic: TopicContent;
+  lang: string;
+}
+
+const { topic, lang } = Astro.props;
+const ui = topicUi[lang] ?? topicUi.en;
+const homePath = `/${lang}/`;
+---
+
+<section class="topic-hero">
+  <div class="container">
+    <a class="back" href={homePath}>&larr; {ui.backToGuide}</a>
+    <span class="eyebrow">{topic.eyebrow}</span>
+    <h1 class="topic-h1">{topic.h1}</h1>
+    <p class="section-lead">{topic.intro}</p>
+    <div class="hero-meta">
+      <a class="rating-chip" href={attraction.mapsShareUrl} target="_blank" rel="noopener">
+        <span class="star" aria-hidden="true">&#9733;</span>
+        <span>{attraction.ratingValue} &middot; {attraction.reviewCountDisplay}</span>
+        <span class="src">Google Maps</span>
+      </a>
+      <span class="verified">{ui.updatedLabel} {topic.updated}</span>
+    </div>
+  </div>
+</section>
+
+{topic.quickFacts && (
+  <div class="container">
+    <div class="quick-facts" role="list">
+      {topic.quickFacts.map((f) => (
+        <div class="quick-fact" role="listitem">
+          <span class="qf-label">{f.label}</span>
+          <span class="qf-value">{f.value}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+<article class="topic-body container">
+  {topic.sections.map((s) => (
+    <section class="topic-section" id={s.id}>
+      <h2>{s.heading}</h2>
+      <p>{s.body}</p>
+    </section>
+  ))}
+</article>
+
+<section class="topic-faq">
+  <div class="container">
+    <h2 class="faq-title">{ui.faqTitle}</h2>
+    <div class="faq-list">
+      {topic.faq.map((f) => (
+        <details class="faq-item">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="topic-related">
+  <div class="container">
+    <h2 class="related-title">{ui.relatedGuides}</h2>
+    <ul class="related-grid">
+      {topic.related.map((r) => (
+        <li>
+          <a class="related-card" href={`/${lang}/${r.slug}/`}>
+            <span class="rc-label">{r.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="home-link"><a href={homePath}>{ui.backToGuide}</a></p>
+  </div>
+</section>
+
+<style>
+  .topic-hero {
+    padding: clamp(2.5rem, 6vw, 4.5rem) 0 1.5rem;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+  .back:hover { color: var(--accent); }
+  .topic-h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+    margin: 0.5rem 0 1rem;
+    color: var(--heading);
+  }
+  .section-lead {
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    max-width: 70ch;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 1.25rem;
+  }
+  .rating-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .rating-chip .star { color: #f5a623; }
+  .rating-chip .src { color: var(--text-muted); font-weight: 500; font-size: 0.85rem; }
+  .rating-chip:hover { border-color: var(--accent); }
+  .verified {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .quick-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin: 1.5rem auto;
+  }
+  .quick-fact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 1.1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .qf-label { font-size: 0.8rem; color: var(--text-muted); }
+  .qf-value { font-family: var(--font-display); font-weight: 700; color: var(--heading); font-size: 1.05rem; }
+
+  .topic-body { padding: 1.5rem 0; }
+  .topic-section { margin: 0 0 2rem; scroll-margin-top: 90px; }
+  .topic-section h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    color: var(--heading);
+    margin: 0 0 0.6rem;
+  }
+  .topic-section p { color: var(--text); line-height: 1.7; max-width: 75ch; }
+
+  .topic-faq { padding: 1.5rem 0 2.5rem; }
+  .faq-title, .related-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    color: var(--heading);
+    margin: 0 0 1.25rem;
+  }
+  .faq-list { display: flex; flex-direction: column; gap: 0.6rem; max-width: 75ch; }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0 1.1rem;
+  }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--heading);
+    padding: 0.9rem 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+  .faq-item[open] summary::after { content: '\2212'; }
+  .faq-item p { color: var(--text); line-height: 1.7; padding: 0 0 0.9rem; margin: 0; }
+
+  .topic-related { padding: 1.5rem 0 3rem; background: color-mix(in srgb, var(--accent) 6%, var(--bg)); }
+  .related-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+  .related-card {
+    display: block;
+    height: 100%;
+    padding: 1.1rem 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--heading);
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .home-link { font-size: 0.95rem; }
+  .home-link a { color: var(--accent); text-decoration: none; }
+</style>

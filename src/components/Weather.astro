@@ -15,8 +15,25 @@ const [data, marine] = await Promise.all([getWeather(), getMarine()]);
 const locale = lang === 'zh' ? 'zh-CN' : lang === 'th' ? 'th-TH' : 'en-GB';
 const TZ = 'Asia/Bangkok';
 
+/* Open-Meteo 在指定 timezone 后返回的是该时区的"墙钟时间"（无时区后缀）。
+   必须按正确偏移来解析，否则会被构建机的本地时区误平移
+   （例如本应 06:12 的日出被错误地显示成 13:12，日落变成次日 01:17）。 */
+function offString(sec: number): string {
+  const sign = sec >= 0 ? '+' : '-';
+  const a = Math.abs(sec);
+  const hh = String(Math.floor(a / 3600)).padStart(2, '0');
+  const mm = String(Math.floor((a % 3600) / 60)).padStart(2, '0');
+  return `${sign}${hh}:${mm}`;
+}
+const OFF = data ? offString(data.utcOffsetSeconds) : '+07:00';
+function parseZoned(iso: string): number {
+  if (!iso) return NaN;
+  if (/[zZ]$/.test(iso) || /[+\-]\d{2}:?\d{2}$/.test(iso)) return Date.parse(iso);
+  return Date.parse(`${iso}${OFF}`);
+}
+
 function fmtTime(iso: string): string {
-  const t = Date.parse(iso);
+  const t = parseZoned(iso);
   if (!Number.isFinite(t)) return '--:--';
   try {
     return new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: TZ }).format(t);
@@ -25,7 +42,7 @@ function fmtTime(iso: string): string {
   }
 }
 function fmtHour(iso: string): string {
-  const t = Date.parse(iso);
+  const t = parseZoned(iso);
   if (!Number.isFinite(t)) return '';
   try {
     return new Intl.DateTimeFormat(locale, { hour: 'numeric', hour12: false, timeZone: TZ }).format(t);
@@ -35,7 +52,7 @@ function fmtHour(iso: string): string {
 }
 function fmtDay(iso: string, index: number): string {
   if (index === 0) return w.today;
-  const t = Date.parse(`${iso}T12:00:00+07:00`);
+  const t = parseZoned(`${iso}T12:00:00${OFF}`);
   if (!Number.isFinite(t)) return iso;
   try {
     return new Intl.DateTimeFormat(locale, { weekday: 'short', timeZone: TZ }).format(t);
@@ -44,7 +61,7 @@ function fmtDay(iso: string, index: number): string {
   }
 }
 function fmtDate(iso: string): string {
-  const t = Date.parse(`${iso}T12:00:00+07:00`);
+  const t = parseZoned(`${iso}T12:00:00${OFF}`);
   if (!Number.isFinite(t)) return iso;
   try {
     return new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', timeZone: TZ }).format(t);
@@ -53,7 +70,7 @@ function fmtDate(iso: string): string {
   }
 }
 function fmtStamp(iso: string): string {
-  const t = Date.parse(iso);
+  const t = parseZoned(iso);
   if (!Number.isFinite(t)) return '--';
   try {
     return new Intl.DateTimeFormat(locale, {

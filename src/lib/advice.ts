@@ -78,8 +78,20 @@ function fill(template: string, vars: Record<string, string>): string {
   return template.replace(/\{(\w+)\}/g, (_, key: string) => vars[key] ?? '');
 }
 
-function hourLabel(iso: string, locale: string): string {
-  const t = Date.parse(iso);
+function offString(sec: number): string {
+  const sign = sec >= 0 ? '+' : '-';
+  const a = Math.abs(sec);
+  const hh = String(Math.floor(a / 3600)).padStart(2, '0');
+  const mm = String(Math.floor((a % 3600) / 60)).padStart(2, '0');
+  return `${sign}${hh}:${mm}`;
+}
+
+function hourLabel(iso: string, locale: string, off = '+07:00'): string {
+  let s = iso;
+  /* Open-Meteo 返回的墙钟时间没有时区后缀，需要按正确偏移来解析，
+     否则会被运行环境的本地时区误平移（例如把 06:00 显示成 13:00）。 */
+  if (!/[zZ]$/.test(s) && !/[+\-]\d{2}:?\d{2}$/.test(s)) s = `${s}${off}`;
+  const t = Date.parse(s);
   if (!Number.isFinite(t)) return '--:--';
   try {
     return new Intl.DateTimeFormat(locale, {
@@ -96,6 +108,7 @@ function hourLabel(iso: string, locale: string): string {
 /** 在接下来 12 小时里找一段"雨最少、也不太热"的连续 3 小时 */
 function findWindow(data: WeatherBundle, locale: string): BestWindow | null {
   const hours = data.hourly;
+  const OFF = offString(data.utcOffsetSeconds);
   for (let i = 0; i + 2 < hours.length && i <= 9; i++) {
     const block = hours.slice(i, i + 3);
     const okTemp = Math.max(...block.map((h) => h.apparentTemperature)) <= 34;
@@ -103,9 +116,11 @@ function findWindow(data: WeatherBundle, locale: string): BestWindow | null {
     const okSky = !block.some((h) => isStormySky(h.weatherCode));
     const okSee = Math.min(...block.map((h) => h.visibility)) >= 3;
     if (okTemp && okRain && okSky && okSee) {
+      const startIso = `${block[0].time}${OFF}`;
+      const endIso = new Date(Date.parse(startIso) + 3600 * 1000).toISOString();
       return {
-        start: hourLabel(block[0].time, locale),
-        end: hourLabel(new Date(Date.parse(block[2].time) + 3600 * 1000).toISOString(), locale),
+        start: hourLabel(startIso, locale, OFF),
+        end: hourLabel(endIso, locale, OFF),
       };
     }
   }
@@ -116,6 +131,7 @@ export function buildAdvice(input: AdviceInput): AdviceResult {
   const { data, marine, w, locale } = input;
   const envs = new Set<string>(input.environments as readonly string[]);
   const { current, daily } = data;
+  const OFF = offString(data.utcOffsetSeconds);
   const today = daily[0];
   const soon = outlook(data.hourly, 6);
 
@@ -272,8 +288,8 @@ export function buildAdvice(input: AdviceInput): AdviceResult {
         tone: 'info',
         icon: 'tide',
         text: fill(S.coastTide, {
-          high: hourLabel(high.time, locale),
-          low: low ? hourLabel(low.time, locale) : '—',
+          high: hourLabel(high.time, locale, OFF),
+          low: low ? hourLabel(low.time, locale, OFF) : '—',
         }),
       });
     }

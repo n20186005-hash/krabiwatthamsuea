@@ -21,10 +21,10 @@
   "hero": {
     "thai": "วัดถ้ำเสือ",
     "title": "Wat Tham Suea (Krabi) · Tiger Cave Temple",
-    "subtitle": "A forest temple north of Krabi town where 1,237 steps lead to a golden Buddha and an open viewpoint over the Andaman Sea.",
+    "subtitle": "A forest temple north of Krabi town where 1,237–1,260 steps (counts vary by source) lead to a golden Buddha and an open viewpoint over the Andaman Sea.",
     "rating": "4.6",
-    "reviewCount": "17,751",
-    "ratingSource": "Ratings and review count sourced from Google Maps (as of September 2026)",
+    "reviewCount": "14,009",
+    "ratingSource": "Ratings and review count sourced from Google Maps (as of October 2026)",
     "type": "Buddhist Temple",
     "tags": ["Buddhist Temple", "Hike & Viewpoint", "Meditation Retreat"],
     "facts": {
@@ -52,7 +52,7 @@
       "region": "Region",
       "regionValue": "Krabi, Thailand",
       "rating": "Rating",
-      "ratingValue": "4.6 (17,751)",
+      "ratingValue": "4.6 (14,009)",
       "hours": "Opening Hours",
       "hoursValue": "Daily 06:00–18:00"
     },
@@ -213,7 +213,7 @@
       {
         "no": "1",
         "title": "Birth of a Forest Monastery (1975)",
-        "content": "In 1975, the renowned southern-Thai meditation monk Jumnean Seelasettho (revered as Luang Pho Khruba Chaiwong) settled in a natural cave amid the limestone hills north of Krabi Town. Following the Thai Forest Tradition of simplicity, meditation and living close to nature, he gradually drew devotees from far and wide, and the once-remote grotto grew into the forest monastery seen today."
+        "content": "In 1975, the renowned southern-Thai meditation monk Luang Pho Jamnian Silasettho (หลวงพ่อจำเนียร ศิลาเสถโร) settled in a natural cave amid the limestone hills north of Krabi Town. Following the Thai Forest Tradition of simplicity, meditation and living close to nature, he gradually drew devotees from far and wide, and the once-remote grotto grew into the forest monastery seen today. Luang Pho Jamnian passed away in Malaysia on 18 August 2026 at the age of 90, according to Thai media reports."
       },
       {
         "no": "2",
@@ -396,12 +396,12 @@
     "title": "Sources & Information Freshness",
     "subtitle": "Every fact on this page is meant to be verifiable. Ratings, review counts and opening details follow the Google Maps business profile, while geographic and cultural context is cross-referenced with official Thai tourism bodies and public records to strengthen E-E-A-T.",
     "updatedLabel": "Information updated",
-    "updatedValue": "September 2026",
-    "ratingNote": "The 4.6 rating and 17,751 reviews come from Google Maps user reviews; figures change over time, so always check the live Google Maps page.",
+    "updatedValue": "October 2026",
+    "ratingNote": "The 4.6 rating and 14,009 reviews come from Google Maps user reviews; figures change over time, so always check the live Google Maps page.",
     "imageNoticeTitle": "Image copyright notice",
     "imageNotice": "The ownership and copyright of all images displayed on this website belong to their original photographers.",
     "items": [
-      { "name": "Google Maps business profile (rating & reviews)", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8", "desc": "Direct source of the 4.6 rating and 17,751 reviews" },
+      { "name": "Google Maps business profile (rating & reviews)", "url": "https://maps.app.goo.gl/N62pZYGC8GDkVU1v8", "desc": "Direct source of the 4.6 rating and 14,009 reviews" },
       { "name": "Tourism Authority of Thailand (TAT)", "url": "https://www.tourismthailand.org", "desc": "Official national tourism body" },
       { "name": "TAT — Krabi destination", "url": "https://www.tourismthailand.org/destinations/krabi", "desc": "Official Krabi tourism information" },
       { "name": "Krabi Provincial Office", "url": "http://www.krabi.go.th/", "desc": "Local government public records" },
@@ -412,8 +412,8 @@
     ]
   },
   "weather": {
-    "eyebrow": "Live Conditions",
-    "title": "Live Weather and 7-Day Forecast",
+    "eyebrow": "Weather",
+    "title": "Weather Forecast & 7-Day Outlook",
     "subtitle": "Check the sky before you climb. The 1,237-step staircase is fully exposed, so felt temperature, rain probability and UV intensity decide how comfortable the ascent will be. Below we translate the numbers into what to wear, how to plan and what to pack.",
     "feelsLike": "Feels like",
     "humidity": "Humidity",
@@ -544,7 +544,7 @@
         "x": "Temperatures are low — dress for the cold, especially on the windy summit."
       }
     },
-    "unavailableTitle": "Live weather is temporarily unavailable",
+    "unavailableTitle": "Weather is temporarily unavailable",
     "unavailable": "Live data could not be retrieved right now, which is usually a brief network or data-service interruption. Please refresh the page shortly. In the meantime you can still plan by season using the table below.",
     "unavailableLink": "View the seasonal strategy table",
     "sourceNote": "Numerical forecasts describe regional averages; localised showers and thunderstorms in hill terrain develop quickly, so it is worth checking again before you leave.",
