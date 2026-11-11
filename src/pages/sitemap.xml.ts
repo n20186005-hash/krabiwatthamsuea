@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { languagesList, buildAlternates, htmlLangAttr } from '../i18n/ui';
 import { topicSlugs } from '../i18n/topics';
+import { extendedGuides } from '../i18n/extended-guides';
 
 /* 预渲染为静态文件，由 CDN 直接返回，不占用 Worker 调用 */
 export const prerender = true;
@@ -54,7 +55,15 @@ export const GET: APIRoute = () => {
     })
     .join('\n');
 
-  const urlEntries = [homeEntries, topicEntries].filter(Boolean).join('\n');
+  const englishGuideEntries = Object.keys(extendedGuides).map((slug) => [
+    '  <url>',
+    `    <loc>${buildAlternates(slug).en}</loc>`,
+    `    <lastmod>${lastmod}</lastmod>`,
+    '    <changefreq>monthly</changefreq>',
+    '    <priority>0.7</priority>',
+    '  </url>',
+  ].join('\n')).join('\n');
+  const urlEntries = [homeEntries, topicEntries, englishGuideEntries].filter(Boolean).join('\n');
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

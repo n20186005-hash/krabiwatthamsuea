@@ -1,12 +1,14 @@
 ---
 import { getI18n } from '../i18n/ui';
 import { topics, topicSlugs, topicUi } from '../i18n/topics';
+import { extendedGuides } from '../i18n/extended-guides';
 
 const { lang } = getI18n(Astro.url);
 const ui = topicUi[lang] ?? topicUi.en;
 const list = topicSlugs
   .map((slug) => topics[lang]?.[slug])
   .filter((t): t is NonNullable<typeof t> => Boolean(t));
+if (lang === 'en') list.push(...Object.values(extendedGuides));
 ---
 
 <section class="topic-links">

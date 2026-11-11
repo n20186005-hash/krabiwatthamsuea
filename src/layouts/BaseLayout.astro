@@ -13,9 +13,10 @@ interface Props {
   faqItems?: { q: string; a: string }[];
   /** 面包屑末项名称（专题页填专题标题，否则用通用「当前页」标签） */
   breadcrumbTail?: { name: string; id?: string };
+  singleLanguage?: boolean;
 }
 
-const { title, description, path = '', faqItems, breadcrumbTail } = Astro.props;
+const { title, description, path = '', faqItems, breadcrumbTail, singleLanguage = false } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const htmlLang = htmlLangAttr(lang);
 const alts = buildAlternates(path);
@@ -144,9 +145,9 @@ const breadcrumbLd = (() => {
     <meta name="theme-color" content="#b07a18" />
     <link rel="canonical" href={canonical} />
     {/* hreflang 取值必须与 sitemap.xml 完全一致，否则 Google 会判定两组声明冲突 */}
-    <link rel="alternate" hreflang={htmlLangAttr('zh')} href={alts.zh} />
+    {!singleLanguage && <link rel="alternate" hreflang={htmlLangAttr('zh')} href={alts.zh} />}
     <link rel="alternate" hreflang={htmlLangAttr('en')} href={alts.en} />
-    <link rel="alternate" hreflang={htmlLangAttr('th')} href={alts.th} />
+    {!singleLanguage && <link rel="alternate" hreflang={htmlLangAttr('th')} href={alts.th} />}
     <link rel="alternate" hreflang="x-default" href={alts.xDefault} />
 
     <!-- PWA -->

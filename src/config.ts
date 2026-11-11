@@ -1,6 +1,4 @@
-const domain = typeof process !== 'undefined' && process.env.CURRENT_SITE_DOMAIN 
-  ? process.env.CURRENT_SITE_DOMAIN 
-  : (import.meta.env && import.meta.env.CURRENT_SITE_DOMAIN) || 'krabiwatthamsuea.com';
+const domain = import.meta.env.CURRENT_SITE_DOMAIN || 'krabiwatthamsuea.com';
 
 export const siteConfig = {
   name: 'Wat Tham Suea',
