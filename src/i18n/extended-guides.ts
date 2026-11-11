@@ -163,7 +163,77 @@ const guides: Guide[] = [
   ],'What is the most important preparation?','Confirm the correct Krabi location, daylight, water and a return plan.'],
 ];
 
+const primaryMap = 'https://maps.app.goo.gl/hf7r4tLxYcYivFsd6';
+const places: Record<string, { name: string; query: string; note: string }> = {
+  'from-ao-nang': { name: 'Ao Nang, Krabi', query: 'Ao Nang Beach Krabi Thailand', note: 'Starting area for a road transfer; the destination is Wat Tham Suea in Krabi.' },
+  'from-krabi-airport': { name: 'Krabi International Airport', query: 'Krabi International Airport Thailand', note: 'Airport endpoint; allow a separate road trip to the temple.' },
+  'from-railay': { name: 'Railay Beach', query: 'Railay Beach Krabi Thailand', note: 'Boat-connected starting point; continue by road after reaching the mainland.' },
+  'krabi-town-nearby': { name: 'Krabi Town Riverside', query: 'Krabi Town Riverfront Thailand', note: 'Suggested follow-on area after visiting the temple.' },
+  'one-day-krabi-itinerary': { name: 'Krabi Town Riverside', query: 'Krabi Town Riverfront Thailand', note: 'Afternoon stop after the morning temple visit.' },
+  'emerald-pool-combination': { name: 'Emerald Pool (Sa Morakot)', query: 'Sa Morakot Emerald Pool Khlong Thom Krabi Thailand', note: 'A separate attraction in Khlong Thom; check current access and travel time.' },
+  'hot-springs-combination': { name: 'Klong Thom Hot Springs', query: 'Klong Thom Hot Springs Krabi Thailand', note: 'A separate inland bathing attraction; confirm local rules and opening conditions.' },
+  'krabi-rainy-day-alternative': { name: 'Krabi Town', query: 'Krabi Town Thailand', note: 'Alternative town destination when the summit staircase is unsafe.' },
+};
+
+const photoGroups: Record<string, number[]> = {
+  summit: [13, 15, 22],
+  climb: [3, 16, 17],
+  shrine: [7, 19, 28],
+  architecture: [9, 10, 21],
+  forest: [4, 6, 20],
+  road: [14, 19, 25],
+};
+const themeFor = (slug: string) =>
+  /summit|sunrise|sunset|photography/.test(slug) ? 'summit' :
+  /rainy|hot-season|monkeys|children|older|solo|what-to-wear|mistakes/.test(slug) ? 'climb' :
+  /history|buddhist|cave/.test(slug) ? 'shrine' :
+  /from-|parking|taxi|itinerary|combination|krabi-town/.test(slug) ? 'road' : 'architecture';
+
+const imageAlt: Record<number, string> = {
+  3: 'Visitors on the steep Tiger Cave Temple stairway', 4: 'View through trees over Krabi lowlands',
+  6: 'Limestone forest slopes around Wat Tham Suea', 7: 'Buddhist figures inside the Tiger Cave shrine',
+  9: 'Temple structure and upper stairs', 10: 'Ornate Thai temple roof detail',
+  13: 'Golden Buddha on the Tiger Cave Temple summit platform',
+  14: 'Ground-level shrine at Wat Tham Suea', 15: 'Summit Buddha and Krabi valley panorama',
+  16: 'Steep stairway through the forest', 17: 'Temple stairway winding through limestone forest',
+  19: 'Courtyard shrine within Wat Tham Suea', 20: 'Summit terrace and landscape',
+  21: 'Decorative Buddhist shrine and chedi', 22: 'Elevated view of the golden Buddha and forest',
+  25: 'Aerial landscape around Wat Tham Suea', 28: 'Cave worship space at Wat Tham Suea',
+};
+
+// Route and observation notes are deliberately specific to each search intent.
+const fieldNotes: Record<string, [string, string, string]> = {
+  'summit-viewpoint': ['Walk from the lower monastery to the marked staircase, pause at the landings, then enter the summit terrace without obstructing the Buddha shrine. Descend the same way.', 'For the clearest sense of scale, frame the golden Buddha against the Krabi plain. A second viewpoint looks across forest-covered karst ridges.', 'Allow two to three hours; cloud and rain can hide the panorama even after a successful climb.'],
+  'sunrise-visit': ['Confirm temple access first, then arrive early enough to begin the stairs in safe light. Wait at the base if visibility is poor; do not assume a pre-dawn gate opening.', 'Look for the changing color on the limestone ridges rather than depending on one exact sunrise angle.', 'Carry a headlamp for emergencies, but do not treat it as permission to use closed or unsafe stairs.'],
+  'sunset-visit': ['Start with the summit only if there is enough time for the entire return. Set a firm turnaround alarm before beginning the ascent.', 'Late light can silhouette the Buddha and mountains; use the terrace edges only where public access is permitted.', 'The descent is steep. Turn back if clouds, fatigue or the time of day remove your safety margin.'],
+  'rainy-season': ['Inspect the lower steps and weather before committing. If slick, spend the visit at the cave shrine and courtyard instead.', 'Wet foliage and temple roof details can be photographed from covered ground-level spaces.', 'Thunderstorms and heavy rain are reasons to postpone the climb, not a challenge to push through.'],
+  'hot-season': ['Climb before the hottest part of the day. Stop at shaded landings, sip water regularly and return if anyone feels unwell.', 'Morning side-light often reveals more texture in the limestone; midday light is harsher on exposed platforms.', 'There is no requirement to reach the top. Heat exhaustion can develop before visitors recognize it.'],
+  'what-to-wear': ['Start at the monastery dressed respectfully, secure your shoes for the climb, and carry a wrap if your hiking outfit leaves knees or shoulders exposed.', 'Photograph architectural details from public walking areas without stepping onto raised religious platforms.', 'Footwear can become slippery when wet; avoid loosely fitting sandals on the summit stairs.'],
+  'monkeys-safety': ['Zip snacks into your bag before reaching the grounds; walk past monkeys calmly and keep a wide berth on narrow steps.', 'Use a longer lens for animal photos. Never move closer to obtain a portrait or set food out to attract an animal.', 'A bite or scratch warrants immediate wound washing and prompt professional medical advice.'],
+  'families-with-children': ['Explore the ground-level shrines together, assess the weather and agree on a turnaround point before trying the stairway.', 'Let children photograph statues, forest textures and temple roofs from permitted locations rather than chasing monkeys.', 'The summit is optional; plan a relaxed meal or rest after the visit and keep children close near handrails.'],
+  'older-visitors': ['Ask about the nearest drop-off, then inspect the temple base before deciding whether any stairs are appropriate.', 'Courtyard shrines and rooflines offer good photographic subjects without a long steep climb.', 'A companion, slower schedule and clear turnaround plan are more useful than an ambitious summit target.'],
+  'solo-travel': ['Save an offline map, agree on a return pickup and share your plan before leaving the hotel.', 'Keep both hands free on stairs; stop on a landing before retrieving a phone or camera.', 'Use daylight and avoid isolating yourself on closed trails or in out-of-the-way monastery areas.'],
+  'photography-spots': ['Photograph the decorative halls at the base, staircase textures along the ascent and the summit panorama in that order.', 'Three complementary frames are the temple roof, a forest stairway scene and the golden Buddha against the valley.', 'Do not photograph private rituals without permission; drones require separate legal and site checks.'],
+  'half-day-itinerary': ['Arrive from Krabi Town in the morning; explore the cave and main courtyard, climb only if suitable, then descend for a late breakfast or lunch.', 'Combine a courtyard temple detail with a summit panorama for a visual story of the visit.', 'Allow the climb to determine your schedule, not a rigid reservation immediately afterward.'],
+  'one-day-krabi-itinerary': ['Morning at Wat Tham Suea; midday meal and rest in Krabi Town; late afternoon stroll near the riverfront.', 'Capture temple architecture in the morning and riverside urban scenery later; these are separate stops.', 'Use current map directions between stops and confirm any market opening days locally.'],
+  'from-ao-nang': ['Leave Ao Nang early by booked driver or ride service, visit the temple, and arrange the return before the climb.', 'The viewpoint photographs belong to the temple; do not mistake Ao Nang beach imagery for a photo of the shrine.', 'Budget road-transfer time both ways and a longer visit if the summit is included.'],
+  'from-krabi-airport': ['Store luggage securely first, confirm the driver and time buffer, then explore the temple only if flight timing allows.', 'Photograph temple courtyards during a short stop; summit images require a substantial additional time commitment.', 'Never plan an airport transfer around an optimistic minimum stair-climb time.'],
+  'from-railay': ['Take a boat from Railay to a road-accessible pier, continue by road to the temple, and reverse the journey.', 'The temple panorama is inland; Railay’s beach and cliffs are a distinct photographic location.', 'Check boat conditions and return options before booking a climb-heavy excursion.'],
+  'parking-and-driving': ['Navigate to Wat Tham Suea in Krabi, park where directed and enter the monastery on foot before the staircase.', 'From the lower grounds, temple roofs and the hill provide useful establishing photographs.', 'Do not leave valuables visible in a parked vehicle; rest before a long drive after climbing.'],
+  'taxi-grab-transport': ['Confirm pickup point, total fare, waiting allowance and return arrangement before setting out.', 'Spend the waiting period on site, photographing the lower temple if the climb is not suitable.', 'Ride availability can differ between the outbound and return legs; keep an alternative contact.'],
+  'temple-history': ['Begin at the cave setting and move through the worship spaces before studying how the staircase connects the monastery to its summit shrine.', 'Notice the relationship between cave rock, ritual figures and the open-air golden Buddha.', 'Distinguish local naming traditions from evidence about the temple’s exact founding chronology.'],
+  'buddhist-etiquette': ['Observe prayer areas quietly, remove shoes at indicated thresholds and stand aside during offerings or chanting.', 'Look for carved roof details and shrine arrangements without staging intrusive portraits of worshippers.', 'Monastic schedules override tourist photography plans; ask permission when in doubt.'],
+  'cave-and-ground-temples': ['Start with the cave worship area, then move to the courtyard and adjoining shrines wherever access signs allow.', 'Cave figures and ornate roof details provide strong images without the summit staircase.', 'Cave floors may be damp and thresholds uneven; a gentle itinerary still requires attention underfoot.'],
+  'krabi-town-nearby': ['Finish the temple in the morning, return to town for lunch, then walk along the public riverside promenade.', 'Treat riverside boats and urban views as Krabi Town images, not part of Wat Tham Suea.', 'Market schedules and riverside conditions change; leave the afternoon flexible.'],
+  'emerald-pool-combination': ['Climb at the temple early, travel separately toward Khlong Thom, and take the signed forest route to Emerald Pool if open.', 'Temple Buddha imagery and Emerald Pool’s green water belong to different destinations; the gallery here depicts the temple stop.', 'The two-site day involves substantial walking and driving. Confirm wildlife-sanctuary opening and entry arrangements.'],
+  'hot-springs-combination': ['Visit the temple first in cooler hours, then drive to the Khlong Thom hot-spring area for a separate stop.', 'The images here document Wat Tham Suea; photograph the springs only after reaching the designated bathing site.', 'Bring changes of clothing and verify bathing access, water conditions and current entry rules.'],
+  'krabi-rainy-day-alternative': ['Observe conditions at the temple base; if the stairs are slick, visit accessible covered shrines before returning to town.', 'Rain-sheltered architecture and close-up details can still provide meaningful images.', 'A clear weather window on another day is preferable to attempting the summit in thunderstorms.'],
+  'common-mistakes': ['Check the map pin for Krabi, dress for a monastery, carry water and schedule return transport before departure.', 'Identify photos of the Krabi summit and cave; similarly named temples elsewhere can confuse online galleries.', 'Do not rely on a short estimated climb time, fixed transport price or guaranteed sunset access.'],
+};
+
 export const extendedGuides: Record<string, TopicContent> = Object.fromEntries(guides.map(([slug, name, focus, blocks, question, answer]) => {
+  const destination = places[slug];
+  const theme = themeFor(slug);
   const related = ['tiger-cave-temple-steps', 'opening-hours-entrance-fee', 'how-to-get-there', 'best-time-to-visit']
     .map((s) => ({ slug: s, label: ({ 'tiger-cave-temple-steps': 'Summit steps', 'opening-hours-entrance-fee': 'Hours and entrance', 'how-to-get-there': 'Getting there', 'best-time-to-visit': 'When to visit' } as Record<string, string>)[s] }));
   return [slug, {
@@ -172,7 +242,28 @@ export const extendedGuides: Record<string, TopicContent> = Object.fromEntries(g
     eyebrow: 'Krabi visitor planning', h1: name,
     intro: `${focus}. This guide concerns Wat Tham Suea in Krabi, Thailand, not the similarly named temple in Kanchanaburi. Conditions, site instructions and transport options can change, so check locally before setting out.`,
     updated: 'November 2026', cardLabel: name, cardDesc: focus,
-    sections: blocks.map(([heading, body], i) => ({ id: `section-${i+1}`, heading, body })),
+    destination: destination ? {
+      name: destination.name,
+      mapUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(destination.query)}`,
+      note: destination.note,
+    } : { name: 'Wat Tham Suea (Tiger Cave Temple), Krabi', mapUrl: primaryMap, note: 'The original temple location in Krabi, not the similarly named temple in Kanchanaburi.' },
+    images: photoGroups[theme].map((n) => ({
+      src: `/gallery/wat-tham-suea-${n}.jpg`,
+      alt: imageAlt[n],
+      caption: `${imageAlt[n]} — Wat Tham Suea, Krabi`,
+    })),
+    quickFacts: [
+      { label: 'Main site', value: 'Wat Tham Suea, Krabi' },
+      { label: 'Visit type', value: /from-|combination|itinerary|krabi-town/.test(slug) ? 'Multi-stop route' : 'Temple visitor guide' },
+      { label: 'Terrain', value: /cave|history|buddhist/.test(slug) ? 'Temple grounds and caves' : 'Steep stairs or road transfers' },
+      { label: 'Navigation', value: destination?.name ?? 'Tiger Cave Temple, Krabi' },
+    ],
+    sections: [
+      ...blocks.map(([heading, body], i) => ({ id: `section-${i+1}`, heading, body })),
+      { id: 'walking-route', heading: 'Suggested walking route & order of stops', body: fieldNotes[slug][0] },
+      { id: 'what-to-observe', heading: 'Architecture, landscape & photography viewpoints', body: fieldNotes[slug][1] },
+      { id: 'visitor-checklist', heading: 'Before you go: practical checklist', body: fieldNotes[slug][2] },
+    ],
     faq: [{q: question, a: answer}, {q: 'Where is the correct Wat Tham Suea?', a: 'This guide is for Tiger Cave Temple in Krabi. Use the destination-specific Google Maps link on this page to avoid confusing it with Wat Tham Suea in Kanchanaburi.'}], related,
   } satisfies TopicContent];
 }));

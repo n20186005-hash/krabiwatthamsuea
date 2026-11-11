@@ -1,11 +1,15 @@
 ---
 import { getI18n } from '../i18n/ui';
+import { extendedGuides } from '../i18n/extended-guides';
 
 const { messages } = getI18n(Astro.url);
 const n = messages.nearby;
 
 /* 周边语义集群：把周边地标写入实体语义网络 */
 const clusterText = n.cluster ?? '';
+const { lang } = getI18n(Astro.url);
+const tripSlugs = ['krabi-town-nearby', 'emerald-pool-combination', 'hot-springs-combination', 'one-day-krabi-itinerary', 'from-ao-nang', 'from-railay'];
+const trips = tripSlugs.map((slug) => extendedGuides[slug]).filter(Boolean);
 ---
 
 <section class="section-padding" id="nearby" style="background:var(--surface-accent)">
@@ -26,10 +30,32 @@ const clusterText = n.cluster ?? '';
         </div>
       ))}
     </div>
+    {lang === 'en' && (
+      <div class="nearby-guides">
+        <h3>Explore nearby routes & day trips</h3>
+        <p>Continue from the temple to Krabi Town, or plan a separate inland journey to the Emerald Pool and hot springs. Each guide explains route order, timings and the relevant map destination.</p>
+        <div class="nearby-guide-grid">
+          {trips.map((trip) => (
+            <a href={`/en/${trip.slug}/`} class="nearby-guide-link">
+              <strong>{trip.cardLabel}</strong><span>{trip.cardDesc}</span><span class="guide-arrow">Read route guide →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
   </div>
 </section>
 
 <style>
+  .nearby-guides { margin-top: 2.5rem; }
+  .nearby-guides h3 { font-family: var(--font-display); font-size: 1.45rem; color: var(--heading); }
+  .nearby-guides > p { max-width: 74ch; line-height: 1.7; color: var(--text-muted); }
+  .nearby-guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); gap: 1rem; margin-top: 1.15rem; }
+  .nearby-guide-link { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: 1rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .nearby-guide-link:hover { border-color: var(--accent); }
+  .nearby-guide-link strong { color: var(--heading); }
+  .nearby-guide-link span { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+  .nearby-guide-link .guide-arrow { color: var(--accent-strong); font-weight: 700; margin-top: auto; }
   .nearby-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin-top: 30px; }
   .cluster-note {
     margin: 0 0 12px;

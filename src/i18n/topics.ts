@@ -35,6 +35,8 @@ export interface TopicContent {
   cardLabel: string;
   cardDesc: string;
   quickFacts?: { label: string; value: string }[];
+  images?: { src: string; alt: string; caption: string }[];
+  destination?: { name: string; mapUrl: string; note: string };
   sections: TopicSection[];
   faq: TopicFaq[];
   related: TopicRelated[];
