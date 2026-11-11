@@ -2,7 +2,7 @@
 import { getI18n } from '../i18n/ui';
 import { attraction } from '../config';
 
-const { messages } = getI18n(Astro.url);
+const { messages, lang } = getI18n(Astro.url);
 const s = messages.sources;
 ---
 
@@ -40,6 +40,7 @@ const s = messages.sources;
     <div class="credit-notice">
       <h3>{s.imageNoticeTitle}</h3>
       <p>{s.imageNotice}</p>
+      <p class="credit-reference"><a href={`/${lang}/photo-credits/`}>{messages.credits.title} →</a></p>
     </div>
   </div>
 </section>
@@ -118,4 +119,6 @@ const s = messages.sources;
     color: var(--accent-strong);
   }
   .credit-notice p { margin: 0; color: var(--text-muted); font-size: 0.94rem; }
+  .credit-notice .credit-reference { margin-top: 10px; }
+  .credit-reference a { color: var(--accent-strong); font-weight: 700; }
 </style>
