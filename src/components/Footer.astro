@@ -6,6 +6,11 @@ const lang = getLangFromUrl(Astro.url);
 const { messages } = getI18n(Astro.url);
 const f = messages.footer;
 const policy = legal[lang] ?? legal.en;
+const conciseFooter = {
+  zh: { rights: '版權所有。', independence: '本网站是一个独立的游客信息项目。我们与任何政府机构或官方组织均无隶属关系。', support: '如需本網站技術支援，請聯繫：' },
+  en: { rights: 'All rights reserved.', independence: 'This website is an independent visitor information project and is not affiliated with any government agency or official organization.', support: 'For website technical support, contact:' },
+  th: { rights: 'สงวนลิขสิทธิ์', independence: 'เว็บไซต์นี้เป็นโครงการข้อมูลนักท่องเที่ยวอิสระ ไม่ได้สังกัดหน่วยงานรัฐบาลหรือองค์กรทางการใด ๆ', support: 'ติดต่อฝ่ายสนับสนุนด้านเทคนิคของเว็บไซต์:' },
+}[lang] ?? { rights: 'All rights reserved.', independence: 'Independent visitor information project.', support: 'Technical support:' };
 
 const navLinks = [
   { href: '#overview', label: messages.header.overview },
@@ -25,11 +30,6 @@ const navLinks = [
         <span class="brand-mark">วัด</span>
         <span class="brand-text">{f.siteName}</span>
       </a>
-      <p class="footer-tag">{f.tagline}</p>
-      <div class="mission-block footer-mission">
-        <p class="mission-title">{f.missionTitle}</p>
-        <p class="mission-text" style="white-space: pre-wrap;">{f.missionText}</p>
-      </div>
     </div>
 
     <div class="footer-col">
@@ -65,9 +65,9 @@ const navLinks = [
   </div>
 
   <div class="container footer-bottom">
-    <p>© {new Date().getFullYear()} {f.siteName}. {f.rights}</p>
-    <p class="footer-image-notice">{f.imageNotice}</p>
-    <p class="footer-disclaimer">{f.disclaimer}</p>
+    <p>© {new Date().getFullYear()} {f.siteName} · {conciseFooter.rights}</p>
+    <p>{conciseFooter.independence}</p>
+    <p>{conciseFooter.support} <a href="mailto:laupetter72@gmail.com" class="support-email">laupetter72@gmail.com</a></p>
   </div>
 </footer>
 
@@ -77,8 +77,6 @@ const navLinks = [
   .brand { display: inline-flex; align-items: center; gap: 10px; }
   .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--accent); color: #fff; font-family: var(--font-display); }
   .brand-text { font-family: var(--font-display); font-size: 1.15rem; color: var(--heading); font-weight: 700; }
-  .footer-tag { color: var(--text-muted); margin: 14px 0 16px; max-width: 360px; }
-  .footer-mission { margin-top: 0; }
   .footer-col h4 { font-family: var(--font-body); font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-strong); margin: 0 0 14px; }
   .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
   .footer-col a { color: var(--text); font-weight: 600; }
@@ -87,9 +85,8 @@ const navLinks = [
   .footer-maps { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; padding: 11px 18px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 700; transition: background 0.2s ease; }
   .footer-maps:hover { background: var(--accent-strong); }
   .footer-bottom { border-top: 1px solid var(--border); padding-block: 20px; color: var(--text-muted); font-size: 0.85rem; }
-  .footer-bottom p { margin: 0; }
-  .footer-disclaimer { margin-top: 6px; }
-  .footer-image-notice { margin-top: 6px; color: var(--accent-strong); font-weight: 600; }
+  .footer-bottom p { margin: 0 0 6px; }
+  .support-email { color: var(--accent-strong); font-weight: 700; }
   @media (max-width: 880px) { .footer-top { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .footer-top { grid-template-columns: 1fr; } }
 </style>
