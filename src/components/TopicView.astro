@@ -12,6 +12,13 @@ const { topic, lang } = Astro.props;
 const ui = topicUi[lang] ?? topicUi.en;
 const homePath = `/${lang}/`;
 const isExtended = Boolean(topic.images?.length);
+const guideLabels = lang === 'zh' ? {
+  about: '关于甲米虎穴寺', about1: '甲米虎穴寺（Wat Tham Suea）是一座仍在进行佛教修行与礼拜的山林寺院。洞穴佛殿、泰式宗教建筑和石灰岩林地构成连续的圣地景观。寺院僧团管理宗教活动与现场参观安排；游览时请遵守当天标识和指引。', about2: '从山脚洞穴到山顶金佛观景台，景观与体力要求变化很大。即使不登顶，仍值得仔细欣赏山脚殿宇和宗教空间。', photos: '甲米虎穴寺实景照片', photosNote: '以下展示虎穴寺实地景观。如行程包括其他景点，请使用下方各目的地专属地图，切勿混淆地点。', directions: '地点与交通导航', map: '在 Google Maps 查看此目的地 ↗', templeMap: '甲米虎穴寺地图位置 ↗',
+} : lang === 'th' ? {
+  about: 'เกี่ยวกับวัดถ้ำเสือ จังหวัดกระบี่', about1: 'วัดถ้ำเสือเป็นวัดพุทธที่ยังมีการปฏิบัติธรรมและสักการะ ถ้ำ ศิลปกรรมไทย และภูเขาหินปูนที่มีป่าปกคลุมเป็นภูมิทัศน์ศักดิ์สิทธิ์ที่เชื่อมโยงกัน พระสงฆ์ดูแลกิจกรรมทางศาสนาและข้อแนะนำการเข้าชม โปรดปฏิบัติตามป้ายและคำแนะนำปัจจุบัน', about2: 'บรรยากาศเปลี่ยนจากศาลาถ้ำด้านล่างไปถึงจุดชมวิวพระพุทธรูปทองคำบนยอดเขา แม้ไม่เดินขึ้นบันไดก็ยังชมวิหารและพื้นที่สักการะด้านล่างได้อย่างคุ้มค่า', photos: 'ภาพถ่ายจริงของวัดถ้ำเสือกระบี่', photosNote: 'ภาพเหล่านี้แสดงพื้นที่วัดถ้ำเสือ หากแผนเที่ยวรวมสถานที่อื่น โปรดดูแผนที่เฉพาะจุดด้านล่างเพื่อไม่ให้สับสน', directions: 'สถานที่และวิธีเดินทาง', map: 'ดูสถานที่นี้บน Google Maps ↗', templeMap: 'พิกัดวัดถ้ำเสือกระบี่ ↗',
+} : {
+  about: 'About Wat Tham Suea in Krabi', about1: 'Wat Tham Suea, also known as Tiger Cave Temple, is an active Buddhist monastery in Krabi. The cave worship areas, Thai religious architecture and forested limestone setting form one connected sacred landscape. The monastery community oversees religious practice and on-site visitor instructions; follow current signs and guidance while visiting.', about2: 'From the lower cave shrines to the exposed golden Buddha viewpoint, the visitor experience changes dramatically with elevation. Ground-level architecture and worship spaces deserve time even for travellers who choose not to climb the steep summit staircase.', photos: 'Photographs of the Krabi temple', photosNote: 'These photographs show Wat Tham Suea itself. For itineraries with other destinations, see the destination-specific map below; images of separate attractions are not implied.', directions: 'Location & directions', map: 'View this destination on Google Maps ↗', templeMap: 'Wat Tham Suea temple pin ↗',
+};
 ---
 
 <section class="topic-hero">
@@ -33,9 +40,9 @@ const isExtended = Boolean(topic.images?.length);
 
 {isExtended && (
   <section class="guide-about container" aria-label="About the temple">
-    <h2>About Wat Tham Suea in Krabi</h2>
-    <p>Wat Tham Suea, also known as Tiger Cave Temple, is an active Buddhist monastery in Krabi. The cave worship areas, Thai religious architecture and forested limestone setting form one connected sacred landscape. The monastery community oversees religious practice and on-site visitor instructions; follow current signs and guidance while visiting. This guide focuses on the practical question in its title while placing it in the larger temple setting.</p>
-    <p>From the lower cave shrines to the exposed golden Buddha viewpoint, the visitor experience changes dramatically with elevation. Ground-level architecture and worship spaces deserve time even for travellers who choose not to climb the steep summit staircase.</p>
+    <h2>{guideLabels.about}</h2>
+    <p>{guideLabels.about1}</p>
+    <p>{guideLabels.about2}</p>
   </section>
 )}
 
@@ -63,8 +70,8 @@ const isExtended = Boolean(topic.images?.length);
 
 {topic.images && (
   <section class="guide-gallery container" aria-label="Temple photographs">
-    <h2>Photographs of the Krabi temple</h2>
-    <p>These photographs show Wat Tham Suea itself. For itineraries with other destinations, see the destination-specific map below; images of separate attractions are not implied.</p>
+    <h2>{guideLabels.photos}</h2>
+    <p>{guideLabels.photosNote}</p>
     <div class="guide-photo-grid">
       {topic.images.map((photo) => (
         <figure>
@@ -78,12 +85,12 @@ const isExtended = Boolean(topic.images?.length);
 
 {topic.destination && (
   <section class="guide-map container" aria-label="Location and directions">
-    <h2>Location & directions</h2>
+    <h2>{guideLabels.directions}</h2>
     <p><strong>{topic.destination.name}</strong> — {topic.destination.note}</p>
     <div class="map-actions">
-      <a class="map-cta" href={topic.destination.mapUrl} target="_blank" rel="noopener noreferrer">View this destination on Google Maps ↗</a>
+      <a class="map-cta" href={topic.destination.mapUrl} target="_blank" rel="noopener noreferrer">{guideLabels.map}</a>
       {topic.destination.name !== 'Wat Tham Suea (Tiger Cave Temple), Krabi' && (
-        <a class="map-secondary" href="https://maps.app.goo.gl/hf7r4tLxYcYivFsd6" target="_blank" rel="noopener noreferrer">Wat Tham Suea temple pin ↗</a>
+        <a class="map-secondary" href="https://maps.app.goo.gl/hf7r4tLxYcYivFsd6" target="_blank" rel="noopener noreferrer">{guideLabels.templeMap}</a>
       )}
     </div>
   </section>

@@ -29,7 +29,6 @@ const navLinks = [
    保证在 /th/th 这类历史 URL 上点击切换也不会继续自我复制。 */
 const rest = stripLangSegments(Astro.url.pathname);
 const langHref = (l: string) => `/${l}/${rest ? rest + '/' : ''}`;
-const englishOnlyGuide = rest && !['tiger-cave-temple-steps', 'opening-hours-entrance-fee', 'how-to-get-there', 'best-time-to-visit', 'wat-tham-suea-krabi-vs-kanchanaburi'].includes(rest);
 ---
 
 <header class="site-header" id="siteHeader">
@@ -52,7 +51,7 @@ const englishOnlyGuide = rest && !['tiger-cave-temple-steps', 'opening-hours-ent
       <div class="lang-switch" role="group" aria-label={t.changeLanguage}>
         {languagesList.map((l) => (
           <a
-            href={englishOnlyGuide && l !== 'en' ? `/${l}/` : langHref(l)}
+            href={langHref(l)}
             rel="alternate"
             hreflang={htmlLangAttr(l)}
             class={`lang-opt${l === lang ? ' active' : ''}`}

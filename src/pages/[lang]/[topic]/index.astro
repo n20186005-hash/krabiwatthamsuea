@@ -2,6 +2,7 @@
 import { languagesList } from '../../../i18n/ui';
 import { topics, topicSlugs } from '../../../i18n/topics';
 import { extendedGuides } from '../../../i18n/extended-guides';
+import { localizedExtendedGuides } from '../../../i18n/extended-locales';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import TopicView from '../../../components/TopicView.astro';
 
@@ -10,12 +11,12 @@ export const getStaticPaths = () =>
     ...(languagesList as readonly string[]).flatMap((lang) =>
       topicSlugs.map((slug) => ({ params: { lang, topic: slug } }))
     ),
-    ...Object.keys(extendedGuides).map((slug) => ({ params: { lang: 'en', topic: slug } })),
+    ...(languagesList as readonly string[]).flatMap((lang) => Object.keys(extendedGuides).map((slug) => ({ params: { lang, topic: slug } }))),
   ];
 
 const lang = Astro.params.lang ?? '';
 const slug = Astro.params.topic ?? '';
-const topic = topics[lang]?.[slug] ?? (lang === 'en' ? extendedGuides[slug] : undefined);
+const topic = topics[lang]?.[slug] ?? (lang === 'en' ? extendedGuides[slug] : localizedExtendedGuides[lang as 'zh' | 'th']?.[slug]);
 
 if (!topic) {
   return new Response('Not Found', {
@@ -31,7 +32,6 @@ if (!topic) {
   path={slug}
   faqItems={topic.faq}
   breadcrumbTail={{ name: topic.h1 }}
-  singleLanguage={Boolean(extendedGuides[slug])}
 >
   <TopicView topic={topic} lang={lang} />
 </BaseLayout>
