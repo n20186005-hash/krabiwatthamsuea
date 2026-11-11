@@ -1,9 +1,11 @@
 ---
 import { getLangFromUrl, getI18n } from '../i18n/ui';
+import { legal } from '../i18n/legal';
 
 const lang = getLangFromUrl(Astro.url);
 const { messages } = getI18n(Astro.url);
 const f = messages.footer;
+const policy = legal[lang] ?? legal.en;
 
 const navLinks = [
   { href: '#overview', label: messages.header.overview },
@@ -43,6 +45,11 @@ const navLinks = [
         {f.resources.map((r: any) => (
           <li><a href={r.url} target="_blank" rel="noopener">{r.name}</a></li>
         ))}
+        <li><a href={`/${lang}/photo-credits/`}>{messages.credits.title}</a></li>
+        <li><a href={`/${lang}/sources-and-updates/`}>{messages.sources.title}</a></li>
+        <li><a href={`/${lang}/privacy-policy/`}>{policy.privacyTitle}</a></li>
+        <li><a href={`/${lang}/terms-of-service/`}>{policy.termsTitle}</a></li>
+        <li><a href={`/${lang}/cookie-settings/`}>{policy.cookieTitle}</a></li>
       </ul>
     </div>
 

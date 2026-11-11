@@ -181,13 +181,34 @@ const breadcrumbLd = (() => {
     <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteLd)}></script>
     <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbLd)}></script>
 
-    <!-- Google tag (gtag.js) — GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
+    <!-- Analytics is opt-in. No Google Analytics request before explicit consent. -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HXM22WWPKP');
+      window.setAnalyticsConsent = function (allowed) {
+        try { localStorage.setItem('krabi_analytics_consent', allowed ? 'granted' : 'denied'); } catch (e) {}
+        if (!allowed) {
+          if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+          try {
+            document.cookie.split(';').forEach(function (part) {
+              var name = part.split('=')[0].trim();
+              if (/^_ga(?:_|$)/.test(name)) document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+            });
+          } catch (e) {}
+          return;
+        }
+        gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+        if (!window.__krabiAnalyticsLoaded) {
+          window.__krabiAnalyticsLoaded = true;
+          gtag('js', new Date());
+          gtag('config', 'G-HXM22WWPKP');
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP';
+          document.head.appendChild(script);
+        }
+      };
+      try { if (localStorage.getItem('krabi_analytics_consent') === 'granted') window.setAnalyticsConsent(true); } catch (e) {}
     </script>
 
     <script is:inline>

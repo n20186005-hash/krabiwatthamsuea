@@ -1,0 +1,25 @@
+---
+import { legal } from '../i18n/legal';
+interface Props { lang: string; kind: 'privacy' | 'terms'; }
+const { lang, kind } = Astro.props;
+const c = legal[lang] ?? legal.en;
+const sections = kind === 'privacy' ? c.privacy : c.terms;
+---
+<article class="legal-document container">
+  <p class="legal-update">{c.updated}</p>
+  {sections.map((section) => (
+    <section class="legal-section">
+      <h2>{section.heading}</h2>
+      {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </section>
+  ))}
+  <p class="legal-nav"><a href={`/${lang}/cookie-settings/`}>{c.cookieTitle} →</a></p>
+</article>
+<style>
+  .legal-document { max-width: 900px; padding-top: 1rem; padding-bottom: 3.5rem; }
+  .legal-update { color: var(--text-muted); font-size: .9rem; }
+  .legal-section { margin-top: 1.8rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .legal-section h2 { color: var(--heading); font-size: 1.25rem; font-family: var(--font-display); }
+  .legal-section p { color: var(--text-muted); line-height: 1.85; }
+  .legal-nav { margin-top: 2rem; }
+</style>

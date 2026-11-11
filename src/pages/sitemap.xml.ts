@@ -63,7 +63,20 @@ export const GET: APIRoute = () => {
     '    <priority>0.7</priority>',
     '  </url>',
   ].join('\n')).join('\n');
-  const urlEntries = [homeEntries, topicEntries, englishGuideEntries].filter(Boolean).join('\n');
+  const referenceEntries = ['photo-credits', 'sources-and-updates', 'privacy-policy', 'terms-of-service', 'cookie-settings'].flatMap((slug) => {
+    const links = buildAlternates(slug);
+    return languagesList.map((lang) => [
+      '  <url>',
+      `    <loc>${links[lang]}</loc>`,
+      `    <lastmod>${lastmod}</lastmod>`,
+      '    <changefreq>monthly</changefreq>',
+      '    <priority>0.3</priority>',
+      ...languagesList.map((l) => `    <xhtml:link rel="alternate" hreflang="${htmlLangAttr(l)}" href="${links[l]}"/>`),
+      `    <xhtml:link rel="alternate" hreflang="x-default" href="${links.xDefault}"/>`,
+      '  </url>',
+    ].join('\n'));
+  }).join('\n');
+  const urlEntries = [homeEntries, topicEntries, englishGuideEntries, referenceEntries].filter(Boolean).join('\n');
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

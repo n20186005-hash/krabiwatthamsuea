@@ -1,0 +1,13 @@
+---
+import { languagesList, getI18n } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Sources from '../../../components/Sources.astro';
+
+export const getStaticPaths = () => (languagesList as readonly string[]).map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang ?? 'en';
+const { messages } = getI18n(Astro.url);
+---
+<BaseLayout title={`${messages.sources.title} | Wat Tham Suea`} description={messages.sources.subtitle} path="sources-and-updates" breadcrumbTail={{ name: messages.sources.title }}>
+  <div class="container" style="padding-top:30px"><a href={`/${lang}/`}>← {messages.footer.siteName}</a></div>
+  <Sources />
+</BaseLayout>

@@ -1,0 +1,14 @@
+---
+import { languagesList } from '../../../i18n/ui';
+import { legal } from '../../../i18n/legal';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LegalDocument from '../../../components/LegalDocument.astro';
+export const getStaticPaths = () => (languagesList as readonly string[]).map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang ?? 'en';
+const c = legal[lang] ?? legal.en;
+---
+<BaseLayout title={`${c.privacyTitle} | Wat Tham Suea`} description={c.privacyIntro} path="privacy-policy" breadcrumbTail={{ name: c.privacyTitle }}>
+  <header class="container legal-head"><a href={`/${lang}/`}>← {c.back}</a><h1>{c.privacyTitle}</h1><p>{c.privacyIntro}</p></header>
+  <LegalDocument lang={lang} kind="privacy" />
+</BaseLayout>
+<style>.legal-head{padding-top:2.5rem}.legal-head h1{color:var(--heading);font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem)}.legal-head p{color:var(--text-muted)}</style>

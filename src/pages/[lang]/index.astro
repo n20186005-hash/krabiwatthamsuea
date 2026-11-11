@@ -31,13 +31,11 @@ import History from '../../components/History.astro';
 import Events from '../../components/Events.astro';
 import Gallery from '../../components/Gallery.astro';
 import Support from '../../components/Support.astro';
-import Credits from '../../components/Credits.astro';
 import Nearby from '../../components/Nearby.astro';
 import Reviews from '../../components/Reviews.astro';
 import FAQ from '../../components/FAQ.astro';
 import TopicLinks from '../../components/TopicLinks.astro';
 import Responsible from '../../components/Responsible.astro';
-import Sources from '../../components/Sources.astro';
 
 const { messages } = getI18n(Astro.url);
 ---
@@ -64,6 +62,15 @@ const { messages } = getI18n(Astro.url);
   <TopicLinks />
   <Responsible />
   <Support />
-  <Credits />
-  <Sources />
+  <section class="section-padding" aria-label="Credits and sources">
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a class="source-page-link" href={`/${langParam}/photo-credits/`}>{messages.credits.title} →</a>
+      <a class="source-page-link" href={`/${langParam}/sources-and-updates/`}>{messages.sources.title} →</a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .source-page-link { display:inline-flex;align-items:center;padding:14px 20px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--heading);font-weight:700;text-decoration:none; }
+  .source-page-link:hover { border-color:var(--accent);color:var(--accent-strong); }
+</style>

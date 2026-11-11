@@ -1,0 +1,54 @@
+---
+import { legal } from '../i18n/legal';
+const lang = Astro.props.lang as string;
+const c = legal[lang] ?? legal.en;
+---
+<section class="cookie-preferences container">
+  <div class="cookie-choice">
+    <h2>{c.essential} <span class="always-on">✓</span></h2>
+    <p>{c.essentialInfo}</p>
+  </div>
+  <div class="cookie-choice">
+    <h2>{c.analytics}</h2>
+    <p>{c.analyticsInfo}</p>
+    <p><strong>{c.status}:</strong> <output id="analytics-status" aria-live="polite">{c.notSet}</output></p>
+    <div class="cookie-actions">
+      <button type="button" id="allow-analytics">{c.allow}</button>
+      <button type="button" id="reject-analytics">{c.reject}</button>
+    </div>
+    <p class="cookie-feedback" id="cookie-feedback" role="status" aria-live="polite"></p>
+  </div>
+  {c.cookieDetails.map((section) => (
+    <section class="cookie-explanation">
+      <h2>{section.heading}</h2>
+      {section.paragraphs.map((p) => <p>{p}</p>)}
+    </section>
+  ))}
+</section>
+<script is:inline define:vars={{ c }}>
+  (function () {
+    const status = document.getElementById('analytics-status');
+    const feedback = document.getElementById('cookie-feedback');
+    const read = () => { try { return localStorage.getItem('krabi_analytics_consent'); } catch (e) { return null; } };
+    const refresh = () => { if (status) status.textContent = read() === 'granted' ? c.granted : read() === 'denied' ? c.denied : c.notSet; };
+    document.getElementById('allow-analytics')?.addEventListener('click', () => {
+      window.setAnalyticsConsent?.(true); refresh(); if (feedback) feedback.textContent = c.saved;
+    });
+    document.getElementById('reject-analytics')?.addEventListener('click', () => {
+      window.setAnalyticsConsent?.(false); refresh(); if (feedback) feedback.textContent = c.saved;
+    });
+    refresh();
+  })();
+</script>
+<style>
+  .cookie-preferences { max-width: 900px; padding-bottom: 3.5rem; }
+  .cookie-choice, .cookie-explanation { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); padding: 1.4rem; margin-top: 1rem; }
+  .cookie-choice h2, .cookie-explanation h2 { color: var(--heading); font-family: var(--font-display); font-size: 1.25rem; }
+  .cookie-choice p, .cookie-explanation p { color: var(--text-muted); line-height: 1.75; }
+  .always-on { font-size: .8rem; color: var(--accent-strong); }
+  .cookie-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem; }
+  .cookie-actions button { border: 1px solid var(--accent); border-radius: 10px; padding: .75rem 1rem; cursor: pointer; color: var(--heading); background: var(--surface-2); font-weight: 700; }
+  .cookie-actions button:first-child { background: var(--accent); color: white; }
+  .cookie-actions button:hover { filter: brightness(.94); }
+  .cookie-feedback { min-height: 1.5em; }
+</style>
